@@ -36,7 +36,7 @@ Key aspects of FusionSpace include:
 |-----------|--------------|-------------|
 | Cloud Servers | Amazon EC2, Google Cloud | Scalable cloud infrastructure for hosting backend services and ensuring reliable application performance. Enables seamless integration with Google Workspace services. |
 | Database | MongoDB Database | NoSQL database chosen for flexible data structure handling and excellent scalability in managing user data, tasks, and application content. |
-| AI Infrastructure | Vertex AI (Gemini) | Google's advanced AI platform for implementing machine learning capabilities and intelligent features within the application. |
+| AI | Vertex AI (Gemini) | Google's advanced AI platform for implementing machine learning capabilities and intelligent features within the application. |
 
 ### Software Requirements
 
@@ -51,7 +51,7 @@ Key aspects of FusionSpace include:
 | Category | Technologies | Description |
 |----------|--------------|-------------|
 | Communication | Twilio | API integration for implementing real-time communication features, notifications, and messaging capabilities. |
-| AI Services | TensorFlow, OpenAI, Gemini, LLaMA API | Comprehensive AI toolkit for implementing machine learning models, natural language processing, and intelligent assistance features. |
+| AI | TensorFlow, OpenAI, Gemini, LLaMA API | Comprehensive AI toolkit for implementing machine learning models, natural language processing, and intelligent assistance features. |
 
 ## Contributing
 
