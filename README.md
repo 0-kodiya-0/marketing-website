@@ -57,7 +57,7 @@ Key aspects of FusionSpace include:
 
 Contributions are always welcome!
 
-See `contributing.md` for ways to get started.
+See [CONTRIBUTE.md](./CONTRIBUTE.md) for ways to get started.
 
 ## License
 
