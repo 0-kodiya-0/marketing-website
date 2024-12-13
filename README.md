@@ -53,6 +53,11 @@ Key aspects of FusionSpace include:
 | Communication | Twilio | API integration for implementing real-time communication features, notifications, and messaging capabilities. |
 | AI | TensorFlow, OpenAI, Gemini, LLaMA API | Comprehensive AI toolkit for implementing machine learning models, natural language processing, and intelligent assistance features. |
 
+## System architecture 
+<div align="center"> 
+  <img src="/documentation/png-images/FusionSpace_Architecture-0.png" alt="FusionSpace Logo" width="200"/> 
+</div>
+
 ## Contributing
 
 Contributions are always welcome!
