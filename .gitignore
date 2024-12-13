@@ -89,7 +89,7 @@ typings/
 .vite/
 
 # idea
-.idea
+.idea/
 
 # Electron-Forge
 out/
