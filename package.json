@@ -47,7 +47,8 @@
     "name": "0-kodiya-0",
     "email": "sanithujayafiverr@gmail.com"
   },
-  "license": "MIT",
+  "private": "true",
+  "license": "UNLICENSED",
   "dependencies": {
     "electron-squirrel-startup": "^1.0.1",
     "react": "^19.0.0",

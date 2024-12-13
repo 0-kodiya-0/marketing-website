@@ -2,6 +2,14 @@
 
 Thank you for your interest in contributing to FusionSpace! This document provides guidelines and instructions for contributing to our project.
 
+## Important Project Links
+
+- [Project Setup Guide](./docs/setup.md)
+- [Code Style Guide](./docs/style-guide.md)
+- [API Documentation](./docs/api/README.md)
+- [Database Schema](./docs/database/schema.md)
+- [UI Components](./src/components/README.md)
+
 ## Development Environment Setup
 
 ### Prerequisites
@@ -23,28 +31,90 @@ cd FusionSpace
 npm install
 ```
 
-4. Create a new branch for your feature:
+## Available Scripts
+
+Our project uses several npm scripts for development, building, and deployment. Here's what each script does:
+
+### `npm start`
 ```bash
-git checkout -b feature/your-feature-name
+"start": "electron-forge start"
+```
+- Starts the application in development mode
+- Launches both the Electron process and development server
+- Enables hot reload for React components
+- Shows developer tools automatically
+- Use this during development for testing changes
+
+### `npm run package`
+```bash
+"package": "electron-forge package"
+```
+- Creates a directory with executable files
+- Bundles your application without creating installers
+- Useful for testing the packaged application
+- Output is placed in the `out` directory
+- Doesn't create installation files
+
+### `npm run make`
+```bash
+"make": "electron-forge make"
+```
+- Creates platform-specific distributables (installers)
+- Builds the application for production
+- Creates installation files for your OS
+- Outputs installers to the `out` directory
+- Use this when preparing a release
+
+### `npm run publish`
+```bash
+"publish": "electron-forge publish"
+```
+- Packages and publishes the application
+- Creates installers and publishes to configured targets
+- Can publish to platforms like GitHub Releases
+- Requires proper configuration in forge.config.js
+- Use for releasing new versions
+
+### `npm run lint`
+```bash
+"lint": "eslint --ext .ts,.tsx ."
+```
+- Checks code for style and potential errors
+- Runs ESLint on TypeScript and TSX files
+- Helps maintain code quality
+- Must pass before submitting PRs
+- Can automatically fix some issues with `--fix` flag
+
+## Development Workflow
+
+1. Start development:
+```bash
+npm start
 ```
 
-### Running the Application Locally
+2. Make your changes and test them locally
 
-1. Start the development server:
+3. Check for linting errors:
 ```bash
-npm run dev
+npm run lint
 ```
 
-2. Build the application:
+4. Test packaging:
 ```bash
-npm run build
+npm run package
 ```
 
-3. Run tests:
+5. Create installers for testing:
 ```bash
-npm test
+npm run make
 ```
 
+6. When ready to publish:
+```bash
+npm run publish
+```
+
+[... rest of the previous CONTRIBUTING.md content ...]
 ## Development Guidelines
 
 ### Technology Stack
