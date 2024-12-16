@@ -1,10 +1,34 @@
 # Typography Guide
 
+## Table of Contents
+
+- [Typography Guide](#typography-guide)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Font System](#font-system)
+    - [Font Family](#font-family)
+    - [Why System Fonts?](#why-system-fonts)
+  - [Scale \& Measurements](#scale--measurements)
+    - [Font Scale \& Line Height](#font-scale--line-height)
+    - [Base Font Size](#base-font-size)
+    - [Font Weight](#font-weight)
+  - [Typography Usage](#typography-usage)
+    - [Light Theme Text Colors](#light-theme-text-colors)
+    - [Dark Theme Text Colors](#dark-theme-text-colors)
+  - [Implementation Guidelines](#implementation-guidelines)
+    - [Design Principles](#design-principles)
+  - [Change Request Process](#change-request-process)
+    - [Requesting Typography Changes](#requesting-typography-changes)
+    - [Change Request Considerations](#change-request-considerations)
+  - [Notes](#notes)
+
 ## Overview
 
 Typography is the foundation of a systematic visual design. The difference from traditional graphic design is that the font-scale system is constructed with mathematical order and systematically. We strongly recommend it since it has been verified by a large number of products.
 
-## Font Family
+## Font System
+
+### Font Family
 
 ```css
 /* System Default Fonts */
@@ -20,7 +44,9 @@ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica N
 - Consistent rendering across platforms
 - Professional and reliable appearance
 
-## Font Scale & Line Height
+## Scale & Measurements
+
+### Font Scale & Line Height
 
 Our font scale is based on the pentametric scale, providing natural and balanced proportions:
 
@@ -43,7 +69,7 @@ Our font scale is based on the pentametric scale, providing natural and balanced
 - Optimal reading distance: 50cm
 - For most common monitors based on display distance
 
-## Font Weight
+### Font Weight
 
 Three primary weights for systematic usage:
 
@@ -51,9 +77,9 @@ Three primary weights for systematic usage:
 - Medium (500): Emphasis and subheadings
 - Semibold (600): Headings and important highlights
 
-## Text Color Usage
+## Typography Usage
 
-Light Theme:
+### Light Theme Text Colors
 
 - Title: @Black 85%
 - Primary text: @Black 65%
@@ -64,7 +90,7 @@ Light Theme:
 - Background: @Black 4%
 - Table header: @Black 2%
 
-Dark Theme:
+### Dark Theme Text Colors
 
 - Title: @White 85%
 - Primary text: @White 65%
@@ -75,7 +101,9 @@ Dark Theme:
 - Background: @White 8%
 - Table header: @White 4%
 
-## Advanced Implementation Tips
+## Implementation Guidelines
+
+### Design Principles
 
 1. Establish systematic design thinking:
    - Use consistent scales
@@ -87,14 +115,14 @@ Dark Theme:
    - Minimize font size variations
    - Keep styles focused and purposeful
 
-3. Try to make text color ratios like a ratio:
+3. Text Color Ratios:
    - Main text to background: 7:1
    - Secondary text to background: 4.5:1
    - Disabled text to background: 3:1
 
-## Requesting Typography Changes
+## Change Request Process
 
-Use the standard feature request template when suggesting typography changes:
+### Requesting Typography Changes
 
 ```markdown
 ---
@@ -107,7 +135,8 @@ assignees: ''
 ---
 
 **Is your feature request related to a problem? Please describe.**
-A clear and concise description of what the problem is. Example: Text is difficult to read at current size in [specific context]
+A clear and concise description of what the problem is. Example: Text is difficult 
+to read at current size in [specific context]
 
 **Describe the solution you'd like**
 A clear and concise description of what you want to happen.
@@ -123,7 +152,7 @@ Add any other context about the request:
 - User feedback if available
 ```
 
-### Considerations When Submitting Changes
+### Change Request Considerations
 
 1. Scale Integrity
    - Does the change maintain the established scale?
@@ -152,3 +181,5 @@ Add any other context about the request:
 - Test all changes across supported platforms
 
 Remember: Typography changes should enhance readability and maintain system consistency while following our established mathematical relationships.
+
+---

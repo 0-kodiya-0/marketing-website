@@ -1,5 +1,16 @@
 # Color Pattern Guide
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Core Colors](#core-colors)
+- [Interactive Elements](#interactive-elements)
+- [Feedback States](#feedback-states)
+- [Color Usage](#color-usage)
+- [Implementation Guidelines](#implementation-guidelines)
+- [Change Request Process](#change-request-process)
+- [Notes](#notes)
+
 ## Overview
 
 This guide provides recommended color patterns for the FusionSpace workspace interface. Colors are chosen to enhance usability, maintain consistency, and ensure accessibility while providing a professional and modern look.
@@ -71,29 +82,31 @@ Error:
 - ![#FFFFFF](https://via.placeholder.com/15/FFFFFF/000000?text=+) Text: `#FFFFFF`
 - ![#FEE2E2](https://via.placeholder.com/15/FEE2E2/000000?text=+) Light variant: `#FEE2E2` with ![#991B1B](https://via.placeholder.com/15/991B1B/000000?text=+) `#991B1B` text
 
-## Text Colors
+## Color Usage
+
+### Text Colors
 
 - ![#1F2937](https://via.placeholder.com/15/1F2937/000000?text=+) Primary Text: `#1F2937` (For main content)
 - ![#6B7280](https://via.placeholder.com/15/6B7280/000000?text=+) Secondary Text: `#6B7280` (For supporting text)
 - ![#9CA3AF](https://via.placeholder.com/15/9CA3AF/000000?text=+) Disabled Text: `#9CA3AF`
 - ![#FFFFFF](https://via.placeholder.com/15/FFFFFF/000000?text=+) Inverse Text: `#FFFFFF` (For dark backgrounds)
 
-## Background Colors
+### Background Colors
 
 - ![#FFFFFF](https://via.placeholder.com/15/FFFFFF/000000?text=+) Primary Background: `#FFFFFF`
 - ![#F9FAFB](https://via.placeholder.com/15/F9FAFB/000000?text=+) Secondary Background: `#F9FAFB`
 - ![#F3F4F6](https://via.placeholder.com/15/F3F4F6/000000?text=+) Tertiary Background: `#F3F4F6`
 - ![#FFFFFF](https://via.placeholder.com/15/FFFFFF/000000?text=+) Elevated Background: `#FFFFFF` with `box-shadow`
 
-## Border Colors
+### Border Colors
 
 - ![#E5E7EB](https://via.placeholder.com/15/E5E7EB/000000?text=+) Primary Border: `#E5E7EB`
 - ![#0D64D2](https://via.placeholder.com/15/0D64D2/000000?text=+) Focus Border: `#0D64D2`
 - ![#E5E7EB](https://via.placeholder.com/15/E5E7EB/000000?text=+) Divider: `#E5E7EB`
 
-## Animation and Transitions
+## Implementation Guidelines
 
-### Color Transitions
+### Animation and Transitions
 
 - Default Duration: 150ms
 - Timing Function: ease-in-out
@@ -111,13 +124,13 @@ transition: all 150ms ease-in-out;
 transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
 ```
 
-## Accessibility Guidelines
+### Accessibility Guidelines
 
 - Minimum contrast ratio: 4.5:1 for normal text
 - Minimum contrast ratio: 3:1 for large text
 - Interactive elements should maintain clear hover/focus states
 
-## Color Usage Best Practices
+### Best Practices
 
 1. Use primary colors sparingly to maintain visual hierarchy
 2. Maintain consistent use of colors for similar actions
@@ -125,15 +138,15 @@ transition: background-color 150ms ease-in-out, color 150ms ease-in-out;
 4. Ensure sufficient contrast for text readability
 5. Use color to support but not convey critical information
 
-## Dark Mode Considerations
+### Dark Mode Considerations
 
 Dark mode colors should be defined as needed during implementation, maintaining the same contrast ratios and accessibility standards as light mode.
 
-## Color Adjustment Process
+## Change Request Process
 
 ### Requesting Color Changes
 
-To request changes to the color system, create a new issue using the standard feature request template. Here's how to fill it out for color-related changes:
+Use the standard feature request template when suggesting color changes:
 
 ```markdown
 ---
@@ -179,5 +192,11 @@ Upon approval:
 
 For critical accessibility or brand compliance issues, add the 'urgent' label to your issue and tag relevant team members.
 
+## Notes
+
+- This color system is a guideline and can be adjusted based on specific design requirements
+- Dark mode considerations should maintain contrast ratios and accessibility standards
+- Always test changes thoroughly before implementation
+- Consider color blindness and accessibility requirements in all color decisions
+
 ---
-Note: Any color changes should maintain the overall design system coherence and meet accessibility standards. Always test changes thoroughly before submitting a request.
