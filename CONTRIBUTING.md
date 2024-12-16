@@ -243,7 +243,6 @@ For more detailed information about writing effective git commit messages, check
 - [How to Write Good Git Commit Messages - A Detailed Guide](https://gist.github.com/lisawolderiksen/a7b99d94c92c6671181611be1641c733)
 - [How to Write a Git Commit Message](https://cbea.ms/git-commit/)
 - [Conventional Commits](https://www.conventionalcommits.org/)
-- [Angular Commit Message Guidelines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#commit)
 
 ### 5. Push Changes and Create PR
 
