@@ -1,246 +1,120 @@
-# UI Development Work Distribution React
+# UI Development Work Distribution - React Phase
 
 ## Table of Contents
 
-- [UI Development Work Distribution React](#ui-development-work-distribution-react)
+- [UI Development Work Distribution - React Phase](#ui-development-work-distribution---react-phase)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
-  - [Team Expertise](#team-expertise)
-  - [Design Resources](#design-resources)
-  - [Component Distribution](#component-distribution)
-    - [Core Components Assignment](#core-components-assignment)
-    - [Composite Components Assignment](#composite-components-assignment)
-    - [Layout Components Assignment](#layout-components-assignment)
-    - [Feature Components Assignment](#feature-components-assignment)
-  - [Development Guidelines](#development-guidelines)
-    - [Component Development Process](#component-development-process)
-    - [Code Review Pairs](#code-review-pairs)
-  - [Work Breakdown](#work-breakdown)
-    - [Phase 1: Core Components](#phase-1-core-components)
-    - [Phase 2: Layout Components](#phase-2-layout-components)
-    - [Phase 3: Feature Components](#phase-3-feature-components)
-  - [Work Breakdown](#work-breakdown-1)
-    - [Phase 1: Core Components](#phase-1-core-components-1)
-    - [Phase 2: Layout Components](#phase-2-layout-components-1)
-    - [Phase 3: Feature Components](#phase-3-feature-components-1)
-  - [Status Updates](#status-updates)
-    - [How to Update Status](#how-to-update-status)
-    - [Status Update Frequency](#status-update-frequency)
-    - [Status Review Process](#status-review-process)
-    - [Status Key](#status-key)
-  - [Component Modification Guidelines](#component-modification-guidelines)
+  - [Component Design Distribution](#component-design-distribution)
+    - [Core Components Design](#core-components-design)
+    - [Composite Components Design](#composite-components-design)
+    - [Layout Components Design](#layout-components-design)
+    - [Feature Components Design](#feature-components-design)
+  - [Development Process](#development-process)
+  - [Project Structure](#project-structure)
     - [Core Components](#core-components)
     - [Composite Components](#composite-components)
     - [Layout Components](#layout-components)
     - [Feature Components](#feature-components)
+  - [Status Updates](#status-updates)
+    - [Status Symbols](#status-symbols)
+    - [Update Process](#update-process)
+  - [Commit Guidelines](#commit-guidelines)
+    - [Commit Examples](#commit-examples)
     - [General Guidelines](#general-guidelines)
 
 ## Overview
 
-This document outlines the distribution of UI development tasks among team members, focusing on efficient allocation based on experience levels and component complexity.
+React implementation phase for FusionSpace UI components, following completed Figma designs.
 
-## Team Expertise
+## Component Design Distribution
 
-| Developer | Experience Level | Strengths |
-|-----------|-----------------|------------|
-| Kehan | Advanced | UI/UX, Component Design |
-| Sanithu | Advanced | Layout Systems, Component Architecture |
-| Didula | Intermediate | Basic Components, Styling |
-| Thihan | Intermediate | Form Components, Responsive Design |
-| Piumal | Intermediate | Navigation Elements, Basic Layouts |
-| Channa | Intermediate | UI Integration, State Management |
+### Core Components Design
 
-## Design Resources
-
-- react Project: [Team Library](https://www.figma.com/design/zVfigy0ewfheKKX0HQe0Vf/w2052292's-team-library?node-id=3311-2&t=SSUjMtidzcBLpae9-1)
-
-## Component Distribution
-
-### Core Components Assignment
-
-| Component Type | Developer | Status |
-|---------------|-----------|---------|
+| Component Type | Designer | Design Status |
+|---------------|----------|----------------|
 | Buttons | Kehan | 🔄 Pending |
 | Input Fields | Kehan | 🔄 Pending |
 | Cards | Sanithu | 🔄 Pending |
+| Modals | Sanithu | 🔄 Pending |
 | Icons | Didula | 🔄 Pending |
 | Typography | Didula | 🔄 Pending |
 
-### Composite Components Assignment
+### Composite Components Design
 
-| Component Type | Developer | Dependencies | Status |
-|---------------|-----------|--------------|---------|
+| Component Type | Designer | Dependencies | Design Status |
+|---------------|----------|--------------|---------------|
 | Search Bar | Kehan | Input Fields, Icons | 🔄 Pending |
 | Navigation Menu | Sanithu | Buttons, Icons | 🔄 Pending |
-| File Upload | Thihan | Buttons, Progress Bar | 🔄 Pending |
-| Settings Panel | Piumal | Forms, Switch, Radio | 🔄 Pending |
+| File Upload | Thihan | Buttons, Progress | 🔄 Pending |
+| Settings Panel | Piumal | Forms, Switches | 🔄 Pending |
 | Notification Alerts | Didula | Icons, Typography | 🔄 Pending |
-| Dropdown Menu | Channa | Buttons, Icons, Lists | 🔄 Pending |
-| Tab Navigation | Kehan | Buttons, Typography | 🔄 Pending |
-| User Avatar | Sanithu | Images, Status Badge | 🔄 Pending |
-| Progress Indicators | Thihan | Progress Bar, Typography | 🔄 Pending |
-| Date/Time Picker | Piumal | Input Fields, Calendar | 🔄 Pending |
+| Dropdown Menu | Channa | Buttons, Lists | 🔄 Pending |
 
-[Rest of the content remains the same...]
+### Layout Components Design
 
-### Layout Components Assignment
-
-| Component | Developer | Status |
-|-----------|-----------|---------|
+| Component | Designer | Design Status |
+|-----------|----------|---------------|
 | Navbar | Sanithu | 🔄 Pending |
 | Footer | Piumal | 🔄 Pending |
 | Left Side Panel | Kehan | 🔄 Pending |
 | Right Main Panel | Thihan | 🔄 Pending |
 | Sign In Form | Didula | 🔄 Pending |
 | Signup Form | Didula | 🔄 Pending |
-| Account Settings Panel | Channa | 🔄 Pending |
-| Environment Settings Panel | Channa | 🔄 Pending |
 
-### Feature Components Assignment
+### Feature Components Design
 
-| Component | Developer | Status |
-|-----------|-----------|---------|
+| Component | Designer | Design Status |
+|-----------|----------|---------------|
 | Note Editor | Kehan | 🔄 Pending |
 | Live Chat Interface | Sanithu | 🔄 Pending |
 | Video Call Room | Thihan | 🔄 Pending |
 | File Manager | Piumal | 🔄 Pending |
 
-## Development Guidelines
+## Development Process
 
-### Component Development Process
+1. **Implementation**
+   - Review Figma design
+   - Create component structure
+   - Implement functionality
+   - Add tests
 
-1. Review react design thoroughly
-2. Create component structure
-3. Implement base styling
-4. Add interactions and animations
-5. Test responsiveness
-6. Document component usage
+2. **Review**
+   - Code review by pair
+   - Lead review
+   - CI checks
 
-### Code Review Pairs
+3. **Documentation**
+   - Props documentation
+   - Usage examples
+   - Update README
 
-- Kehan & Sanithu (Lead reviewers)
-- Didula & Thihan
-- Piumal & Channa
+## Project Structure
 
-## Work Breakdown
-
-### Phase 1: Core Components
-
-- Duration: 2 weeks
-- Focus: Basic UI elements
-- Lead Developers: Kehan, Sanithu
-
-### Phase 2: Layout Components
-
-- Duration: 3 weeks
-- Focus: Main application structure
-- Lead Developers: All team members
-
-### Phase 3: Feature Components
-
-- Duration: Ongoing
-- Focus: Specific functionality interfaces
-- Lead Developers: Based on feature complexity
-
-## Work Breakdown
-
-### Phase 1: Core Components
-
-- Duration: 2 weeks
-- Focus: Basic UI elements
-- Lead Developers: Kehan, Sanithu
-
-### Phase 2: Layout Components
-
-- Duration: 3 weeks
-- Focus: Main application structure
-- Lead Developers: All team members
-
-### Phase 3: Feature Components
-
-- Duration: Ongoing
-- Focus: Specific functionality interfaces
-- Lead Developers: Based on feature complexity
-
-## Status Updates
-
-### How to Update Status
-
-1. Create a branch from 'user-interface' branch:
-
-   ```bash
-   git checkout -b ui/status-update-[date]
-   ```
-
-2. Update the status in the tables using these symbols:
-   - 🔄 Pending: Not started
-   - ⏳ In Progress: Currently being worked on
-   - ✅ Completed: Ready for review
-   - 🔍 In Review: Under peer review
-   - ❌ Blocked: Facing impediments
-
-3. Commit your changes using this format:
-
-   ```bash
-   Update UI work status [date]
-
-   Update component development status:
-   - [Component Name]: [Old Status] -> [New Status]
-   - [Component Name]: [Old Status] -> [New Status]
-
-   Additional Notes:
-   - [Any blockers or important information]
-   - [Any dependencies or requirements]
-
-   Task: FUSION-[number]
-   ```
-
-4. Example commit message:
-
-   ```bash
-   Update UI work status 2024-12-17
-
-   Update component development status:
-   - Navbar: 🔄 -> ⏳
-   - Sign In Form: ⏳ -> ✅
-   - Video Call Room: 🔄 -> ❌
-
-   Additional Notes:
-   - Video Call Room blocked pending WebRTC integration
-   - Sign In Form ready for review
-   ```
-
-### Status Update Frequency
-
-- Update status at least twice per week
-- Update immediately when component status changes
-- Include details about blockers or dependencies
-
-### Status Review Process
-
-1. Component Lead (Kehan or Sanithu) reviews status updates
-2. Updates discussed in daily standups
-3. Blockers escalated to Scrum Master (Channa)
-
-### Status Key
-
-- 🔄 Pending: Not started
-- ⏳ In Progress: Currently being worked on
-- ✅ Completed: Ready for review
-- 🔍 In Review: Under peer review
-- ❌ Blocked: Facing impediments
-
-## Component Modification Guidelines
-
-### Core Components
-
-1. Create branch from 'user-interface':
-
-```bash
-git checkout -b ui/core/[component-name]
+```
+figma/
+└──component     
+    ├── core/
+    │   ├── buttons/
+    │   ├── inputs/
+    │   └── ...
+    ├── composite/
+    │   ├── search-bar/
+    │   ├── navigation/
+    │   └── ...
+    ├── layouts/
+    │   ├── navbar/
+    │   ├── panels/
+    │   └── ...
+    └── features/
+        ├── note-editor/
+        ├── chat/
+        └── ...
 ```
 
-2. Follow folder structure:
+**Note** if the file didn't exists create it and then add the content with `README.md` file added to that specific folder
+
+### Core Components
 
 ```
 react/components/core/[ComponentName]/
@@ -251,53 +125,7 @@ react/components/core/[ComponentName]/
 └── README.md
 ```
 
-3. Commit message format:
-
-```bash
-Add/Update/Fix core/[component-name]
-
-Description:
-- What changed in the component
-- Why the change was needed
-- How it affects other components
-
-Dependencies:
-- List any dependencies
-- Breaking changes
-
-Task: FUSION-[number]
-
-Co-authored-by: [Name] <[email]>
-```
-
-Example:
-
-```bash
-Add core/Button component
-
-Description:
-- Implement base button component with variants
-- Add hover and focus states
-- Include loading state handling
-
-Dependencies:
-- Requires Icon component
-- Updates theme types
-
-Task: FUSION-234
-
-Co-authored-by: Sanithu Jayakody <0-kodiya-0>
-```
-
 ### Composite Components
-
-1. Create branch:
-
-```bash
-git checkout -b ui/composite/[component-name]
-```
-
-2. Follow folder structure:
 
 ```
 react/components/composite/[ComponentName]/
@@ -311,32 +139,7 @@ react/components/composite/[ComponentName]/
 └── README.md
 ```
 
-3. Commit message format:
-
-```bash
-Add/Update/Fix composite/[component-name]
-
-Description:
-- Component purpose
-- Implementation details
-- Integration points
-
-Core Components Used:
-- List core components used
-- Any modifications needed
-
-Co-authored-by: [Name] <[email]>
-```
-
 ### Layout Components
-
-1. Create branch:
-
-```bash
-git checkout -b ui/layout/[layout-name]
-```
-
-2. Follow folder structure:
 
 ```
 react/layouts/[LayoutName]/
@@ -349,32 +152,7 @@ react/layouts/[LayoutName]/
 └── README.md
 ```
 
-3. Commit message format:
-
-```bash
-Add/Update/Fix layout/[layout-name]
-
-Description:
-- Layout purpose
-- Responsive behavior
-- Navigation structure
-
-Components:
-- List integrated components
-- Routing requirements
-
-Co-authored-by: [Name] <[email]>
-```
-
 ### Feature Components
-
-1. Create branch:
-
-```bash
-git checkout -b ui/feature/[feature-name]
-```
-
-2. Follow folder structure:
 
 ```
 react/components/features/[FeatureName]/
@@ -389,22 +167,109 @@ react/components/features/[FeatureName]/
 └── README.md
 ```
 
-3. Commit message format:
+## Status Updates
+
+### Status Symbols
+
+- 🔄 Pending
+- ⏳ In Progress
+- ✅ Complete
+- 🔍 In Review
+- ❌ Blocked
+
+### Update Process
+
+1. Create status update branch
+2. Update status in document
+3. Create pull request
+
+## Commit Guidelines
+
+1. **Adding New Design Exports**
 
 ```bash
-Add/Update/Fix feature/[feature-name]
+Add [component-type] design exports
 
 Description:
-- Feature functionality
-- User interaction flow
-- State management approach
+- Added PNG exports for [list components]
+- Resolution: 2x
+- Location: docs/designs/[component-type]
 
-Dependencies:
-- Required components
-- API integrations
-- External services
+Components:
+- [component1].tsx
+- [component2].tsx
 
 Co-authored-by: [Name] <[email]>
+```
+
+2. **Updating Design Status**
+
+```bash
+Update [component-type] design status
+
+Description:
+- [Component]: [Old Status] -> [New Status]
+- [Component]: [Old Status] -> [New Status]
+
+Design Notes:
+- List design changes
+- Note any pending reviews
+- Highlight blockers
+
+Co-authored-by: [Name] <[email]>
+```
+
+3. **Design Review Updates**
+
+```bash
+Complete design review for [component-type]
+
+Review Notes:
+- [Component]: [Feedback points]
+- [Component]: [Approved/Changes needed]
+
+Next Steps:
+- List required changes
+- Export timeline
+- Implementation dependencies
+
+Co-authored-by: [Name] <[email]>
+```
+
+### Commit Examples
+
+1. **Adding Core Button Designs**
+
+```bash
+Add core/button design exports
+
+Description:
+- Added .tsx exports for button variants
+- Resolution: 2x
+- Location: docs/designs/core/buttons
+
+Components:
+- button.tsx
+
+Co-authored-by: Sanithu <0-kodiya-0>
+```
+
+2. **Updating Layout Status**
+
+```bash
+Update layout design status
+
+Description:
+- Navbar: ⏳ -> ✅
+- Left Panel: 🔄 -> ⏳
+- Footer: 🔄 -> ⏳
+
+Design Notes:
+- Navbar ready for review
+- Left panel navigation flow in progress
+- Footer social icons pending
+
+Co-authored-by: Sanithu <0-kodiya-0>
 ```
 
 ### General Guidelines

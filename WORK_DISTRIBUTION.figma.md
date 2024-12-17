@@ -1,50 +1,33 @@
-# UI Development Work Distribution Figma
+# UI Development Work Distribution - Figma Phase
 
 ## Table of Contents
 
-- [UI Development Work Distribution Figma](#ui-development-work-distribution-figma)
+- [UI Development Work Distribution - Figma Phase](#ui-development-work-distribution---figma-phase)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
-  - [Design Phase](#design-phase)
-    - [Design Resources](#design-resources)
-  - [Team Expertise](#team-expertise)
+  - [Design Resources](#design-resources)
   - [Component Design Distribution](#component-design-distribution)
     - [Core Components Design](#core-components-design)
     - [Composite Components Design](#composite-components-design)
     - [Layout Components Design](#layout-components-design)
     - [Feature Components Design](#feature-components-design)
-  - [Design Guidelines](#design-guidelines)
-    - [Implementation Planning](#implementation-planning)
-    - [File Organization](#file-organization)
-    - [Export Process](#export-process)
-    - [Status Update Process](#status-update-process)
+  - [Design Process](#design-process)
+    - [Project Structure](#project-structure)
+  - [Status Updates](#status-updates)
+    - [Status Symbols](#status-symbols)
+    - [Update Process](#update-process)
   - [Commit Guidelines](#commit-guidelines)
-    - [Design Update Commits](#design-update-commits)
     - [Commit Examples](#commit-examples)
-    - [Commit Process](#commit-process)
+    - [General Guidelines](#general-guidelines)
 
 ## Overview
 
-This document outlines the initial Figma design phase for UI components. Development of .tsx files will begin after design completion and approval.
+Design phase for FusionSpace UI components using Figma. Implementation phase will begin after design completion and approval.
 
-## Design Phase
-
-### Design Resources
+## Design Resources
 
 - Figma Project: [Team Library](https://www.figma.com/design/zVfigy0ewfheKKX0HQe0Vf/w2052292's-team-library?node-id=3311-2&t=SSUjMtidzcBLpae9-1)
 - Export Format: PNG files for documentation
-- Design Lead: Kehan, Sanithu
-
-## Team Expertise
-
-| Developer | Experience Level | Design Focus |
-|-----------|-----------------|--------------|
-| Kehan | Advanced | Component Design, UI/UX |
-| Sanithu | Advanced | Layout Systems |
-| Didula | Intermediate | Basic Components |
-| Thihan | Intermediate | Form Elements |
-| Piumal | Intermediate | Navigation Elements |
-| Channa | Intermediate | Feature Interfaces |
 
 ## Component Design Distribution
 
@@ -90,18 +73,25 @@ This document outlines the initial Figma design phase for UI components. Develop
 | Video Call Room | Thihan | 🔄 Pending | Not Exported |
 | File Manager | Piumal | 🔄 Pending | Not Exported |
 
-## Design Guidelines
+## Design Process
 
-### Implementation Planning
+1. **Component Design**
+   - Create in Figma
+   - Add all variants
+   - Include responsive states
+   - Document interactions
 
-Development of .tsx files will begin after:
+2. **Review**
+   - Design lead review
+   - Team feedback
+   - Iteration if needed
 
-1. All component designs are approved
-2. PNG exports are completed
-3. Component documentation is ready
-4. Team review of full design system
+3. **Export**
+   - Export as PNG 2x
+   - Follow naming convention
+   - Place in correct folder
 
-### File Organization
+### Project Structure
 
 ```
 figma/
@@ -123,28 +113,29 @@ figma/
         ├── chat/
         └── ...
 ```
+**Note** if the file didn't exists create it and then add the content with `README.md` file added to that specific folder
 
-### Export Process
+## Status Updates
 
-1. Export design as PNG at 2x resolution
-2. Use naming convention: `[component-type]-[component-name].png`
-3. Add to appropriate docs folder
-   
-### Status Update Process
+### Status Symbols
 
-1. Update the status in tables using:
-   - 🔄 Pending: Not started
-   - ⏳ Designing: In progress
-   - ✅ Designed: Ready for review
-   - 🔍 In Review: Under design review
-   - ✨ Approved: Ready for PNG export
-   - 📤 Exported: PNG files added to docs
+- 🔄 Pending
+- ⏳ In Progress
+- ✅ Complete
+- 🔍 In Review
+- ✨ Approved
+- 📤 Exported
+
+### Update Process
+
+1. Update status in this document
+2. Export designs if complete
+3. Commit changes with proper message
 
 ## Commit Guidelines
 
-### Design Update Commits
-
 1. **Adding New Design Exports**
+
 ```bash
 Add [component-type] design exports
 
@@ -161,6 +152,7 @@ Co-authored-by: [Name] <[email]>
 ```
 
 2. **Updating Design Status**
+
 ```bash
 Update [component-type] design status
 
@@ -177,6 +169,7 @@ Co-authored-by: [Name] <[email]>
 ```
 
 3. **Design Review Updates**
+
 ```bash
 Complete design review for [component-type]
 
@@ -195,6 +188,7 @@ Co-authored-by: [Name] <[email]>
 ### Commit Examples
 
 1. **Adding Core Button Designs**
+
 ```bash
 Add core/button design exports
 
@@ -213,6 +207,7 @@ Co-authored-by: Sanithu <0-kodiya-0>
 ```
 
 2. **Updating Layout Status**
+
 ```bash
 Update layout design status
 
@@ -228,25 +223,8 @@ Design Notes:
 
 Co-authored-by: Sanithu <0-kodiya-0>
 ```
-<!-- 
-### Branch Naming Convention
 
-1. **For Design Exports**
-```bash
-design/exports/[component-type]/[component-name]
-```
-
-2. **For Status Updates**
-```bash
-design/status/[date-YYYYMMDD]
-```
-
-3. **For Design Reviews**
-```bash
-design/review/[component-type]
-``` -->
-
-### Commit Process
+### General Guidelines
 
 1. **Before Committing**
    - Verify PNG export quality
@@ -255,9 +233,9 @@ design/review/[component-type]
    - Add design notes if needed
 
 2. **Commit Order**
-   1. Add PNG exports
-   2. Update documentation
-   3. Update status tables
+   - Add PNG exports
+   - Update documentation
+   - Update status tables
 
 3. **After Committing**
    - Notify design leads
