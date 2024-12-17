@@ -118,7 +118,7 @@ npm run build
 
 ## Contributing
 
-We welcome contributions to FusionSpace! `user-interface` branch. Please read our [CONTRIBUTING.md](./CONTRIBUTING.md) file in branch `main` for detailed guidelines on how to:
+We welcome contributions to FusionSpace! `user-interface` branch. Please read our [CONTRIBUTING.md](https://github.com/0-kodiya-0/SDGP-CS-135/blob/e960e19fec6492709fee15b40c87bc7b24b644f7/CONTRIBUTING.md) file in branch `main` for detailed guidelines on how to:
 
 - Set up your development environment
 - Create branches and make changes
