@@ -46,3 +46,4 @@ For detailed information about specific UI components and design decisions, plea
 - [color-patterns.md](docs/color-patterns.md): Color scheme and theming guidelines
 - [layout-design.md](docs/layout-design.md): Layout structure and grid systems
 - [typography.md](docs/typography.md): Typography standards and usage
+- [folder-struct.md](docs/folder-struct.md): Folder structure and patterns
