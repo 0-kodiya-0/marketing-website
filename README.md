@@ -43,7 +43,6 @@ This branch focuses on implementing a clean, intuitive, and customizable UI/UX t
 
 For detailed information about specific UI components and design decisions, please refer to the documentation in the `/docs` directory:
 
-- `color-patterns.md`: Color scheme and theming guidelines
-- `component-design.md`: Component specifications and usage
-- `layout-design.md`: Layout structure and grid systems
-- `typography.md`: Typography standards and usage
+- [color-patterns.md](docs/color-patterns.md): Color scheme and theming guidelines
+- [layout-design.md](docs/layout-design.md): Layout structure and grid systems
+- [typography.md](docs/typography.md): Typography standards and usage
