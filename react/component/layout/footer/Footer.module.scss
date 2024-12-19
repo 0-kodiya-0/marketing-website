@@ -1,0 +1,36 @@
+.iconIoniconsOutlineSh {
+    width: 15px;
+    position: relative;
+    height: 15px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.iconIoniconsOutlineShParent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 40px 0px 0px;
+    gap: 20px;
+}
+.iconTablerIconsHelp {
+    width: 20px;
+    position: relative;
+    height: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.footer {
+    width: 100%;
+    position: relative;
+    background-color: #f3f3f3;
+    border-top: 1px solid #9095a1;
+    box-sizing: border-box;
+    height: 34px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 7px 11px;
+}
+

@@ -1,0 +1,136 @@
+.iconIoniconsOutlineRe {
+    width: 27px;
+    position: relative;
+    height: 27px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.iconIoniconsOutlineReWrapper {
+    width: 68px;
+    border-right: 1px solid #9095a1;
+    box-sizing: border-box;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px 20px;
+}
+.environment {
+    position: relative;
+    line-height: 110%;
+}
+.environmentWrapper {
+    width: 150px;
+    border-radius: 3px;
+    background-color: #e0e0e0;
+    border: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 11px 29px;
+}
+.iconTablerIconsDotsVer {
+    width: 24px;
+    position: relative;
+    height: 24px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.frameParent {
+    width: 283px;
+    border-right: 1px solid #9095a1;
+    box-sizing: border-box;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+.iconIconoirSearch {
+    width: 20px;
+    position: relative;
+    height: 20px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.iconIconoirSearchParent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+.frameWrapper {
+    width: 321.1px;
+    border-radius: 3px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    box-sizing: border-box;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 6px 10px;
+}
+.iconBootstrapOutlineL {
+    width: 15px;
+    position: relative;
+    height: 15px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+.iconBootstrapOutlineLParent {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+.frameChild {
+    width: 45px;
+    position: relative;
+    border-radius: 50%;
+    background-color: #0164d2;
+    height: 45px;
+}
+.frameContainer {
+    width: 209px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.frameGroup {
+    flex: 1;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 20px;
+    box-sizing: border-box;
+    font-size: 14px;
+}
+.navbar {
+    width: 100%;
+    position: relative;
+    background-color: #f3f3f3;
+    border-bottom: 1px solid #9095a1;
+    box-sizing: border-box;
+    height: 60px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: left;
+    font-size: 16px;
+    color: #000;
+    font-family: Roboto;
+}
+

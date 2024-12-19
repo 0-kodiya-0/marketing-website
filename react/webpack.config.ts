@@ -1,7 +1,7 @@
-import path from 'path';
 import type { Configuration as WebpackConfig } from 'webpack';
 import { rules } from './webpack.rules';
 import { plugins } from './webpack.plugins';
+import * as path from 'path';
 
 import type { Configuration as DevServerConfig } from 'webpack-dev-server';
 
@@ -16,6 +16,9 @@ const config: Configuration = {
         path: path.resolve(__dirname, 'dist'),
         filename: '[name].[contenthash].js',
         clean: true
+    },
+    experiments: {
+        topLevelAwait: true,
     },
     module: {
         rules

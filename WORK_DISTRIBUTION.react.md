@@ -92,7 +92,7 @@ React implementation phase for FusionSpace UI components, following completed Fi
 ## Project Structure
 
 ```
-figma/
+react/
 └──component     
     ├── core/
     │   ├── buttons/

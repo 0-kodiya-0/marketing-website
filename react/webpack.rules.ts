@@ -4,28 +4,11 @@ export const rules: Required<ModuleOptions>['rules'] = [
     {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        use: [
-            {
-                loader: 'babel-loader',
-                options: {
-                    presets: [
-                        '@babel/preset-env',
-                        '@babel/preset-react',
-                        '@babel/preset-typescript'
-                    ]
-                }
-            },
-            {
-                loader: 'ts-loader',
-                options: {
-                    transpileOnly: true
-                }
-            }
-        ]
+        use: 'ts-loader'
     },
     {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.s[ac]ss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
     },
     {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
