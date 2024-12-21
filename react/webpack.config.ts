@@ -25,10 +25,12 @@ const config: Configuration = {
     },
     plugins,
     resolve: {
-        extensions: ['.js', '.ts', '.jsx', '.tsx', '.css'],
+        extensions: ['.js', '.ts', '.jsx', '.tsx', '.css', '.svg'],
         alias: {
-            '@': path.resolve(__dirname, 'src')
-        }
+            '@': path.resolve(__dirname, 'src'),
+            '@components': path.resolve(__dirname, 'src/components'),
+            '@icons': path.resolve(__dirname, 'src/icons')
+        },
     },
     devServer: {
         compress: true,

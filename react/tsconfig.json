@@ -18,6 +18,11 @@
         "incremental": true,
         "resolveJsonModule": true,
         "isolatedModules": true,
+        "baseUrl": "src",
+        "paths": {
+            "@icons": ["icons/index.ts"],
+            "@components/*" : ["components/*"]
+        }
     },
     "include": [
         "**/*.ts",
