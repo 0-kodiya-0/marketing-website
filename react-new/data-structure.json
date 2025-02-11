@@ -1,0 +1,591 @@
+{
+    "device": {
+        "id": "",
+        "installationDate": "",
+        "name": "",
+        "os": "",
+        "version": "",
+        "uniqueIdentifier": "",
+        "preferences": {
+            "theme": "",
+            "language": "",
+            "notifications": true,
+            "notificationTypes": []
+        }
+    },
+    "defaultAccount": {
+        "id": "",
+        "created": "",
+        "deviceId": "",
+        "status": "active | inactive",
+        "security": {
+            "twoFactorEnabled": false,
+            "sessionTimeout": 0,
+            "autoLock": false
+        },
+        "profile": {
+            "personal": {
+                "firstName": "",
+                "lastName": "",
+                "email": "",
+                "phone": "",
+                "avatar": ""
+            },
+            "organization": {
+                "name": "",
+                "role": "",
+                "department": ""
+            }
+        }
+    },
+    "sessions": [
+        {
+            "id": "",
+            "accountId": "",
+            "deviceId": "",
+            "startTime": "",
+            "lastActive": "",
+            "status": "active | terminated",
+            "activeServices": []
+        }
+    ],
+    "contacts": [
+        {
+            "id": "",
+            "userId": "",
+            "created": "",
+            "status": "active | blocked | removed",
+            "category": "work | personal | other",
+            "tags": []
+        }
+    ],
+    "environments": [
+        {
+            "id": 0,
+            "accountId": "",
+            "name": "",
+            "created": "",
+            "lastModified": "",
+            "status": "active | archived | deleted"
+        }
+    ],
+    "projects": [
+        {
+            "id": 0,
+            "environmentId": 0,
+            "name": "",
+            "description": "",
+            "created": "",
+            "lastModified": "",
+            "status": "active | archived | deleted",
+            "type": "personal | organization",
+            "category": "work | education | personal | research | other",
+            "subcategory": "",
+            "visibility": "private | shared | public"
+        }
+    ],
+    "projectMembers": [
+        {
+            "id": "",
+            "projectId": "",
+            "userId": "",
+            "role": "owner | manager | member | viewer",
+            "joinedAt": "",
+            "status": "active | inactive",
+            "permissions": []
+        }
+    ],
+    "services": [
+        {
+            "id": "",
+            "name": "",
+            "provider": "",
+            "version": "",
+            "status": "active | disabled",
+            "config": {
+                "apiKey": "",
+                "endpoint": ""
+            }
+        }
+    ],
+    "serviceFeatures": [
+        {
+            "id": "",
+            "serviceId": "",
+            "name": "",
+            "type": "function | tool | model",
+            "config": {
+                "inputs": [],
+                "outputs": [],
+                "parameters": {}
+            }
+        }
+    ],
+    "featureIntegrations": [
+        {
+            "id": "",
+            "featureId": "",
+            "targetType": "project | environment | global",
+            "targetId": "",
+            "status": "active | disabled",
+            "permissions": [],
+            "config": {
+                "usage": {
+                    "quota": 0,
+                    "used": 0
+                },
+                "settings": {}
+            }
+        }
+    ],
+    "plugins": [
+        {
+            "id": "",
+            "name": "",
+            "version": "",
+            "author": "",
+            "description": "",
+            "status": "active | disabled | updating",
+            "type": "process | integration | utility",
+            "category": "ai | converter | analyzer | automation | security",
+            "requirements": {
+                "minVersion": "",
+                "dependencies": [],
+                "permissions": []
+            },
+            "config": {
+                "apiKey": "",
+                "endpoint": "",
+                "settings": {},
+                "encryption": {
+                    "enabled": false,
+                    "type": ""
+                }
+            },
+            "metrics": {
+                "installDate": "",
+                "lastUsed": "",
+                "usageCount": 0,
+                "performance": {
+                    "averageResponse": 0,
+                    "errorRate": 0
+                }
+            }
+        }
+    ],
+    "pluginOperations": [
+        {
+            "id": "",
+            "pluginId": "",
+            "name": "",
+            "description": "",
+            "type": "action | process | integration",
+            "category": "data | file | system | network",
+            "permissions": [],
+            "priority": "low | medium | high",
+            "triggers": [
+                "manual",
+                "scheduled",
+                "event"
+            ],
+            "config": {
+                "inputs": {
+                    "required": [],
+                    "optional": []
+                },
+                "outputs": [],
+                "parameters": {},
+                "timeout": 0,
+                "retryPolicy": {
+                    "attempts": 0,
+                    "delay": 0
+                }
+            },
+            "validation": {
+                "inputRules": [],
+                "outputRules": []
+            }
+        }
+    ],
+    "operationIntegrations": [
+        {
+            "id": "",
+            "operationId": "",
+            "targetType": "project | environment | global",
+            "targetId": "",
+            "status": "active | disabled | suspended",
+            "permissions": [],
+            "schedule": {
+                "type": "manual | interval | cron",
+                "value": ""
+            },
+            "usage": {
+                "quota": {
+                    "daily": 0,
+                    "monthly": 0
+                },
+                "used": {
+                    "daily": 0,
+                    "monthly": 0
+                },
+                "resetDate": ""
+            },
+            "settings": {
+                "priority": "low | medium | high",
+                "notifications": true,
+                "logging": true,
+                "errorHandling": "continue | stop | retry"
+            },
+            "lastRun": {
+                "timestamp": "",
+                "status": "success | failed",
+                "duration": 0,
+                "error": ""
+            }
+        }
+    ],
+    "linkedServices": [
+        {
+            "id": "",
+            "accountId": "",
+            "provider": "github | google | other",
+            "email": "",
+            "username": "",
+            "linkedAt": "",
+            "lastUsed": "",
+            "status": "active | expired | revoked",
+            "scopes": [],
+            "tokens": {
+                "access": "",
+                "refresh": "",
+                "expiresAt": ""
+            }
+        }
+    ],
+    "linkedApplications": [
+        {
+            "id": "",
+            "name": "",
+            "provider": "google | microsoft | dropbox | other",
+            "type": "document | spreadsheet | presentation | storage | communication | other",
+            "status": "active | inactive",
+            "lastSync": ""
+        }
+    ],
+    "projectAppLinks": [
+        {
+            "id": "",
+            "projectId": "",
+            "appId": "",
+            "linkedAt": "",
+            "linkedBy": "",
+            "status": "active | revoked",
+            "config": {
+                "permissions": [],
+                "settings": {},
+                "syncOptions": {}
+            }
+        }
+    ],
+    "files": [
+        {
+            "id": 0,
+            "ownerId": "",
+            "name": "",
+            "type": "",
+            "size": 0,
+            "created": "",
+            "lastModified": "",
+            "path": "",
+            "source": "local | cloud",
+            "provider": "",
+            "tags": []
+        }
+    ],
+    "fileVersions": [
+        {
+            "id": "",
+            "fileId": "",
+            "version": 0,
+            "hash": "",
+            "createdAt": "",
+            "createdBy": ""
+        }
+    ],
+    "fileSharing": [
+        {
+            "id": "",
+            "fileId": "",
+            "targetType": "user | project",
+            "targetId": "",
+            "permissions": [],
+            "sharedAt": "",
+            "sharedBy": "",
+            "status": "active | revoked"
+        }
+    ],
+    "chats": [
+        {
+            "id": "",
+            "type": "direct | group",
+            "created": "",
+            "lastActive": "",
+            "status": "active | archived | deleted",
+            "name": "",
+            "description": ""
+        }
+    ],
+    "chatMembers": [
+        {
+            "id": "",
+            "chatId": "",
+            "userId": "",
+            "role": "admin | member",
+            "joinedAt": "",
+            "status": "active | left | removed"
+        }
+    ],
+    "chatLinks": [
+        {
+            "id": "",
+            "chatId": "",
+            "projectId": "",
+            "linkedAt": "",
+            "status": "active | removed"
+        }
+    ],
+    "messages": [
+        {
+            "id": "",
+            "chatId": "",
+            "senderId": "",
+            "type": "text | file | system",
+            "content": "",
+            "sentAt": "",
+            "editedAt": "",
+            "status": "sent | delivered | read | deleted",
+            "replyTo": ""
+        }
+    ],
+    "messageAttachments": [
+        {
+            "id": "",
+            "messageId": "",
+            "type": "file | link",
+            "resourceId": "",
+            "preview": ""
+        }
+    ],
+    "chatPins": [
+        {
+            "id": "",
+            "chatId": "",
+            "messageId": "",
+            "pinnedBy": "",
+            "pinnedAt": "",
+            "status": "active | removed"
+        }
+    ],
+    "chatPolls": [
+        {
+            "id": "",
+            "chatId": "",
+            "createdBy": "",
+            "createdAt": "",
+            "question": "",
+            "options": [],
+            "settings": {
+                "multipleChoice": false,
+                "anonymous": false,
+                "deadline": "",
+                "showResults": "always | after_vote | after_deadline"
+            },
+            "status": "active | ended"
+        }
+    ],
+    "pollResponses": [
+        {
+            "id": "",
+            "pollId": "",
+            "userId": "",
+            "responses": [],
+            "votedAt": ""
+        }
+    ],
+    "reactions": [
+        {
+            "id": "",
+            "messageId": "",
+            "userId": "",
+            "emoji": "",
+            "createdAt": ""
+        }
+    ],
+    "mentions": [
+        {
+            "id": "",
+            "messageId": "",
+            "userId": "",
+            "type": "user | channel | everyone",
+            "status": "unread | read"
+        }
+    ],
+    "threads": [
+        {
+            "id": "",
+            "parentMessageId": "",
+            "chatId": "",
+            "lastReplyAt": "",
+            "replyCount": 0,
+            "participantIds": []
+        }
+    ],
+    "calls": [
+        {
+            "id": "",
+            "chatId": "",
+            "type": "voice | video",
+            "status": "active | ended",
+            "startedAt": "",
+            "endedAt": "",
+            "duration": 0,
+            "initiatedBy": "",
+            "quality": {
+                "resolution": "",
+                "bitrate": "",
+                "latency": ""
+            }
+        }
+    ],
+    "callMembers": [
+        {
+            "id": "",
+            "callId": "",
+            "userId": "",
+            "joinedAt": "",
+            "leftAt": "",
+            "role": "host | participant",
+            "status": "connected | disconnected | left",
+            "deviceInfo": {
+                "type": "mobile | desktop | tablet",
+                "audio": true,
+                "video": true
+            }
+        }
+    ],
+    "meetings": [
+        {
+            "id": "",
+            "chatId": "",
+            "title": "",
+            "description": "",
+            "type": "scheduled | instant",
+            "status": "scheduled | active | ended | cancelled",
+            "scheduledStart": "",
+            "scheduledEnd": "",
+            "actualStart": "",
+            "actualEnd": "",
+            "creator": "",
+            "settings": {
+                "allowRecording": false,
+                "waitingRoom": false,
+                "requirePassword": false,
+                "password": "",
+                "allowChat": true
+            }
+        }
+    ],
+    "meetingMembers": [
+        {
+            "id": "",
+            "meetingId": "",
+            "userId": "",
+            "role": "host | cohost | participant",
+            "status": "invited | accepted | declined | joined | left",
+            "joinedAt": "",
+            "leftAt": "",
+            "deviceInfo": {
+                "type": "mobile | desktop | tablet",
+                "audio": true,
+                "video": true
+            }
+        }
+    ],
+    "recordings": [
+        {
+            "id": "",
+            "type": "call | meeting",
+            "referenceId": "",
+            "startedAt": "",
+            "endedAt": "",
+            "duration": 0,
+            "size": 0,
+            "format": "",
+            "status": "processing | ready | failed",
+            "url": "",
+            "recordedBy": "",
+            "permissions": []
+        }
+    ],
+    "communicationLogs": [
+        {
+            "id": "",
+            "type": "call | meeting",
+            "referenceId": "",
+            "timestamp": "",
+            "event": "started | ended | member_joined | member_left | recording_started | recording_stopped | quality_changed",
+            "metadata": {
+                "userId": "",
+                "details": {}
+            }
+        }
+    ],
+    "recycleBin": {
+        "items": [
+            {
+                "id": "",
+                "originalId": "",
+                "type": "file | project | environment | chat",
+                "name": "",
+                "deletedAt": "",
+                "deletedBy": "",
+                "expiresAt": "",
+                "path": "",
+                "metadata": {
+                    "size": 0,
+                    "type": "",
+                    "parentId": "",
+                    "additionalInfo": {}
+                }
+            }
+        ],
+        "settings": {
+            "retentionPeriod": "",
+            "maxSize": "",
+            "autoDeleteExpired": true
+        }
+    },
+    "activityLogs": [
+        {
+            "id": "",
+            "timestamp": "",
+            "type": "system | user",
+            "severity": "info | warning | error | critical",
+            "component": "environment | project | file | service | chat | call | meeting",
+            "componentId": "",
+            "action": "create | update | delete | restore",
+            "message": "",
+            "metadata": {}
+        }
+    ],
+    "tags": [
+        {
+            "id": "",
+            "name": "",
+            "color": "",
+            "category": "contact | file | project",
+            "created": "",
+            "createdBy": ""
+        }
+    ]
+}
