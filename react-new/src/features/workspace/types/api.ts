@@ -66,18 +66,18 @@ export interface CreateWorkspaceDTO {
     environmentId: number;
     name: string;
     description?: string;
-    type: 'personal' | 'organization';
-    category: 'work' | 'education' | 'personal' | 'research' | 'other';
+    type: WorkspaceType;
+    category: WorkspaceCategory;
     subcategory?: string;
-    visibility: 'private' | 'shared' | 'public';
+    visibility: WorkspaceVisibility;
 }
 
 export interface UpdateWorkspaceDTO {
     name?: string;
     description?: string;
-    type?: 'personal' | 'organization';
-    category?: 'work' | 'education' | 'personal' | 'research' | 'other';
+    type?: WorkspaceType;
+    category?: WorkspaceCategory;
     subcategory?: string;
-    visibility?: 'private' | 'shared' | 'public';
-    status?: 'active' | 'archived' | 'deleted';
+    visibility?: WorkspaceVisibility;
+    status?: WorkspaceStatus;
 }

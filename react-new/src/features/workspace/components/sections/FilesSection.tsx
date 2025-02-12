@@ -1,6 +1,6 @@
 import { FileText } from 'lucide-react';
-import { useWorkspaceFiles } from '../../api';
 import { FeatureSection } from './FeatureSection';
+import { useWorkspaceFiles } from '../../hooks/useWorkspace';
 
 interface FilesSectionProps {
     workspaceId: number;

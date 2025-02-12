@@ -1,8 +1,6 @@
-// src/features/workspace/components/WorkspaceDetail/sections/AppsSection.tsx
-
 import { Link } from 'lucide-react';
-import { useWorkspaceApps } from '../../api';
 import { FeatureSection } from './FeatureSection';
+import { useWorkspaceApps } from '../../hooks/useWorkspace';
 
 interface AppsSectionProps {
     workspaceId: number;

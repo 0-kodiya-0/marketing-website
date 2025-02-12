@@ -1,10 +1,10 @@
 import { useEnvironmentStore } from '../../environment/store';
-import { useWorkspaces } from '../api';
 import { useWorkspaceStore } from '../store';
 import { MembersSection } from './sections/MembersSection';
 import { AppsSection } from './sections/AppsSection';
 import { FilesSection } from './sections/FilesSection';
 import { ChatsSection } from './sections/ChatsSection';
+import { useWorkspaces } from '../hooks/useWorkspace';
 
 export function WorkspaceDetail() {
     const environment = useEnvironmentStore(state => state.selectedEnvironment);
@@ -53,7 +53,7 @@ export function WorkspaceDetail() {
                 )}
             </div>
 
-            {/* Feature Sections */}
+            {/* Feature Sections
             <div className="space-y-2">
                 <MembersSection
                     workspaceId={selectedWorkspace.id}
@@ -118,7 +118,7 @@ export function WorkspaceDetail() {
                         })
                     }
                 />
-            </div>
+            </div> */}
         </div>
     );
 }

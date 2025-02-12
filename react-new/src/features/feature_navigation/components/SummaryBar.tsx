@@ -13,20 +13,21 @@ export function SummaryBar() {
     if (feature === featureType) {
       return
     }
-    selectFeature(feature ? feature : null)
+    selectFeature(feature)
   };
 
   return (
     <div className="w-16 bg-gray-50 border-r border-gray-200 py-4">
       <div className="flex flex-col space-y-4">
         {/* Features will inject their summary sections here */}
-        <SummarySection
+        {/* <SummarySection
           icon={<Layout className="w-5 h-5 text-gray-600" />}
           title='Workspace'
-          featureComponent={<WorkspaceSummary />}
+          featureComponent={}
           featureType='workspace'
           onSelect={handleFeatureSelect}
-        />
+        /> */}
+        <WorkspaceSummary onFeatureSelect={handleFeatureSelect} />
       </div>
     </div>
   );

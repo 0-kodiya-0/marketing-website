@@ -1,8 +1,6 @@
-// src/features/workspace/components/WorkspaceDetail/sections/ChatsSection.tsx
-
 import { MessageCircle } from 'lucide-react';
-import { useWorkspaceChats } from '../../api';
 import { FeatureSection } from './FeatureSection';
+import { useWorkspaceChats } from '../../hooks/useWorkspace';
 
 interface ChatsSectionProps {
     workspaceId: number;

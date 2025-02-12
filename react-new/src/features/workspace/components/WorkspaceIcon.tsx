@@ -13,9 +13,9 @@ export function WorkspaceIcon({ workspace, isSelected, onClick }: WorkspaceIconP
             className={`
         relative w-full aspect-square rounded-lg
         flex items-center justify-center
-        transition-colors duration-200
+        transition-colors duration-200 bg-white
         ${isSelected
-                    ? 'bg-white shadow-sm'
+                    ? 'bg-gray-300 shadow-sm'
                     : 'hover:bg-white hover:shadow-sm'
                 }
       `}

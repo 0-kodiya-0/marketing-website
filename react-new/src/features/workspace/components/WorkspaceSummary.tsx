@@ -1,10 +1,21 @@
+import { useState } from 'react';
 import { useEnvironmentStore } from '../../environment/store';
-import { useWorkspaces } from '../api';
 import { selectWorkspaceId, useWorkspaceStore } from '../store';
 import { WorkspaceIcon } from './WorkspaceIcon';
 import { Workspace } from '../../../types/data-structure.types';
+import { WorkspaceAddIcon } from './WorkspaceAddIcon';
+import { WorkspaceEmptyIcon } from './WorkspaceEmptyIcon';
+import { useWorkspaces } from '../hooks/useWorkspace';
+import { CreateWorkspaceInput } from './CreateWorkspaceInput';
+import { Loader2 } from 'lucide-react';
+import { FeatureType } from '../../feature_navigation/types/store';
 
-export function WorkspaceSummary() {
+interface WorkspaceSummeryProps {
+    onFeatureSelect: (featureType: FeatureType) => void
+}
+
+export function WorkspaceSummary({ onFeatureSelect }: WorkspaceSummeryProps) {
+    const [showCreateInput, setShowCreateInput] = useState(false);
     const environment = useEnvironmentStore(state => state.selectedEnvironment);
 
     if (!environment) return <p>Select a environment</p>;
@@ -20,21 +31,38 @@ export function WorkspaceSummary() {
             return;
         }
         setSelectedWorkspace(environment.id, workspace.id);
+        onFeatureSelect("workspace");
     };
 
     if (isLoading) {
         return (
-            <div className="w-full aspect-square rounded-lg bg-gray-100 animate-pulse" />
+            <Loader2 className="w-6 h-6 animate-spin text-gray-400" />
         );
     }
 
-    return Array.isArray(workspaces) ?
-        workspaces.map((workspace) =>
-            <WorkspaceIcon
-                workspace={workspace} //workspaces.find(w => w.id === selectedWorkspaceId)!
-                isSelected={true}
-                onClick={() => handleWorkspaceSelect(workspace)}
-            />
-        ) :
-        <p>No Workspaces</p>
+    return (
+        <>
+            <div className='flex flex-col gap-y-2'>
+                {Array.isArray(workspaces) ? <>
+                    {workspaces.map((workspace) => (
+                        <WorkspaceIcon
+                            key={workspace.id}
+                            workspace={workspace}
+                            isSelected={workspace.id === selectedWorkspaceId}
+                            onClick={() => handleWorkspaceSelect(workspace)}
+                        />
+                    ))}
+                    <WorkspaceAddIcon onClick={() => setShowCreateInput(true)} />
+                </> : (
+                    <>
+                        <WorkspaceEmptyIcon />
+                        <WorkspaceAddIcon onClick={() => setShowCreateInput(true)} />
+                    </>
+                )}
+            </div>
+            {showCreateInput && (
+                <CreateWorkspaceInput onCancel={() => setShowCreateInput(false)} />
+            )}
+        </>
+    );
 }
