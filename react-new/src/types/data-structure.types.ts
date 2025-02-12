@@ -316,54 +316,6 @@ export interface Workspace {
     visibility: WorkspaceVisibility;
 }
 
-export interface WorkspaceMember {
-    id: string;
-    workspaceId: string;
-    userId: string;
-    role: WorkspaceMemberRole;
-    joinedAt: string;
-    status: WorkspaceMemberStatus;
-    permissions: string[];
-}
-
-export interface WorkspaceAppLink {
-    id: string;
-    workspaceId: string;
-    appId: string;
-    linkedAt: string;
-    linkedBy: string;
-    status: 'active' | 'revoked';
-    config: {
-        permissions: string[];
-        settings: Record<string, unknown>;
-        syncOptions: Record<string, unknown>;
-    };
-}
-
-export interface WorkspaceFile {
-    id: number;
-    ownerId: string;
-    name: string;
-    type: string;
-    size: number;
-    created: string;
-    lastModified: string;
-    path: string;
-    source: 'local' | 'cloud';
-    provider: string;
-    tags: string[];
-}
-
-export interface WorkspaceChat {
-    id: string;
-    type: 'direct' | 'group';
-    created: string;
-    lastActive: string;
-    status: 'active' | 'archived' | 'deleted';
-    name: string;
-    description: string;
-}
-
 // Service Types
 export interface ServiceConfig {
     apiKey: string;

@@ -1,12 +1,14 @@
 import { useEnvironmentStore } from '../../environment/store';
 import { useWorkspaceStore } from '../store';
-import { MembersSection } from './sections/MembersSection';
-import { AppsSection } from './sections/AppsSection';
-import { FilesSection } from './sections/FilesSection';
-import { ChatsSection } from './sections/ChatsSection';
 import { useWorkspaces } from '../hooks/useWorkspace';
+import { ChatsIntegration, FilesIntegration, MembersIntegration, PluginIntegration } from './integrations';
+import { useEffect } from 'react';
 
-export function WorkspaceDetail() {
+interface WorkspaceDetailProps {
+    setTitle: (title: string | null) => void
+}
+
+export function WorkspaceDetail({ setTitle }: WorkspaceDetailProps) {
     const environment = useEnvironmentStore(state => state.selectedEnvironment);
     const { data: workspaces, isLoading } = useWorkspaces();
 
@@ -15,6 +17,11 @@ export function WorkspaceDetail() {
     const featureStates = useWorkspaceStore(state => state.featureStates[selectedWorkspaceId || 0]);
 
     const updateFeatureState = useWorkspaceStore(state => state.updateFeatureState);
+
+    useEffect(() => {
+        const selectedWorkspace = Array.isArray(workspaces) ? workspaces.find(w => w.id === selectedWorkspaceId) : null;
+        setTitle(selectedWorkspace ? selectedWorkspace.name : null);
+    }, [])
 
     if (isLoading) {
         return (
@@ -29,9 +36,7 @@ export function WorkspaceDetail() {
         );
     }
 
-    const selectedWorkspace = Array.isArray(workspaces) ? workspaces.find(w => w.id === selectedWorkspaceId) : null;
-
-    if (!selectedWorkspace) {
+    if (!selectedWorkspaceId) {
         return (
             <div className="p-4">
                 <p className="text-sm text-gray-500">Select a workspace to view details</p>
@@ -40,85 +45,73 @@ export function WorkspaceDetail() {
     }
 
     return (
-        <div className="p-4 space-y-4">
-            {/* Workspace Info */}
-            <div>
-                <h2 className="text-lg font-semibold text-gray-900">
-                    {selectedWorkspace.name}
-                </h2>
-                {selectedWorkspace.description && (
-                    <p className="mt-1 text-sm text-gray-500">
-                        {selectedWorkspace.description}
-                    </p>
-                )}
-            </div>
+        <div className="space-y-4">
 
-            {/* Feature Sections
             <div className="space-y-2">
-                <MembersSection
-                    workspaceId={selectedWorkspace.id}
+                <MembersIntegration
+                    workspaceId={selectedWorkspaceId}
                     isExpanded={featureStates?.members.isExpanded || false}
                     selectedId={featureStates?.members.selectedItemId}
                     onToggleExpand={() =>
-                        updateFeatureState(selectedWorkspace.id, 'members', {
+                        updateFeatureState(selectedWorkspaceId, 'members', {
                             isExpanded: !featureStates?.members.isExpanded
                         })
                     }
                     onSelect={(id) =>
-                        updateFeatureState(selectedWorkspace.id, 'members', {
+                        updateFeatureState(selectedWorkspaceId, 'members', {
                             selectedItemId: id
                         })
                     }
                 />
 
-                <AppsSection
-                    workspaceId={selectedWorkspace.id}
+                <PluginIntegration
+                    workspaceId={selectedWorkspaceId}
                     isExpanded={featureStates?.apps.isExpanded || false}
                     selectedId={featureStates?.apps.selectedItemId}
                     onToggleExpand={() =>
-                        updateFeatureState(selectedWorkspace.id, 'apps', {
+                        updateFeatureState(selectedWorkspaceId, 'apps', {
                             isExpanded: !featureStates?.apps.isExpanded
                         })
                     }
                     onSelect={(id) =>
-                        updateFeatureState(selectedWorkspace.id, 'apps', {
+                        updateFeatureState(selectedWorkspaceId, 'apps', {
                             selectedItemId: id
                         })
                     }
                 />
 
-                <FilesSection
-                    workspaceId={selectedWorkspace.id}
+                <FilesIntegration
+                    workspaceId={selectedWorkspaceId}
                     isExpanded={featureStates?.files.isExpanded || false}
                     selectedId={featureStates?.files.selectedItemId}
                     onToggleExpand={() =>
-                        updateFeatureState(selectedWorkspace.id, 'files', {
+                        updateFeatureState(selectedWorkspaceId, 'files', {
                             isExpanded: !featureStates?.files.isExpanded
                         })
                     }
                     onSelect={(id) =>
-                        updateFeatureState(selectedWorkspace.id, 'files', {
+                        updateFeatureState(selectedWorkspaceId, 'files', {
                             selectedItemId: id
                         })
                     }
                 />
 
-                <ChatsSection
-                    workspaceId={selectedWorkspace.id}
+                <ChatsIntegration
+                    workspaceId={selectedWorkspaceId}
                     isExpanded={featureStates?.chats.isExpanded || false}
                     selectedId={featureStates?.chats.selectedItemId}
                     onToggleExpand={() =>
-                        updateFeatureState(selectedWorkspace.id, 'chats', {
+                        updateFeatureState(selectedWorkspaceId, 'chats', {
                             isExpanded: !featureStates?.chats.isExpanded
                         })
                     }
                     onSelect={(id) =>
-                        updateFeatureState(selectedWorkspace.id, 'chats', {
+                        updateFeatureState(selectedWorkspaceId, 'chats', {
                             selectedItemId: id
                         })
                     }
                 />
-            </div> */}
+            </div>
         </div>
     );
 }

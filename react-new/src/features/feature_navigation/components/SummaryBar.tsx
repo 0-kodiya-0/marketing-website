@@ -17,7 +17,7 @@ export function SummaryBar() {
   };
 
   return (
-    <div className="w-16 bg-gray-50 border-r border-gray-200 py-4">
+    <div className="w-full bg-gray-50 border-r border-gray-200 py-4 flex-shrink-0">
       <div className="flex flex-col space-y-4">
         {/* Features will inject their summary sections here */}
         {/* <SummarySection

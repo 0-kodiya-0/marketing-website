@@ -8,6 +8,7 @@ export function DetailPane() {
     const [selectedFeatureBefore, setSelectFeatureBefore] = useState(selectedFeature);
     const clearSelection = useNavigationStore(state => state.clearSelection);
     const [isCollapsed, setIsCollapsed] = useState(false);
+    const [title, setTitle] = useState<null | string>(null);
 
     const toggleCollapse = () => {
         setIsCollapsed(!isCollapsed);
@@ -16,7 +17,7 @@ export function DetailPane() {
     const renderFeatureContent = () => {
         switch (selectedFeature) {
             case 'workspace':
-                return <WorkspaceDetail />;
+                return <WorkspaceDetail setTitle={(title) => {setTitle(title)}} />;
             case 'files':
                 return <h1>Files component.</h1>;
             case 'contacts':
@@ -40,12 +41,12 @@ export function DetailPane() {
     return (
         <div
             className={`
-                bg-white border-r border-gray-200 flex flex-col transition-all duration-300
-                ${isCollapsed ? 'w-10' : 'w-64'}
+                bg-white border-r border-gray-200 flex flex-col h-full transition-all duration-300
+                ${isCollapsed ? 'w-10' : 'min-w-10'}
             `}
         >
             {/* Header */}
-            <div className="h-12 border-b border-gray-200 flex items-center px-2">
+            <div className="h-12 border-b border-gray-200 flex items-center px-2 flex-shrink-0">
                 <button
                     onClick={toggleCollapse}
                     className="p-1 hover:bg-gray-100 rounded-md transition-all"
@@ -56,8 +57,8 @@ export function DetailPane() {
                     />
                 </button>
                 {!isCollapsed && (
-                    <span className="ml-2 text-sm font-medium text-gray-900">
-                        {selectedFeature
+                    <span className="ml-2 text-sm font-medium text-gray-900 truncate">
+                        {title ? title : selectedFeature
                             ? selectedFeature.charAt(0).toUpperCase() + selectedFeature.slice(1)
                             : ''}
                     </span>
@@ -66,7 +67,7 @@ export function DetailPane() {
 
             {/* Content */}
             {!isCollapsed && (
-                <div className="min-w-64 flex-1 overflow-y-auto p-4">
+                <div className="flex-1 overflow-y-auto p-4">
                     {renderFeatureContent()}
                 </div>
             )}

@@ -43,22 +43,23 @@ export function WorkspaceSummary({ onFeatureSelect }: WorkspaceSummeryProps) {
     return (
         <>
             <div className='flex flex-col gap-y-2'>
-                {Array.isArray(workspaces) ? <>
-                    {workspaces.map((workspace) => (
-                        <WorkspaceIcon
-                            key={workspace.id}
-                            workspace={workspace}
-                            isSelected={workspace.id === selectedWorkspaceId}
-                            onClick={() => handleWorkspaceSelect(workspace)}
-                        />
-                    ))}
-                    <WorkspaceAddIcon onClick={() => setShowCreateInput(true)} />
-                </> : (
+                {Array.isArray(workspaces) ?
+                    <>
+                        {workspaces.map((workspace) => (
+                            <WorkspaceIcon
+                                key={workspace.id}
+                                workspace={workspace}
+                                isSelected={workspace.id === selectedWorkspaceId}
+                                onClick={() => handleWorkspaceSelect(workspace)}
+                            />
+                        ))}
+                        <WorkspaceAddIcon onClick={() => setShowCreateInput(true)} />
+                    </> :
                     <>
                         <WorkspaceEmptyIcon />
                         <WorkspaceAddIcon onClick={() => setShowCreateInput(true)} />
                     </>
-                )}
+                }
             </div>
             {showCreateInput && (
                 <CreateWorkspaceInput onCancel={() => setShowCreateInput(false)} />

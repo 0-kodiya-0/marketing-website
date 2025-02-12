@@ -1,8 +1,8 @@
 import { FileText } from 'lucide-react';
-import { FeatureSection } from './FeatureSection';
+import { FeatureSection } from './FeatureIntegration';
 import { useWorkspaceFiles } from '../../hooks/useWorkspace';
 
-interface FilesSectionProps {
+interface FilesIntegrationProps {
     workspaceId: number;
     isExpanded: boolean;
     selectedId: string | number | null;
@@ -10,14 +10,21 @@ interface FilesSectionProps {
     onSelect: (id: number) => void;
 }
 
-export function FilesSection({
+export function FilesIntegration({
     workspaceId,
     isExpanded,
     selectedId,
     onToggleExpand,
     onSelect
-}: FilesSectionProps) {
-    const { data: files = [], isLoading } = useWorkspaceFiles(workspaceId, isExpanded);
+}: FilesIntegrationProps) {
+    // const { data: file = [], isLoading } = useWorkspaceFiles(workspaceId);
+
+    const files = [
+        { id: 1, name: "Document.pdf", size: 2048, source: "local" },
+        { id: 2, name: "Image.png", size: 512000, source: "cloud" },
+        { id: 3, name: "Presentation.pptx", size: 10485760, source: "local" }
+    ];
+    
 
     const formatFileSize = (size: number) => {
         if (size < 1024) return `${size} B`;
@@ -32,7 +39,7 @@ export function FilesSection({
             count={files.length}
             isExpanded={isExpanded}
             onToggleExpand={onToggleExpand}
-            isLoading={isLoading}
+            isLoading={false}
         >
             {files.map(file => (
                 <button

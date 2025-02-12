@@ -1,7 +1,9 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
 import { useEnvironmentStore } from "../../environment";
 import { CreateWorkspaceDTO, UpdateWorkspaceDTO } from "../types/api";
-import { getWorkspaces, getWorkspaceMembers, getWorkspaceApps, getWorkspaceFiles, getWorkspaceChats, createWorkspace, updateWorkspace } from "../api";
+import { getWorkspaces, createWorkspace, updateWorkspace } from "../api";
+import { useIntegrationByTarget } from "../../../services/integration/hooks/useFeatureIntegration";
+import { FeatureType } from "../../../services/integration/types/data";
 
 // React Query Hooks
 export const useWorkspaces = () => {
@@ -11,38 +13,6 @@ export const useWorkspaces = () => {
         queryKey: ['workspaces', environment?.id],
         queryFn: () => getWorkspaces(environment?.id || 0),
         enabled: !!environment?.id,
-    });
-};
-
-export const useWorkspaceMembers = (workspaceId: number, isExpanded: boolean) => {
-    return useQuery({
-        queryKey: ['workspace-members', workspaceId],
-        queryFn: () => getWorkspaceMembers(workspaceId),
-        enabled: !!workspaceId && isExpanded,
-    });
-};
-
-export const useWorkspaceApps = (workspaceId: number, isExpanded: boolean) => {
-    return useQuery({
-        queryKey: ['workspace-apps', workspaceId],
-        queryFn: () => getWorkspaceApps(workspaceId),
-        enabled: !!workspaceId && isExpanded,
-    });
-};
-
-export const useWorkspaceFiles = (workspaceId: number, isExpanded: boolean) => {
-    return useQuery({
-        queryKey: ['workspace-files', workspaceId],
-        queryFn: () => getWorkspaceFiles(workspaceId),
-        enabled: !!workspaceId && isExpanded,
-    });
-};
-
-export const useWorkspaceChats = (workspaceId: number, isExpanded: boolean) => {
-    return useQuery({
-        queryKey: ['workspace-chats', workspaceId],
-        queryFn: () => getWorkspaceChats(workspaceId),
-        enabled: !!workspaceId && isExpanded,
     });
 };
 
@@ -68,10 +38,34 @@ export const useUpdateWorkspace = () => {
             updateWorkspace(workspaceId, data),
         onSuccess: (_, { workspaceId }) => {
             queryClient.invalidateQueries({ queryKey: ['workspaces', environment?.id] });
-            queryClient.invalidateQueries({ queryKey: ['workspace-members', workspaceId] });
-            queryClient.invalidateQueries({ queryKey: ['workspace-apps', workspaceId] });
-            queryClient.invalidateQueries({ queryKey: ['workspace-files', workspaceId] });
-            queryClient.invalidateQueries({ queryKey: ['workspace-chats', workspaceId] });
         },
+    });
+};
+
+export const useWorkspaceChats = (workspaceId: number) => {
+    return useIntegrationByTarget({
+        integrationIntoToId: workspaceId.toString(),
+        integrationType: FeatureType.Chat
+    });
+};
+
+export const useWorkspaceFiles = (workspaceId: number) => {
+    return useIntegrationByTarget({
+        integrationIntoToId: workspaceId.toString(),
+        integrationType: FeatureType.Files
+    });
+};
+
+export const useWorkspaceMembers = (workspaceId: number) => {
+    return useIntegrationByTarget({
+        integrationIntoToId: workspaceId.toString(),
+        integrationType: FeatureType.Members
+    });
+};
+
+export const useWorkspaceApps = (workspaceId: number) => {
+    return useIntegrationByTarget({
+        integrationIntoToId: workspaceId.toString(),
+        integrationType: FeatureType.Plugin
     });
 };

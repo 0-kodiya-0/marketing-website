@@ -1,8 +1,8 @@
 import { MessageCircle } from 'lucide-react';
-import { FeatureSection } from './FeatureSection';
+import { FeatureSection } from './FeatureIntegration';
 import { useWorkspaceChats } from '../../hooks/useWorkspace';
 
-interface ChatsSectionProps {
+interface ChatsIntegrationProps {
     workspaceId: number;
     isExpanded: boolean;
     selectedId: string | number | null;
@@ -10,14 +10,49 @@ interface ChatsSectionProps {
     onSelect: (id: string) => void;
 }
 
-export function ChatsSection({
+export function ChatsIntegration({
     workspaceId,
     isExpanded,
     selectedId,
     onToggleExpand,
     onSelect
-}: ChatsSectionProps) {
-    const { data: chats = [], isLoading } = useWorkspaceChats(workspaceId, isExpanded);
+}: ChatsIntegrationProps) {
+    // const { data: chat = [], isLoading } = useWorkspaceChats(workspaceId);
+
+    const chats = [
+        {
+            id: "301",
+            name: "Team Standup",
+            type: "group",
+            description: "Daily sync-up meeting discussion.",
+            status: "active",
+            lastActive: "2024-02-12T10:30:00Z"
+        },
+        {
+            id: "302",
+            name: "Client Discussion",
+            type: "direct",
+            description: "Chat with Client X regarding project updates.",
+            status: "active",
+            lastActive: "2024-02-11T15:45:00Z"
+        },
+        {
+            id: "303",
+            name: "Design Brainstorm",
+            type: "group",
+            description: "Creative session for upcoming UI/UX designs.",
+            status: "archived",
+            lastActive: "2024-01-25T08:20:00Z"
+        },
+        {
+            id: "304",
+            name: "Bug Reports",
+            type: "direct",
+            description: "Issue tracking and bug reports discussion.",
+            status: "inactive",
+            lastActive: "2024-02-05T18:10:00Z"
+        }
+    ];
 
     const formatLastActive = (date: string) => {
         const lastActive = new Date(date);
@@ -43,7 +78,7 @@ export function ChatsSection({
             count={chats.length}
             isExpanded={isExpanded}
             onToggleExpand={onToggleExpand}
-            isLoading={isLoading}
+            isLoading={false}
         >
             {chats.map(chat => (
                 <button

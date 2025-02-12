@@ -1,8 +1,8 @@
 import { Users } from 'lucide-react';
-import { FeatureSection } from './FeatureSection';
+import { FeatureSection } from './FeatureIntegration';
 import { useWorkspaceMembers } from '../../hooks/useWorkspace';
 
-interface MembersSectionProps {
+interface MembersIntegrationProps {
     workspaceId: number;
     isExpanded: boolean;
     selectedId: string | number | null;
@@ -10,18 +10,22 @@ interface MembersSectionProps {
     onSelect: (id: string) => void;
 }
 
-export function MembersSection({
+export function MembersIntegration({
     workspaceId,
     isExpanded,
     selectedId,
     onToggleExpand,
     onSelect
-}: MembersSectionProps) {
+}: MembersIntegrationProps) {
     // Only fetch data when section is expanded
-    const {
-        data: members = [],
-        isLoading
-    } = useWorkspaceMembers(workspaceId, isExpanded);
+    // const { data: member = [], isLoading } = useWorkspaceMembers(workspaceId);
+
+    const members = [
+        { id: "101", role: "Admin", status: "active" },
+        { id: "102", role: "Editor", status: "inactive" },
+        { id: "103", role: "Viewer", status: "active" }
+    ];
+    
 
     return (
         <FeatureSection
@@ -30,7 +34,7 @@ export function MembersSection({
             count={members.length}
             isExpanded={isExpanded}
             onToggleExpand={onToggleExpand}
-            isLoading={isLoading}
+            isLoading={false}
         >
             {members.map(member => (
                 <button

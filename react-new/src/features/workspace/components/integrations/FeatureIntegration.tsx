@@ -20,6 +20,7 @@ export function FeatureSection({
     isLoading,
     children
 }: FeatureSectionProps) {
+    
     return (
         <div className="rounded-lg overflow-hidden border border-gray-200">
             <button

@@ -1,8 +1,8 @@
 import { Link } from 'lucide-react';
-import { FeatureSection } from './FeatureSection';
+import { FeatureSection } from './FeatureIntegration';
 import { useWorkspaceApps } from '../../hooks/useWorkspace';
 
-interface AppsSectionProps {
+interface PluginIntegrationProps {
     workspaceId: number;
     isExpanded: boolean;
     selectedId: string | number | null;
@@ -10,25 +10,31 @@ interface AppsSectionProps {
     onSelect: (id: string) => void;
 }
 
-export function AppsSection({
+export function PluginIntegration({
     workspaceId,
     isExpanded,
     selectedId,
     onToggleExpand,
     onSelect
-}: AppsSectionProps) {
-    const { data: apps = [], isLoading } = useWorkspaceApps(workspaceId, isExpanded);
+}: PluginIntegrationProps) {
+    // const { data: plugin = [], isLoading } = useWorkspaceApps(workspaceId);
+
+    const plugins = [
+        { id: "201", status: "active" },
+        { id: "202", status: "inactive" },
+        { id: "203", status: "active" }
+    ];    
 
     return (
         <FeatureSection
             title="Connected Apps"
             icon={<Link className="w-4 h-4 text-gray-400" />}
-            count={apps.length}
+            count={plugins.length}
             isExpanded={isExpanded}
             onToggleExpand={onToggleExpand}
-            isLoading={isLoading}
+            isLoading={false}
         >
-            {apps.map(app => (
+            {plugins.map(app => (
                 <button
                     key={app.id}
                     onClick={() => onSelect(app.id)}

@@ -15,7 +15,7 @@ export function WorkspaceIcon({ workspace, isSelected, onClick }: WorkspaceIconP
         flex items-center justify-center
         transition-colors duration-200 bg-white
         ${isSelected
-                    ? 'bg-gray-300 shadow-sm'
+                    ? 'bg-gray-500 shadow-sm'
                     : 'hover:bg-white hover:shadow-sm'
                 }
       `}
