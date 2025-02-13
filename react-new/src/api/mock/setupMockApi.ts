@@ -1,9 +1,12 @@
 import { AxiosInstance } from "axios";
 import { Tab } from "../../features/tab_view/types/data";
-import { Environment, Workspace, WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility } from "../../types/data-structure.types";
-import { mockEnvironments, mockTabs, mockWorkspaces } from "./data";
+import { ChatStatus, ChatType, Environment, Workspace, WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility } from "../../types/data-structure.types";
+import { mockChats, mockEnvironments, mockFeatureIntegrations, mockTabs, mockWorkspaces } from "./data";
 import AxiosMockAdapter from "axios-mock-adapter";
 import { CreateWorkspaceDTO, UpdateWorkspaceDTO } from "../../features/workspace/types/api";
+import { CreateDirectChatDTO, CreateGroupChatDTO, UpdateChatDTO } from "../../features/chat/types/api";
+import { DirectChat, GroupChat } from "../../features/chat/types/data";
+import { FeatureIntegration, IntegrationStatus } from "../../services/integration/types/data";
 
 export const setupMockApi = (api: AxiosInstance) => {
     const mock = new AxiosMockAdapter(api);
@@ -100,13 +103,13 @@ export const setupMockApi = (api: AxiosInstance) => {
     // Create workspace
     mock.onPost('/api/workspaces').reply((config) => {
         const data = JSON.parse(config.data) as CreateWorkspaceDTO;
-        
+
         if (!data.environmentId) {
             return [400, { message: 'Environment ID is required' }];
         }
 
         const newWorkspace: Workspace = {
-            id: Math.max(...mockWorkspaces.map(w => w.id), 0) + 1,
+            id: mockWorkspaces.length + 1,
             environmentId: data.environmentId,
             name: data.name,
             description: data.description || "",
@@ -141,6 +144,190 @@ export const setupMockApi = (api: AxiosInstance) => {
 
         mockWorkspaces[workspaceIndex] = updatedWorkspace;
         return [200, updatedWorkspace];
+    });
+
+    mock.onGet('/api/chats').reply((config) => {
+        const environmentId = config.params?.environmentId;
+
+        if (!environmentId) {
+            return [400, { message: 'Environment ID is required' }];
+        }
+
+        const chats = mockChats.filter(chat => chat.environmentId === environmentId);
+        return [200, chats];
+    });
+
+    mock.onGet('/api/chats/bulk').reply((config) => {
+        const chatIdsStr = config.params?.chatIds as string;
+
+        if (!chatIdsStr) {
+            return [400, { message: 'Chat IDs are required' }];
+        }
+
+        const chatIds = chatIdsStr.split(",").map((id) => parseInt(id));
+
+        // Filter only relevant chats in one pass (O(N))
+        const chats = mockChats.filter(chat => chatIds.includes(chat.id));
+
+        return [200, chats];
+    });
+
+    // Get single chat
+    mock.onGet(/\/api\/chats\/.*/).reply((config) => {
+        const chatId = config.url!.split('/').pop()!;
+        const chat = mockChats.find(c => c.id === parseInt(chatId));
+
+        if (!chat) {
+            return [404, { message: 'Chat not found' }];
+        }
+
+        return [200, chat];
+    });
+
+    // Create direct chat
+    mock.onPost('/api/chats/direct').reply((config) => {
+        const data = JSON.parse(config.data) as CreateDirectChatDTO;
+
+        if (!data.environmentId) {
+            return [400, { message: 'Environment ID is required' }];
+        }
+
+        const newChat: DirectChat = {
+            id: mockChats.length + 1,
+            environmentId: data.environmentId,
+            type: ChatType.Direct,
+            created: new Date().toISOString(),
+            lastActive: new Date().toISOString(),
+            status: ChatStatus.Active,
+            name: data.name || `Direct Chat`,
+            description: data.description || '',
+            participants: [data.participantId, 'current-user'] // Simulating current user
+        };
+
+        mockChats.push(newChat);
+        return [201, newChat];
+    });
+
+    // Create group chat
+    mock.onPost('/api/chats/group').reply((config) => {
+        const data = JSON.parse(config.data) as CreateGroupChatDTO;
+
+        if (!data.environmentId) {
+            return [400, { message: 'Environment ID is required' }];
+        }
+
+        const newChat: GroupChat = {
+            id: mockChats.length + 1,
+            environmentId: data.environmentId,
+            type: ChatType.Group,
+            created: new Date().toISOString(),
+            lastActive: new Date().toISOString(),
+            status: ChatStatus.Active,
+            name: data.name,
+            description: data.description || '',
+            participants: [...data.participantIds, 'current-user'] // Simulating current user
+        };
+
+        mockChats.push(newChat);
+        return [201, newChat];
+    });
+
+    // Update chat
+    mock.onPatch(/\/api\/chats\/.*/).reply((config) => {
+        const chatId = config.url!.split('/').pop()!;
+        const data = JSON.parse(config.data) as UpdateChatDTO;
+        const chatIndex = mockChats.findIndex(c => c.id === parseInt(chatId));
+
+        if (chatIndex === -1) {
+            return [404, { message: 'Chat not found' }];
+        }
+
+        const updatedChat = {
+            ...mockChats[chatIndex],
+            ...data,
+            lastActive: new Date().toISOString()
+        };
+
+        mockChats[chatIndex] = updatedChat;
+        return [200, updatedChat];
+    });
+
+    // Delete chat
+    mock.onDelete(/\/api\/chats\/.*/).reply((config) => {
+        const chatId = config.url!.split('/').pop()!;
+        const chatIndex = mockChats.findIndex(c => c.id === parseInt(chatId));
+
+        if (chatIndex === -1) {
+            return [404, { message: 'Chat not found' }];
+        }
+
+        mockChats.splice(chatIndex, 1);
+        return [204];
+    });
+
+    mock.onPost('/api/feature-integrations/create').reply((config) => {
+        try {
+            const newIntegration: FeatureIntegration = {
+                id: `feature-integration-${Date.now()}`,
+                ...JSON.parse(config.data), // Merge user-provided data
+                status: IntegrationStatus.Active
+            };
+
+            mockFeatureIntegrations.push(newIntegration);
+            return [201, newIntegration];
+        } catch (error) {
+            return [400, { message: 'Invalid request data' }];
+        }
+    });
+
+    // Update feature integration status
+    mock.onPatch(/\/api\/feature-integrations\/update\/.*/).reply((config) => {
+        const match = config.url?.match(/\/api\/feature-integrations\/update\/(.+)/);
+        const integrationId = match ? match[1] : null;
+
+        if (!integrationId) return [400, { message: 'Invalid integration ID' }];
+
+        try {
+            const { status } = JSON.parse(config.data);
+            const integration = mockFeatureIntegrations.find(int => int.integrationId === parseInt(integrationId));
+
+            if (!integration) return [404, { message: 'Integration not found' }];
+
+            integration.status = status;
+            return [200, integration];
+        } catch (error) {
+            return [400, { message: 'Invalid request data' }];
+        }
+    });
+
+    // Get integrations by target (integrationIntoToId + integrationType)
+    mock.onGet('/api/feature-integrations/by-target').reply((config) => {
+        const { integrationIntoToId, integrationType } = config.params;
+
+        if (!integrationIntoToId || !integrationType) {
+            return [400, { message: 'Missing parameters' }];
+        }
+
+        const results = mockFeatureIntegrations.filter(
+            int => int.integrationIntoToId === integrationIntoToId && int.integrationType === integrationType
+        );
+
+        return [200, results];
+    });
+
+    // Get integrations by integration ID and type
+    mock.onGet('/api/feature-integrations/by-id').reply((config) => {
+        const { integrationId, integrationIntoToType } = config.params;
+
+        if (!integrationId || !integrationIntoToType) {
+            return [400, { message: 'Missing parameters' }];
+        }
+
+        const results = mockFeatureIntegrations.filter(
+            int => int.integrationId === integrationId && int.integrationIntoToType === integrationIntoToType
+        );
+
+        return [200, results];
     });
 
     // Enable passing through requests that don't match any mock

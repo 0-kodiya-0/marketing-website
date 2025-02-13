@@ -3,14 +3,14 @@
 import { FeatureType, IntegrableFeatures, IntegrationStatus } from "./data";
 
 // export interface CreateIntegrationParams {
-//     integrationId: string;
+//     integrationId: number;
 //     integrationType: FeatureType;
-//     integrationIntoToId: string;
+//     integrationIntoToId:number;
 //     integrationIntoToType: IntegrableFeatures;
 // }
 
 // export interface UpdateIntegrationStatusParams {
-//     integrationId: string;
+//     integrationId: number;
 //     status: IntegrationStatus;
 // }
 
@@ -25,28 +25,28 @@ import { FeatureType, IntegrableFeatures, IntegrationStatus } from "./data";
 // }
 
 // export interface GetIntegrationByTypeParams {
-//     integrationIntoToId: string;
+//     integrationIntoToId:number;
 //     integrationType: FeatureType;
 // }
 
 export interface GetByTargetParams {
-    integrationIntoToId: string;
+    integrationIntoToId: number;
     integrationType: FeatureType;
 }
 
 export interface GetByIntegrationParams {
-    integrationId: string;
+    integrationId: number;
     integrationIntoToType: IntegrableFeatures;
 }
 
 export interface UpdateStatusParams {
-    integrationId: string;
+    integrationId: number;
     status: IntegrationStatus;
 }
 
 export interface CreateIntegrationParams {
-    integrationId: string;
+    integrationId: number;
     integrationType: FeatureType;
-    integrationIntoToId: string;
+    integrationIntoToId: number;
     integrationIntoToType: IntegrableFeatures;
 }

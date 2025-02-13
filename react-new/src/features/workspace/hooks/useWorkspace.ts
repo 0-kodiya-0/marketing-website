@@ -44,28 +44,28 @@ export const useUpdateWorkspace = () => {
 
 export const useWorkspaceChats = (workspaceId: number) => {
     return useIntegrationByTarget({
-        integrationIntoToId: workspaceId.toString(),
+        integrationIntoToId: workspaceId,
         integrationType: FeatureType.Chat
     });
 };
 
 export const useWorkspaceFiles = (workspaceId: number) => {
     return useIntegrationByTarget({
-        integrationIntoToId: workspaceId.toString(),
+        integrationIntoToId: workspaceId,
         integrationType: FeatureType.Files
     });
 };
 
 export const useWorkspaceMembers = (workspaceId: number) => {
     return useIntegrationByTarget({
-        integrationIntoToId: workspaceId.toString(),
+        integrationIntoToId: workspaceId,
         integrationType: FeatureType.Members
     });
 };
 
 export const useWorkspaceApps = (workspaceId: number) => {
     return useIntegrationByTarget({
-        integrationIntoToId: workspaceId.toString(),
+        integrationIntoToId: workspaceId,
         integrationType: FeatureType.Plugin
     });
 };

@@ -1,14 +1,50 @@
 import { MessageCircle } from 'lucide-react';
 import { FeatureSection } from './FeatureIntegration';
 import { useWorkspaceChats } from '../../hooks/useWorkspace';
+import { useBulkChat } from '../../../chat/hooks/useChats';
 
 interface ChatsIntegrationProps {
     workspaceId: number;
     isExpanded: boolean;
     selectedId: string | number | null;
     onToggleExpand: () => void;
-    onSelect: (id: string) => void;
+    onSelect: (id: number) => void;
 }
+
+// const chats = [
+//     {
+//         id: "301",
+//         name: "Team Standup",
+//         type: "group",
+//         description: "Daily sync-up meeting discussion.",
+//         status: "active",
+//         lastActive: "2024-02-12T10:30:00Z"
+//     },
+//     {
+//         id: "302",
+//         name: "Client Discussion",
+//         type: "direct",
+//         description: "Chat with Client X regarding project updates.",
+//         status: "active",
+//         lastActive: "2024-02-11T15:45:00Z"
+//     },
+//     {
+//         id: "303",
+//         name: "Design Brainstorm",
+//         type: "group",
+//         description: "Creative session for upcoming UI/UX designs.",
+//         status: "archived",
+//         lastActive: "2024-01-25T08:20:00Z"
+//     },
+//     {
+//         id: "304",
+//         name: "Bug Reports",
+//         type: "direct",
+//         description: "Issue tracking and bug reports discussion.",
+//         status: "inactive",
+//         lastActive: "2024-02-05T18:10:00Z"
+//     }
+// ];
 
 export function ChatsIntegration({
     workspaceId,
@@ -17,42 +53,27 @@ export function ChatsIntegration({
     onToggleExpand,
     onSelect
 }: ChatsIntegrationProps) {
-    // const { data: chat = [], isLoading } = useWorkspaceChats(workspaceId);
+    // Fetch workspace chats
+    const { data: workspaceChats = [], isLoading: isLoadingWorkspaceChats } = useWorkspaceChats(workspaceId);
 
-    const chats = [
-        {
-            id: "301",
-            name: "Team Standup",
-            type: "group",
-            description: "Daily sync-up meeting discussion.",
-            status: "active",
-            lastActive: "2024-02-12T10:30:00Z"
-        },
-        {
-            id: "302",
-            name: "Client Discussion",
-            type: "direct",
-            description: "Chat with Client X regarding project updates.",
-            status: "active",
-            lastActive: "2024-02-11T15:45:00Z"
-        },
-        {
-            id: "303",
-            name: "Design Brainstorm",
-            type: "group",
-            description: "Creative session for upcoming UI/UX designs.",
-            status: "archived",
-            lastActive: "2024-01-25T08:20:00Z"
-        },
-        {
-            id: "304",
-            name: "Bug Reports",
-            type: "direct",
-            description: "Issue tracking and bug reports discussion.",
-            status: "inactive",
-            lastActive: "2024-02-05T18:10:00Z"
-        }
-    ];
+    // Get all chat IDs
+    const chatIds = workspaceChats.map(chat => chat.integrationId);
+
+    // Use bulk fetching hook
+    const { data: bulkChats = [], isLoading: isLoadingChats } = useBulkChat(chatIds);
+
+    // Final loading state
+    const isLoading = isLoadingWorkspaceChats || isLoadingChats;
+
+    // Process chat data
+    const chats = bulkChats.map(chat => ({
+        id: chat.id,
+        name: chat.name,
+        type: chat.type,
+        description: chat.description,
+        status: chat.status,
+        lastActive: chat.lastActive,
+    }));
 
     const formatLastActive = (date: string) => {
         const lastActive = new Date(date);
@@ -78,39 +99,39 @@ export function ChatsIntegration({
             count={chats.length}
             isExpanded={isExpanded}
             onToggleExpand={onToggleExpand}
-            isLoading={false}
+            isLoading={isLoading}
         >
             {chats.map(chat => (
                 <button
                     key={chat.id}
                     onClick={() => onSelect(chat.id)}
                     className={`
-            w-full px-2 py-1.5 rounded-md transition-colors
-            flex items-center justify-between group text-left
-            ${selectedId === chat.id ?
+                        w-full px-2 py-1.5 rounded-md transition-colors
+                        flex items-center justify-between group text-left
+                        ${selectedId === chat.id ?
                             'bg-blue-50 hover:bg-blue-100' :
                             'hover:bg-gray-50'
                         }
-          `}
+                    `}
                 >
                     <div className="flex flex-col min-w-0 flex-1">
                         <div className="flex items-center space-x-2">
                             <span className={`
-                text-sm font-medium truncate
-                ${selectedId === chat.id ?
+                                text-sm font-medium truncate
+                                ${selectedId === chat.id ?
                                     'text-blue-700' :
                                     'text-gray-700'
                                 }
-              `}>
+                            `}>
                                 {chat.name}
                             </span>
                             <span className={`
-                text-xs px-1.5 py-0.5 rounded-full flex-shrink-0
-                ${chat.type === 'direct' ?
+                                text-xs px-1.5 py-0.5 rounded-full flex-shrink-0
+                                ${chat.type === 'direct' ?
                                     'bg-purple-100 text-purple-700' :
                                     'bg-indigo-100 text-indigo-700'
                                 }
-              `}>
+                            `}>
                                 {chat.type}
                             </span>
                         </div>
@@ -122,14 +143,14 @@ export function ChatsIntegration({
                     </div>
                     <div className="flex flex-col items-end ml-4 flex-shrink-0">
                         <span className={`
-              text-xs px-1.5 py-0.5 rounded-full
-              ${chat.status === 'active' ?
+                            text-xs px-1.5 py-0.5 rounded-full
+                            ${chat.status === 'active' ?
                                 'bg-green-100 text-green-700' :
                                 chat.status === 'archived' ?
                                     'bg-gray-100 text-gray-700' :
                                     'bg-red-100 text-red-700'
                             }
-            `}>
+                        `}>
                             {chat.status}
                         </span>
                         <span className="text-xs text-gray-400 mt-1">

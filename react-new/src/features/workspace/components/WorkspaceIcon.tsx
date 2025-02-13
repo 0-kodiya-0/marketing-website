@@ -1,4 +1,4 @@
-import { Workspace } from '../types/api';
+import { Workspace } from '../types/data';
 
 interface WorkspaceIconProps {
     workspace: Workspace;

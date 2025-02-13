@@ -16,10 +16,10 @@ export enum IntegrableFeatures {
 }
 
 export interface FeatureIntegration {
-    id: string;
-    integrationId: string;
+    id: number;
+    integrationId: number;
     integrationType: FeatureType;
-    integrationIntoToId: string;
+    integrationIntoToId: number;
     integrationIntoToType: IntegrableFeatures;
     status: IntegrationStatus;
 }

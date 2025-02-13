@@ -1,5 +1,8 @@
+import { ChatStatus, ChatType, DirectChat, GroupChat } from "../../features/chat/types/data";
+import { Environment } from "../../features/environment/types/data";
 import { Tab } from "../../features/tab_view/types/data";
-import { Environment, EnvironmentStatus, Workspace, WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility } from "../../types/data-structure.types";
+import { Workspace, WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility } from "../../features/workspace/types/data";
+import { FeatureIntegration, FeatureType, IntegrableFeatures, IntegrationStatus } from "../../services/integration/types/data";
 
 export const mockEnvironments: Environment[] = [
     // {
@@ -74,4 +77,78 @@ export const mockWorkspaces: Workspace[] = [
         subcategory: "Data Analysis",
         visibility: WorkspaceVisibility.Shared
     }
+];
+
+export const mockChats: (DirectChat | GroupChat)[] = [
+    {
+        id: 1,
+        environmentId: 1,
+        type: ChatType.Direct,
+        created: new Date('2024-01-01').toISOString(),
+        lastActive: new Date('2024-01-01').toISOString(),
+        status: ChatStatus.Active,
+        name: 'Direct Chat 1',
+        description: 'One-on-one chat with Alice',
+        participants: ['user-1', 'user-2']
+    },
+    {
+        id: 2,
+        environmentId: 1,
+        type: ChatType.Group,
+        created: new Date('2024-01-02').toISOString(),
+        lastActive: new Date('2024-01-02').toISOString(),
+        status: ChatStatus.Active,
+        name: 'Team Alpha',
+        description: 'Team discussion group',
+        participants: ['user-1', 'user-2', 'user-3']
+    },
+    {
+        id: 3,
+        environmentId: 1,
+        type: ChatType.Direct,
+        created: new Date('2024-01-03').toISOString(),
+        lastActive: new Date('2024-01-03').toISOString(),
+        status: ChatStatus.Active,
+        name: 'Direct Chat 2',
+        description: 'One-on-one chat with Bob',
+        participants: ['user-1', 'user-4']
+    },
+    {
+        id: 4,
+        environmentId: 1,
+        type: ChatType.Group,
+        created: new Date('2024-01-04').toISOString(),
+        lastActive: new Date('2024-01-04').toISOString(),
+        status: ChatStatus.Archived,
+        name: 'Project Beta',
+        description: 'Archived project discussion',
+        participants: ['user-1', 'user-2', 'user-4', 'user-5']
+    }
+];
+
+export const mockFeatureIntegrations: FeatureIntegration[] = [
+    {
+        id: 1,
+        integrationId: 1,
+        integrationType: FeatureType.Chat,
+        integrationIntoToId: 2,
+        integrationIntoToType: IntegrableFeatures.Workspace,
+        status: IntegrationStatus.Active
+    },
+    {
+        id: 2,
+        integrationId: 1,
+        integrationType: FeatureType.Chat,
+        integrationIntoToId: 1,
+        integrationIntoToType: IntegrableFeatures.Workspace,
+        status: IntegrationStatus.Disabled
+    },
+    {
+        id: 3,
+        integrationId: 2,
+        integrationType: FeatureType.Chat,
+        integrationIntoToId: 2,
+        integrationIntoToType: IntegrableFeatures.Workspace,
+        status: IntegrationStatus.Active
+    },
 ];

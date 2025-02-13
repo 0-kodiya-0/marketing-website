@@ -38,8 +38,8 @@ export interface Message {
 }
 
 export interface Chat {
-    id: string;
-    environmentId: string;
+    id: number;
+    environmentId: number;
     type: ChatType;
     created: string;
     lastActive: string;
