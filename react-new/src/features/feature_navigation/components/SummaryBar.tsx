@@ -1,10 +1,12 @@
 import { selectedFeatureType, useNavigationStore } from '../store';
-import { SummarySection } from './SummarySection';
 import { FeatureType } from '../types/store';
 import { WorkspaceSummary } from '../../workspace';
-import { Layout } from 'lucide-react';
 
-export function SummaryBar() {
+interface SummaryBarProps {
+  className?: string;
+}
+
+export function SummaryBar({ className }: SummaryBarProps) {
   const featureType = useNavigationStore(selectedFeatureType);
   const selectFeature = useNavigationStore(state => state.selectFeature);
 
@@ -17,16 +19,8 @@ export function SummaryBar() {
   };
 
   return (
-    <div className="w-full bg-gray-50 border-r border-gray-200 py-4 flex-shrink-0">
+    <div className={`bg-white border-r border-gray-200 py-4 flex-shrink-0 ${className}`}>
       <div className="flex flex-col space-y-4">
-        {/* Features will inject their summary sections here */}
-        {/* <SummarySection
-          icon={<Layout className="w-5 h-5 text-gray-600" />}
-          title='Workspace'
-          featureComponent={}
-          featureType='workspace'
-          onSelect={handleFeatureSelect}
-        /> */}
         <WorkspaceSummary onFeatureSelect={handleFeatureSelect} />
       </div>
     </div>

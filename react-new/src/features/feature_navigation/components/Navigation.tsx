@@ -1,15 +1,23 @@
-import { SummaryBar } from './SummaryBar';
+import { Panel } from 'react-resizable-panels';
 import { DetailPane } from './DetailPane';
+import { SummaryBar } from './SummaryBar';
 
-export function Navigation() {
+interface NavigationProps {
+  summaryBarClassName?: string;
+  detailPaneClassName?: string;
+}
+
+export function Navigation({ summaryBarClassName, detailPaneClassName }: NavigationProps) {
+
   return (
-    <div className="flex h-full">
-      <div className="flex-shrink-0 w-16 h-full">
-        <SummaryBar />
+    <>
+      <div className={`${summaryBarClassName}`}>
+        <SummaryBar className='w-full h-full' />
       </div>
-      <div className="flex-1 h-full">
-        <DetailPane />
-      </div>
-    </div>
+      <Panel defaultSize={20} minSize={5} collapsible={true} collapsedSize={1} className="h-full">
+        <DetailPane
+          className={`${detailPaneClassName}`} />
+      </Panel>
+    </>
   );
 }

@@ -36,7 +36,7 @@ export const useUpdateWorkspace = () => {
     return useMutation({
         mutationFn: ({ workspaceId, data }: { workspaceId: number; data: UpdateWorkspaceDTO }) =>
             updateWorkspace(workspaceId, data),
-        onSuccess: (_, { workspaceId }) => {
+        onSuccess: () => {
             queryClient.invalidateQueries({ queryKey: ['workspaces', environment?.id] });
         },
     });

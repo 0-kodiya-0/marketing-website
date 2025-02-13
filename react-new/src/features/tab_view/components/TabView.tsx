@@ -12,7 +12,7 @@ export const TabView: React.FC<TabViewProps> = ({ className }) => {
     const selectedTab = openTabs.find((tab) => tab.id === selectedTabId);
 
     return (
-        <div className={`flex flex-col h-full ${className}`}>
+        <div className={`flex flex-col ${className}`}>
             <TabManagement accountId={''} />
             <div className="flex-1 overflow-hidden">
                 {selectedTab ? (

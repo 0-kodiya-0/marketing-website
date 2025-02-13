@@ -13,10 +13,10 @@ export function WorkspaceIcon({ workspace, isSelected, onClick }: WorkspaceIconP
             className={`
         relative w-full aspect-square rounded-lg
         flex items-center justify-center
-        transition-colors duration-200 bg-white
+        transition-colors duration-200 bg-gray-100
         ${isSelected
-                    ? 'bg-gray-500 shadow-sm'
-                    : 'hover:bg-white hover:shadow-sm'
+                    ? 'bg-gray-300 shadow-sm'
+                    : 'hover:bg-gray-200 hover:shadow-sm'
                 }
       `}
             title={workspace.name}

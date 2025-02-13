@@ -21,7 +21,7 @@ export function WorkspaceDetail({ setTitle }: WorkspaceDetailProps) {
     useEffect(() => {
         const selectedWorkspace = Array.isArray(workspaces) ? workspaces.find(w => w.id === selectedWorkspaceId) : null;
         setTitle(selectedWorkspace ? selectedWorkspace.name : null);
-    }, [])
+    }, [isLoading , selectedWorkspaceId])
 
     if (isLoading) {
         return (

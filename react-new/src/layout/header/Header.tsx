@@ -4,29 +4,19 @@ import { TabView } from "../../features/tab_view";
 
 export const Header = () => {
     return (
-        <div className="h-full flex flex-1">
-            <PanelGroup 
-                direction="horizontal" 
-                className="flex-1"
-            >
-                <Panel 
-                    defaultSize={20} 
-                    minSize={15}
-                >
-                    <div className="flex overflow-x-auto">
-                        <Navigation />
-                    </div>
-                </Panel>
+        <div className="w-full h-full overflow-hidden">
+            <PanelGroup direction="horizontal" className="w-full h-full">
+                {/* Navigation Panel - Fixed Width */}
+                <Navigation summaryBarClassName="w-[65px] h-full" detailPaneClassName="min-w-64 h-full overflow-hidden" />
 
-                <PanelResizeHandle className="w-1 bg-gray-200 hover:bg-blue-500 transition-colors cursor-col-resize" />
+                {/* Resize Handle */}
+                <PanelResizeHandle className="w-[1px] bg-gray-100 hover:bg-blue-500 transition-colors cursor-col-resize" />
 
-                <Panel 
-                    defaultSize={80}
-                    minSize={30}
-                >
-                    <TabView />
+                {/* Detail Pane - Expand/Collapse with Limits */}
+                <Panel defaultSize={80} minSize={10} className="h-full">
+                    <TabView className="w-full h-full overflow-auto" />
                 </Panel>
             </PanelGroup>
         </div>
     );
-};
+}
