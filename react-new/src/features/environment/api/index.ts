@@ -1,5 +1,5 @@
 import { api } from '../../../api/client';
-import { Environment } from '../../../types/data-structure.types';
+import { Environment } from '../types/data';
 
 export interface UpdateEnvironmentDTO {
     name?: string;

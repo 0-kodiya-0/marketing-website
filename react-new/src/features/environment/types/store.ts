@@ -1,4 +1,4 @@
-import { Environment } from "../../../types/data-structure.types";
+import { Environment } from "./data";
 
 export interface EnvironmentStore {
     selectedEnvironment: Environment;

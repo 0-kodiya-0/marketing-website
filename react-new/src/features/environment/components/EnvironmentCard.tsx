@@ -1,4 +1,4 @@
-import { EnvironmentStatus } from "../../../types/data-structure.types";
+import { EnvironmentStatus } from "../types/data";
 import { EnvironmentCardProps } from "../types/props";
 
 export const EnvironmentCard: React.FC<EnvironmentCardProps> = ({

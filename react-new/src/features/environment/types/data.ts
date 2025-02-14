@@ -1,3 +1,8 @@
+export enum EnvironmentPrivacy {
+    Private = 'private',
+    Global = 'global'
+}
+
 export enum EnvironmentStatus {
     Active = 'active',
     Archived = 'archived',
@@ -11,4 +16,5 @@ export interface Environment {
     created: string;
     lastModified: string;
     status: EnvironmentStatus;
+    privacy: EnvironmentPrivacy;
 }

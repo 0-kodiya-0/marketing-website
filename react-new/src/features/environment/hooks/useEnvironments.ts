@@ -1,6 +1,6 @@
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import { getEnvironments, getEnvironment, updateEnvironment, createEnvironment } from '../api';
-import { Environment } from '../../../types/data-structure.types';
+import { Environment } from '../types/data';
 
 export const useEnvironments = () => {
     return useQuery({

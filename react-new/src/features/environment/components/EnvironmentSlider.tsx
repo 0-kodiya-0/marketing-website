@@ -1,11 +1,11 @@
 import { useEffect, useState, useCallback } from 'react';
 import { useCreateEnvironment, useEnvironments } from '../hooks/useEnvironments';
 import { EnvironmentError, EnvironmentSliderProps } from '../types/props';
-import { Environment, EnvironmentStatus } from '../../../types/data-structure.types';
 import { useEnvironmentStore } from '../store';
 import { EnvironmentList } from './EnvironmentList';
 import { ErrorView } from './ErrorView';
 import { LoadingView } from './LoadingView';
+import { Environment, EnvironmentStatus } from '../types/data';
 
 export function EnvironmentSlider({
   onClose

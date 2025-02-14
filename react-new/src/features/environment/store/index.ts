@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { EnvironmentStore } from '../types/store';
-import { Environment, EnvironmentStatus } from '../../../types/data-structure.types';
+import { Environment, EnvironmentPrivacy, EnvironmentStatus } from '../types/data';
 
 // Default environment configuration
 const defaultEnvironment: Environment = {
@@ -10,7 +10,8 @@ const defaultEnvironment: Environment = {
     name: 'Default Environment',
     created: new Date().toISOString(),
     lastModified: new Date().toISOString(),
-    status: EnvironmentStatus.Active
+    status: EnvironmentStatus.Active,
+    privacy: EnvironmentPrivacy.Global
 };
 
 export const useEnvironmentStore = create<EnvironmentStore>()(
