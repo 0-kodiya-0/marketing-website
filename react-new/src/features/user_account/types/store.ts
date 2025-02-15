@@ -3,7 +3,9 @@ import {
     Device,
     LocalAccount,
     OAuthAccount,
-    BaseAccount
+    BaseAccount,
+    UserDetails,
+    TokenDetails
 } from './data'
 
 export interface AccountState {
@@ -12,7 +14,11 @@ export interface AccountState {
     activeAccountId: string | null;
 
     // Local account actions
-    createLocalAccount: (device: Device, password: string) => LocalAccount | null;
+    createLocalAccount: (params: {
+        device: Device;
+        password: string;
+        userDetails: UserDetails;
+    }) => LocalAccount | null;
     updateLocalAccount: (updates: Partial<Omit<LocalAccount, 'security' | 'accountType'>> & { password?: string }) => void;
     deleteLocalAccount: () => void;
 
@@ -20,11 +26,8 @@ export interface AccountState {
     addOAuthAccount: (params: {
         device: Device;
         provider: OAuthProviders;
-        providerId: string;
-        email: string;
-        accessToken: string;
-        refreshToken?: string;
-        expiresAt: string;
+        userDetails: UserDetails;
+        tokenDetails: TokenDetails;
     }) => boolean;
     updateOAuthAccount: (accountId: string, updates: Partial<Omit<OAuthAccount, 'accountType'>>) => void;
     removeOAuthAccount: (accountId: string) => void;

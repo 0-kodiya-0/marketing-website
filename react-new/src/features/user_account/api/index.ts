@@ -1,7 +1,9 @@
 import { api } from '../../../api/client';
 import { 
     OAuthAccount, 
-    OAuthProviders
+    OAuthProviders,
+    TokenDetails,
+    UserDetails
 } from '../types/data';
 
 // OAuth flow endpoints
@@ -14,14 +16,20 @@ export const initiateOAuthConnection = async (
     return response.data;
 };
 
+export interface OAuthCallbackResponse {
+    userDetails: UserDetails;
+    tokenDetails: TokenDetails;
+    provider: OAuthProviders;
+}
+
 export const completeOAuthConnection = async (
     params: {
         provider: OAuthProviders;
         code: string;
         state: string;
     }
-): Promise<OAuthAccount> => {
-    const response = await api.post<OAuthAccount>('/oauth/callback', params);
+): Promise<OAuthCallbackResponse> => {
+    const response = await api.post<OAuthCallbackResponse>('/oauth/callback', params);
     return response.data;
 };
 
@@ -33,7 +41,7 @@ export const getOAuthAccounts = async (): Promise<OAuthAccount[]> => {
 
 export const updateOAuthAccount = async (
     accountId: string,
-    updates: Partial<Omit<OAuthAccount, 'accountType' | 'security'>>
+    updates: Partial<Omit<OAuthAccount, 'accountType' | 'security' | 'tokenDetails'>>
 ): Promise<OAuthAccount> => {
     const response = await api.patch<OAuthAccount>(`/oauth/accounts/${accountId}`, updates);
     return response.data;
@@ -43,15 +51,20 @@ export const removeOAuthAccount = async (accountId: string): Promise<void> => {
     await api.delete(`/oauth/accounts/${accountId}`);
 };
 
-export const refreshOAuthToken = async (accountId: string): Promise<{
-    accessToken: string;
-    refreshToken?: string;
-    expiresAt: string;
-}> => {
-    const response = await api.post<{
-        accessToken: string;
-        refreshToken?: string;
-        expiresAt: string;
-    }>(`/oauth/accounts/${accountId}/refresh`);
+export const refreshOAuthToken = async (
+    accountId: string
+): Promise<TokenDetails> => {
+    const response = await api.post<TokenDetails>(`/oauth/accounts/${accountId}/refresh`);
+    return response.data;
+};
+
+export const updateOAuthAccountSecurity = async (
+    accountId: string,
+    updates: Partial<OAuthAccount['security']>
+): Promise<OAuthAccount> => {
+    const response = await api.patch<OAuthAccount>(
+        `/oauth/accounts/${accountId}/security`,
+        updates
+    );
     return response.data;
 };

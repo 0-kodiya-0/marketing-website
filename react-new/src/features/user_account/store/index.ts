@@ -1,6 +1,11 @@
 import { create } from "zustand"
 import { persist } from "zustand/middleware"
-import { Device, LocalAccount, AccountType, AccountStatus, OAuthAccount } from "../types/data"
+import {
+    LocalAccount,
+    AccountType,
+    AccountStatus,
+    OAuthAccount,
+} from "../types/data"
 import { AccountState } from "../types/store"
 
 const useAccountStore = create<AccountState>()(
@@ -10,7 +15,7 @@ const useAccountStore = create<AccountState>()(
             oauthAccounts: [],
             activeAccountId: null,
 
-            createLocalAccount: (device: Device, password: string) => {
+            createLocalAccount: ({ device, password, userDetails }) => {
                 const { localAccount } = get()
 
                 if (localAccount) return null
@@ -22,6 +27,7 @@ const useAccountStore = create<AccountState>()(
                     device,
                     accountType: AccountType.Local,
                     status: AccountStatus.Active,
+                    userDetails,
                     security: {
                         password
                     }
@@ -57,13 +63,13 @@ const useAccountStore = create<AccountState>()(
                 set({ localAccount: null })
             },
 
-            addOAuthAccount: ({ device, provider, providerId, email, accessToken, refreshToken, expiresAt }) => {
+            addOAuthAccount: ({ device, provider, userDetails, tokenDetails }) => {
                 const { oauthAccounts, canAddMoreOAuthAccounts } = get()
 
                 if (!canAddMoreOAuthAccounts()) return false
 
                 const isDuplicate = oauthAccounts.some(
-                    acc => acc.provider === provider && acc.providerId === providerId
+                    acc => acc.provider === provider && acc.userDetails.email === userDetails.email
                 )
 
                 if (isDuplicate) return false
@@ -81,11 +87,8 @@ const useAccountStore = create<AccountState>()(
                         autoLock: true
                     },
                     provider,
-                    providerId,
-                    email,
-                    accessToken,
-                    refreshToken,
-                    expiresAt
+                    userDetails,
+                    tokenDetails
                 }
 
                 set((state) => ({

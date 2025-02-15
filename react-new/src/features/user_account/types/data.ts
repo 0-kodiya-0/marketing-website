@@ -43,6 +43,17 @@ export interface Device {
     preferences: DevicePreferences;
 }
 
+export interface UserDetails {
+    name: string;
+    email: string;
+    imageUrl?: string;
+}
+
+export interface TokenDetails {
+    accessToken: string;
+    refreshToken: string;
+}
+
 export interface BaseAccount {
     id: string;
     created: string;
@@ -50,6 +61,7 @@ export interface BaseAccount {
     device: Device
     accountType: AccountType;
     status: AccountStatus;
+    userDetails: UserDetails;
 }
 
 export interface LocalAccount extends BaseAccount {
@@ -59,11 +71,7 @@ export interface LocalAccount extends BaseAccount {
 
 export interface OAuthAccount extends BaseAccount {
     accountType: AccountType.OAuth;
-    security: OAuthSecuritySettings;
     provider: OAuthProviders;
-    providerId: string;
-    email: string;
-    accessToken: string;
-    refreshToken?: string;
-    expiresAt: string;
+    security: OAuthSecuritySettings;
+    tokenDetails: TokenDetails;
 }
