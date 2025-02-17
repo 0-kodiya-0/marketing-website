@@ -1,6 +1,6 @@
 import { ChatStatus, ChatType, DirectChat, GroupChat } from "../../features/chat/types/data";
 import { Environment } from "../../features/environment/types/data";
-import { Tab } from "../../features/tab_view/types/data";
+import { TabView, Tab } from "../../features/tab_view/types/data";
 import { Workspace, WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility } from "../../features/workspace/types/data";
 import { FeatureIntegration, FeatureType, IntegrableFeatures, IntegrationStatus } from "../../services/integration/types/data";
 
@@ -22,33 +22,6 @@ export const mockEnvironments: Environment[] = [
     //     status: EnvironmentStatus.Active
     // }
 ];
-
-export const mockTabs: Record<string, Tab[]> = {
-    'acc-1': [
-        {
-            id: 'tab-1',
-            environmentId: '1',
-            workspaceId: 'ws-1',
-            contentState: {
-                type: 'query-editor',
-                id: 'qe-1'
-            },
-            createdAt: new Date('2024-01-01'),
-            title: 'Query Editor 1'
-        },
-        {
-            id: 'tab-2',
-            environmentId: '1',
-            workspaceId: 'ws-1',
-            contentState: {
-                type: 'data-viewer',
-                id: 'dv-1'
-            },
-            createdAt: new Date('2024-01-02'),
-            title: 'Data Viewer 1'
-        }
-    ]
-};
 
 export const mockWorkspaces: Workspace[] = [
     {
@@ -77,6 +50,12 @@ export const mockWorkspaces: Workspace[] = [
         subcategory: "Data Analysis",
         visibility: WorkspaceVisibility.Shared
     }
+];
+
+export const mockTabViews: TabView[] = [
+];
+
+export const mockTabs: Tab[] = [
 ];
 
 export const mockChats: (DirectChat | GroupChat)[] = [

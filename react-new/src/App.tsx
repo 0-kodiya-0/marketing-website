@@ -1,7 +1,6 @@
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { QueryClientProvider } from "@tanstack/react-query";
 import { Footer, Header, Navbar } from "./layout";
-
-const queryClient = new QueryClient();
+import { queryClient } from './api/persistConfig';
 
 export const App = () => {
     return (
@@ -13,4 +12,4 @@ export const App = () => {
             </QueryClientProvider>
         </div>
     );
-}
+};

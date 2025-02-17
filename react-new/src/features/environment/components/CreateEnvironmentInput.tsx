@@ -1,8 +1,8 @@
 import { useRef, useEffect, useState } from "react";
 import { CreateEnvironmentInputProps } from "../types/props";
-import { EnvironmentStatus } from "../../../types/data-structure.types";
 import { useCreateEnvironment } from "../hooks/useEnvironments";
 import { useEnvironmentStore } from "../store";
+import { EnvironmentPrivacy, EnvironmentStatus } from "../types/data";
 
 export const CreateEnvironmentInput: React.FC<CreateEnvironmentInputProps> = ({
     onCancel
@@ -35,7 +35,8 @@ export const CreateEnvironmentInput: React.FC<CreateEnvironmentInputProps> = ({
             const created = await createEnvironment.mutateAsync({
                 accountId: selectedEnvironment.accountId,
                 name: trimmedName,
-                status: EnvironmentStatus.Active
+                status: EnvironmentStatus.Active,
+                privacy: EnvironmentPrivacy.Global
             });
             setEnvironment(created);
             onCancel(); // Close the input form after successful creation

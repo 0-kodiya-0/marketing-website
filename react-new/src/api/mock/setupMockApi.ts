@@ -1,12 +1,13 @@
 import { AxiosInstance } from "axios";
-import { Tab } from "../../features/tab_view/types/data";
-import { ChatStatus, ChatType, Environment, Workspace, WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility } from "../../types/data-structure.types";
-import { mockChats, mockEnvironments, mockFeatureIntegrations, mockTabs, mockWorkspaces } from "./data";
+import { mockChats, mockEnvironments, mockFeatureIntegrations, mockTabs, mockTabViews, mockWorkspaces } from "./data";
 import AxiosMockAdapter from "axios-mock-adapter";
 import { CreateWorkspaceDTO, UpdateWorkspaceDTO } from "../../features/workspace/types/api";
 import { CreateDirectChatDTO, CreateGroupChatDTO, UpdateChatDTO } from "../../features/chat/types/api";
-import { DirectChat, GroupChat } from "../../features/chat/types/data";
+import { ChatStatus, ChatType, DirectChat, GroupChat } from "../../features/chat/types/data";
 import { FeatureIntegration, IntegrationStatus } from "../../services/integration/types/data";
+import { Environment } from "../../features/environment/types/data";
+import { Workspace, WorkspaceStatus, WorkspaceType, WorkspaceCategory, WorkspaceVisibility } from "../../features/workspace/types/data";
+import { TabViewCreateDTO, TabView, TabCreateDTO, Tab } from "../../features/tab_view/types/data";
 
 export const setupMockApi = (api: AxiosInstance) => {
     const mock = new AxiosMockAdapter(api);
@@ -49,45 +50,6 @@ export const setupMockApi = (api: AxiosInstance) => {
         };
         mockEnvironments.push(newEnvironment);
         return [201, newEnvironment];
-    });
-
-    // Tab endpoints
-    mock.onGet(/\/api\/tabs\/.*\/tabs/).reply((config) => {
-        const accountId = config.url!.split('/')[3];
-        return [200, mockTabs[accountId] || []];
-    });
-
-    mock.onPost(/\/api\/tabs\/.*\/tabs/).reply((config) => {
-        const accountId = config.url!.split('/')[3];
-        const data = JSON.parse(config.data);
-        const newTab: Tab = {
-            ...data,
-            id: `tab-${Date.now()}`,
-            createdAt: new Date()
-        };
-
-        if (!mockTabs[accountId]) {
-            mockTabs[accountId] = [];
-        }
-        mockTabs[accountId].push(newTab);
-        return [201, newTab];
-    });
-
-    mock.onDelete(/\/api\/tabs\/.*\/tabs\/.*/).reply((config) => {
-        const [, , , accountId, , tabId] = config.url!.split('/');
-        const accountTabs = mockTabs[accountId];
-
-        if (!accountTabs) {
-            return [404, { message: 'Account not found' }];
-        }
-
-        const tabIndex = accountTabs.findIndex(tab => tab.id === tabId);
-        if (tabIndex === -1) {
-            return [404, { message: 'Tab not found' }];
-        }
-
-        accountTabs.splice(tabIndex, 1);
-        return [204];
     });
 
     mock.onGet('/api/workspaces').reply((config) => {
@@ -145,6 +107,60 @@ export const setupMockApi = (api: AxiosInstance) => {
         mockWorkspaces[workspaceIndex] = updatedWorkspace;
         return [200, updatedWorkspace];
     });
+
+    mock.onGet(/\/api\/tab-views/).reply((config) => {
+        const environmentId = Number(new URLSearchParams(config.url?.split("?")[1]).get("environmentId"));
+        const tabViews = mockTabViews.filter(tv => tv.environmentId === environmentId);
+        return [200, tabViews];
+    });
+
+    mock.onPost("/api/tab-views").reply((config) => {
+        const data: TabViewCreateDTO = JSON.parse(config.data);
+        const newTabView: TabView = {
+            id: mockTabViews.length + 1,
+            ...data,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        };
+        mockTabViews.push(newTabView);
+        return [201, newTabView];
+    });
+
+    mock.onDelete(/\/api\/tab-views\/\d+/).reply((config) => {
+        const id = parseInt(config.url!.split("/").pop()!);
+        const index = mockTabViews.findIndex(tv => tv.id === id);
+        if (index === -1) return [404, { message: "TabView not found" }];
+        mockTabViews.splice(index, 1);
+        return [204];
+    });
+
+    // Tab Endpoints
+    mock.onGet(/\/api\/tabs/).reply((config) => {
+        const tabViewId = Number(new URLSearchParams(config.url?.split("?")[1]).get("tabViewId"));
+        const tabs = mockTabs.filter(tab => tab.tabViewId === tabViewId);
+        return [200, tabs];
+    });
+
+    mock.onPost("/api/tabs").reply((config) => {
+        const data: TabCreateDTO = JSON.parse(config.data);
+        const newTab: Tab = {
+            id: mockTabs.length + 1,
+            ...data,
+            createdAt: new Date(),
+            updatedAt: new Date()
+        };
+        mockTabs.push(newTab);
+        return [201, newTab];
+    });
+
+    mock.onDelete(/\/api\/tabs\/\d+/).reply((config) => {
+        const id = parseInt(config.url!.split("/").pop()!);
+        const index = mockTabs.findIndex(tab => tab.id === id);
+        if (index === -1) return [404, { message: "Tab not found" }];
+        mockTabs.splice(index, 1);
+        return [204];
+    });
+
 
     mock.onGet('/api/chats').reply((config) => {
         const environmentId = config.params?.environmentId;

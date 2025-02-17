@@ -5,7 +5,7 @@ import { useEnvironmentStore } from '../store';
 import { EnvironmentList } from './EnvironmentList';
 import { ErrorView } from './ErrorView';
 import { LoadingView } from './LoadingView';
-import { Environment, EnvironmentStatus } from '../types/data';
+import { Environment, EnvironmentPrivacy, EnvironmentStatus } from '../types/data';
 
 export function EnvironmentSlider({
   onClose
@@ -46,7 +46,8 @@ export function EnvironmentSlider({
         const created = await createEnvironment.mutateAsync({
           accountId: selectedEnvironment.accountId,
           name: selectedEnvironment.name,
-          status: EnvironmentStatus.Active
+          status: EnvironmentStatus.Active,
+          privacy: EnvironmentPrivacy.Global
         });
         setEnvironment(created);
         return;

@@ -2,6 +2,9 @@ import { MessageCircle } from 'lucide-react';
 import { FeatureSection } from './FeatureIntegration';
 import { useWorkspaceChats } from '../../hooks/useWorkspace';
 import { useBulkChat } from '../../../chat/hooks/useChats';
+import { useCreateTab } from '../../../tab_view/hooks/useTabQueries';
+import { useCallback } from 'react';
+import { useTabStore } from '../../../tab_view/store';
 
 interface ChatsIntegrationProps {
     workspaceId: number;
@@ -62,6 +65,20 @@ export function ChatsIntegration({
     // Use bulk fetching hook
     const { data: bulkChats = [], isLoading: isLoadingChats } = useBulkChat(chatIds);
 
+    const { activeTabViewId } = useTabStore();
+    const createTabMutation = useCreateTab(activeTabViewId);
+
+    const handleCreateTab = useCallback(async (title: string, contentPath: string, contentState: any) => {
+        if (!activeTabViewId) return
+
+        createTabMutation.mutate({
+            title,
+            contentPath,
+            contentState,
+            tabViewId: activeTabViewId
+        });
+    }, [activeTabViewId]);
+
     // Final loading state
     const isLoading = isLoadingWorkspaceChats || isLoadingChats;
 
@@ -104,7 +121,17 @@ export function ChatsIntegration({
             {chats.map(chat => (
                 <button
                     key={chat.id}
-                    onClick={() => onSelect(chat.id)}
+                    onClick={() => {
+                        onSelect(chat.id)
+                        handleCreateTab(
+                            chat.name, // Use chat name as tab title
+                            '/src/features/chat/components/ChatDetails.tsx',
+                            {
+                                chatId: chat.id,
+                                // Add any other parameters needed by ChatDetails component
+                            }
+                        )
+                    }}
                     className={`
                         w-full px-2 py-1.5 rounded-md transition-colors
                         flex items-center justify-between group text-left

@@ -1,4 +1,4 @@
-import { WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility } from "../../../types/data-structure.types";
+import { WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility } from "../../../types/d";
 
 export interface CreateWorkspaceDTO {
     environmentId: number;

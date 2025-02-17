@@ -2,13 +2,13 @@ import { useState } from 'react';
 import { useEnvironmentStore } from '../../environment/store';
 import { selectWorkspaceId, useWorkspaceStore } from '../store';
 import { WorkspaceIcon } from './WorkspaceIcon';
-import { Workspace } from '../../../types/data-structure.types';
 import { WorkspaceAddIcon } from './WorkspaceAddIcon';
 import { WorkspaceEmptyIcon } from './WorkspaceEmptyIcon';
 import { useWorkspaces } from '../hooks/useWorkspace';
 import { CreateWorkspaceInput } from './CreateWorkspaceInput';
 import { Loader2 } from 'lucide-react';
 import { FeatureType } from '../../feature_navigation/types/store';
+import { Workspace } from '../types/data';
 
 interface WorkspaceSummeryProps {
     onFeatureSelect: (featureType: FeatureType) => void

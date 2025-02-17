@@ -1,29 +1,32 @@
 import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
 import { TabState } from '../types/store';
 
-export const useTabStore = create<TabState>((set) => ({
-    openTabs: [],
-    selectedTabId: null,
-    initializeTabs: (tabs) =>
-        set({
-            openTabs: tabs,
-            selectedTabId: tabs.length > 0 ? tabs[0].id : null,
+export const useTabStore = create<TabState>()(
+    persist(
+        (set) => ({
+            tabViews: [],
+            tabs: [],
+            activeTabViewId: null,
+            activeTabId: null,
+
+            setActiveTabView: (id) =>
+                set({
+                    activeTabViewId: id,
+                }),
+
+            setActiveTab: (id) =>
+                set({
+                    activeTabId: id,
+                }),
+
+            resetActiveTab: () => set({
+                activeTabId: null
+            })
         }),
-    addTab: (tab) =>
-        set((state) => ({
-            openTabs: [...state.openTabs, tab],
-            selectedTabId: tab.id,
-        })),
-    removeTab: (tabId) =>
-        set((state) => ({
-            openTabs: state.openTabs.filter((tab) => tab.id !== tabId),
-            selectedTabId:
-                state.selectedTabId === tabId
-                    ? state.openTabs[0]?.id || null
-                    : state.selectedTabId,
-        })),
-    selectTab: (tabId) =>
-        set({
-            selectedTabId: tabId,
-        }),
-}));
+        {
+            name: 'tab-storage',
+            version: 1,
+        }
+    )
+);

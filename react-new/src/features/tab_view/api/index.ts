@@ -1,21 +1,32 @@
 import { api } from '../../../api/client';
-import { Tab } from '../types/data';
+import { TabView, Tab, TabViewCreateDTO, TabCreateDTO } from '../types/data';
 
-const API_BASE_URL = '/api/tabs'; // Replace with your actual API base URL
+// TabView API Functions
+export const createTabView = async (data: TabViewCreateDTO): Promise<TabView> => {
+    const response = await api.post<TabView>('/api/tab-views', data);
+    return response.data;
+};
 
-export const tabApi = {
-    // Tab CRUD operations
-    getTabs: async (accountId: string): Promise<Tab[]> => {
-        const response = await api.get(`${API_BASE_URL}/${accountId}/tabs`);
-        return response.data;
-    },
+export const getTabViewsByEnvironment = async (environmentId: number): Promise<TabView[]> => {
+    const response = await api.get<TabView[]>(`/api/tab-views?environmentId=${environmentId}`);
+    return response.data;
+};
 
-    saveTab: async (accountId: string, tab: Omit<Tab, 'id' | 'createdAt'>): Promise<Tab> => {
-        const response = await api.post(`${API_BASE_URL}/${accountId}/tabs`, tab);
-        return response.data;
-    },
+export const deleteTabView = async (id: number): Promise<void> => {
+    await api.delete(`/tab-views/${id}`);
+};
 
-    deleteTab: async (accountId: string, tabId: string): Promise<void> => {
-        await api.delete(`${API_BASE_URL}/${accountId}/tabs/${tabId}`);
-    }
+// Tab API Functions
+export const createTab = async (data: TabCreateDTO): Promise<Tab> => {
+    const response = await api.post<Tab>('/api/tabs', data);
+    return response.data;
+};
+
+export const getTabsByTabView = async (tabViewId: number): Promise<Tab[]> => {
+    const response = await api.get<Tab[]>(`/api/tabs?tabViewId=${tabViewId}`);
+    return response.data;
+};
+
+export const deleteTab = async (id: number): Promise<void> => {
+    await api.delete(`/api/tabs/${id}`);
 };
