@@ -1,14 +1,17 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigationStore, selectedFeatureType } from '../store';
 import { WorkspaceDetail } from '../../workspace';
+import { Environment } from '../../environment/types/data';
+import { FeatureType } from '../types/store';
 
 interface DetailPaneProps {
+    environment: Environment;
     className?: string;
 }
 
-export function DetailPane({ className }: DetailPaneProps) {
+export function DetailPane({ environment, className }: DetailPaneProps) {
     const selectedFeature = useNavigationStore(selectedFeatureType);
-    const [selectedFeatureBefore, setSelectFeatureBefore] = useState(selectedFeature);
+    const [selectedFeatureBefore, setSelectFeatureBefore] = useState<FeatureType | null>(null);
     const clearSelection = useNavigationStore(state => state.clearSelection);
     const [title, setTitle] = useState<null | string>(null);
 
@@ -17,6 +20,10 @@ export function DetailPane({ className }: DetailPaneProps) {
     }, []);
 
     useEffect(() => {
+        if (!selectedFeatureBefore) {
+            setSelectFeatureBefore(selectedFeature);
+            return;
+        }
         if (selectedFeature !== selectedFeatureBefore) {
             clearSelection();
             setSelectFeatureBefore(selectedFeature);
@@ -26,7 +33,7 @@ export function DetailPane({ className }: DetailPaneProps) {
     const renderFeatureContent = () => {
         switch (selectedFeature) {
             case 'workspace':
-                return <WorkspaceDetail setTitle={setTitleCallBack} />;
+                return <WorkspaceDetail environment={environment} setTitle={setTitleCallBack} />;
             case 'files':
                 return <h1>Files component.</h1>;
             case 'contacts':

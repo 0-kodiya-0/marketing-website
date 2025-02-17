@@ -3,8 +3,8 @@ import { FeatureSection } from './FeatureIntegration';
 import { useWorkspaceChats } from '../../hooks/useWorkspace';
 import { useBulkChat } from '../../../chat/hooks/useChats';
 import { useCreateTab } from '../../../tab_view/hooks/useTabQueries';
-import { useCallback } from 'react';
-import { useTabStore } from '../../../tab_view/store';
+import { useCallback, useEffect, useState } from 'react';
+import { getActiveTabViewId, useTabStore } from '../../../tab_view/store';
 
 interface ChatsIntegrationProps {
     workspaceId: number;
@@ -14,48 +14,15 @@ interface ChatsIntegrationProps {
     onSelect: (id: number) => void;
 }
 
-// const chats = [
-//     {
-//         id: "301",
-//         name: "Team Standup",
-//         type: "group",
-//         description: "Daily sync-up meeting discussion.",
-//         status: "active",
-//         lastActive: "2024-02-12T10:30:00Z"
-//     },
-//     {
-//         id: "302",
-//         name: "Client Discussion",
-//         type: "direct",
-//         description: "Chat with Client X regarding project updates.",
-//         status: "active",
-//         lastActive: "2024-02-11T15:45:00Z"
-//     },
-//     {
-//         id: "303",
-//         name: "Design Brainstorm",
-//         type: "group",
-//         description: "Creative session for upcoming UI/UX designs.",
-//         status: "archived",
-//         lastActive: "2024-01-25T08:20:00Z"
-//     },
-//     {
-//         id: "304",
-//         name: "Bug Reports",
-//         type: "direct",
-//         description: "Issue tracking and bug reports discussion.",
-//         status: "inactive",
-//         lastActive: "2024-02-05T18:10:00Z"
-//     }
-// ];
-
 export function ChatsIntegration({
     workspaceId,
     isExpanded,
-    selectedId,
     onToggleExpand,
     onSelect
 }: ChatsIntegrationProps) {
+
+    const [selectedChatId, setSelectedChatId] = useState<number | null>(null);
+
     // Fetch workspace chats
     const { data: workspaceChats = [], isLoading: isLoadingWorkspaceChats } = useWorkspaceChats(workspaceId);
 
@@ -65,19 +32,8 @@ export function ChatsIntegration({
     // Use bulk fetching hook
     const { data: bulkChats = [], isLoading: isLoadingChats } = useBulkChat(chatIds);
 
-    const { activeTabViewId } = useTabStore();
-    const createTabMutation = useCreateTab(activeTabViewId);
-
-    const handleCreateTab = useCallback(async (title: string, contentPath: string, contentState: any) => {
-        if (!activeTabViewId) return
-
-        createTabMutation.mutate({
-            title,
-            contentPath,
-            contentState,
-            tabViewId: activeTabViewId
-        });
-    }, [activeTabViewId]);
+    const activeTabViewId = useTabStore(getActiveTabViewId);
+    const createTabMutation = useCreateTab();
 
     // Final loading state
     const isLoading = isLoadingWorkspaceChats || isLoadingChats;
@@ -91,6 +47,25 @@ export function ChatsIntegration({
         status: chat.status,
         lastActive: chat.lastActive,
     }));
+
+    const handleCreateTab = useCallback(async () => {
+        const chat = chats.find(ch => ch.id === selectedChatId);
+        if (!chat || !activeTabViewId) return;
+
+        createTabMutation.mutate({
+            title: chat.name,
+            contentPath: '/src/features/chat/components/ChatDetails.tsx',
+            contentState: {
+                chatId: chat.id
+            },
+            tabViewId: activeTabViewId.id
+        });
+    }, [activeTabViewId, selectedChatId, chats, createTabMutation]);
+
+    useEffect(() => {
+        if (!selectedChatId || !workspaceId) return;
+        handleCreateTab();
+    }, [selectedChatId]);
 
     const formatLastActive = (date: string) => {
         const lastActive = new Date(date);
@@ -122,33 +97,20 @@ export function ChatsIntegration({
                 <button
                     key={chat.id}
                     onClick={() => {
-                        onSelect(chat.id)
-                        handleCreateTab(
-                            chat.name, // Use chat name as tab title
-                            '/src/features/chat/components/ChatDetails.tsx',
-                            {
-                                chatId: chat.id,
-                                // Add any other parameters needed by ChatDetails component
-                            }
-                        )
+                        onSelect(chat.id);
+                        setSelectedChatId(chat.id)
                     }}
                     className={`
                         w-full px-2 py-1.5 rounded-md transition-colors
                         flex items-center justify-between group text-left
-                        ${selectedId === chat.id ?
-                            'bg-blue-50 hover:bg-blue-100' :
-                            'hover:bg-gray-50'
-                        }
+                        hover:bg-gray-50
                     `}
                 >
                     <div className="flex flex-col min-w-0 flex-1">
                         <div className="flex items-center space-x-2">
                             <span className={`
                                 text-sm font-medium truncate
-                                ${selectedId === chat.id ?
-                                    'text-blue-700' :
-                                    'text-gray-700'
-                                }
+                                text-gray-700
                             `}>
                                 {chat.name}
                             </span>

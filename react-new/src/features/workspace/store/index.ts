@@ -61,4 +61,4 @@ export const useWorkspaceStore = create<WorkspaceActions>()(
 );
 
 // Selectors
-export const selectWorkspaceId = (environmentId: number) => (state: WorkspaceState) => state.selectedWorkspaceIds[environmentId] || null;
+export const selectWorkspaceId = (environmentId: number | null) => (state: WorkspaceState) => environmentId ? state.selectedWorkspaceIds[environmentId] || null : null;

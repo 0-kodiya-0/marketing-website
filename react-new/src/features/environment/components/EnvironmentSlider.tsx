@@ -1,105 +1,72 @@
-import { useEffect, useState, useCallback } from 'react';
-import { useCreateEnvironment, useEnvironments } from '../hooks/useEnvironments';
-import { EnvironmentError, EnvironmentSliderProps } from '../types/props';
-import { useEnvironmentStore } from '../store';
-import { EnvironmentList } from './EnvironmentList';
+import { useCallback } from 'react';
+import { Environment } from '../types/data';
 import { ErrorView } from './ErrorView';
 import { LoadingView } from './LoadingView';
-import { Environment, EnvironmentPrivacy, EnvironmentStatus } from '../types/data';
+import { EnvironmentCard } from './EnvironmentCard';
+
+interface EnvironmentSliderProps {
+  environments: Environment[];
+  selectedEnvironment: Environment | null;
+  isLoading: boolean;
+  error?: string;
+  onEnvironmentSelect: (env: Environment) => void;
+  onClose: () => void;
+}
 
 export function EnvironmentSlider({
+  environments,
+  selectedEnvironment,
+  isLoading,
+  error,
+  onEnvironmentSelect,
   onClose
 }: EnvironmentSliderProps) {
-  const [isEnvSettingUp, setEnvSettingUp] = useState(false);
-  const [envSettingUpError, setEnvSettingUpError] = useState<EnvironmentError>({
-    isError: false,
-    message: ''
-  });
-
-  const {
-    data: environments = [],
-    isLoading: isLoadingEnvironments,
-    error: fetchError
-  } = useEnvironments();
-
-  const createEnvironment = useCreateEnvironment();
-  const selectedEnvironment = useEnvironmentStore(state => state.selectedEnvironment);
-  const setEnvironment = useEnvironmentStore(state => state.setEnvironment);
-
   const getSliderStyle = useCallback(() => {
-    return { top: `4px` };
+    return { top: '4px' };
   }, []);
 
-  const setupEnvironment = useCallback(async () => {
-    if (isLoadingEnvironments) return;
+  const handleClose = useCallback((e: React.MouseEvent) => {
+    e.stopPropagation();
+    onClose();
+  }, [onClose]);
 
-    try {
-      const serverDefaultEnv = environments.find(env => env.name === 'Default Environment');
-      const isLocalDefaultEnv = selectedEnvironment?.name === 'Default Environment';
-
-      if (serverDefaultEnv && isLocalDefaultEnv) {
-        setEnvironment(serverDefaultEnv);
-        return;
-      }
-
-      if (isLocalDefaultEnv) {
-        const created = await createEnvironment.mutateAsync({
-          accountId: selectedEnvironment.accountId,
-          name: selectedEnvironment.name,
-          status: EnvironmentStatus.Active,
-          privacy: EnvironmentPrivacy.Global
-        });
-        setEnvironment(created);
-        return;
-      }
-
-    } catch (error) {
-      setEnvSettingUpError({
-        isError: true,
-        message: error instanceof Error ? error.message : 'Environment setup failed'
-      });
-    }
-  }, [environments, selectedEnvironment, createEnvironment, setEnvironment, isLoadingEnvironments]);
-
-  useEffect(() => {
-    setEnvSettingUp(true);
-    setupEnvironment().finally(() => {
-      setEnvSettingUp(false);
-    });
-  }, [isLoadingEnvironments]);
-
-  if (isLoadingEnvironments || isEnvSettingUp) {
-    return (
-      <LoadingView getSliderStyle={getSliderStyle} />
-    );
+  if (isLoading) {
+    return <LoadingView getSliderStyle={getSliderStyle} />;
   }
 
-  if (fetchError || envSettingUpError.isError) {
+  if (error) {
     return (
       <ErrorView
         getSliderStyle={getSliderStyle}
-        onClick={onClose}
-        error={fetchError?.message || envSettingUpError.message}
+        onClick={handleClose}
+        error={error}
       />
     );
   }
 
   return (
-    <div className="fixed inset-0 z-50" onClick={onClose}>
+    <div className="fixed inset-0 z-50" onClick={handleClose}>
       <div className="absolute inset-0 bg-black/20 backdrop-blur-sm" />
       <div
         className="absolute left-4 right-4 bg-white shadow-sm rounded-lg"
         style={getSliderStyle()}
-        onClick={onClose}
+        onClick={(e) => e.stopPropagation()}
       >
-        <EnvironmentList
-          environments={environments}
-          selectedEnvironment={selectedEnvironment}
-          onEnvironmentSelect={(env: Environment) => {
-            setEnvironment(env);
-            onClose();
-          }}
-        />
+        <div className="p-4 overflow-x-auto">
+          <div className="flex items-center gap-3 min-w-min">
+            {environments.map((env) => (
+              <EnvironmentCard
+                key={env.id}
+                environment={env}
+                isSelected={env.id === selectedEnvironment?.id}
+                onSelect={() => {
+                  onEnvironmentSelect(env);
+                  onClose();
+                }}
+              />
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,18 +1,18 @@
-import { useEnvironmentStore } from '../../environment/store';
 import { useWorkspaceStore } from '../store';
 import { useWorkspaces } from '../hooks/useWorkspace';
 import { ChatsIntegration, FilesIntegration, MembersIntegration, PluginIntegration } from './integrations';
 import { useEffect } from 'react';
+import { Environment } from '../../environment/types/data';
 
 interface WorkspaceDetailProps {
+    environment: Environment;
     setTitle: (title: string | null) => void
 }
 
-export function WorkspaceDetail({ setTitle }: WorkspaceDetailProps) {
-    const environment = useEnvironmentStore(state => state.selectedEnvironment);
+export function WorkspaceDetail({ environment, setTitle }: WorkspaceDetailProps) {
     const { data: workspaces, isLoading } = useWorkspaces();
 
-    const selectedWorkspaceId = useWorkspaceStore(state => state.selectedWorkspaceIds[environment?.id || 0]);
+    const selectedWorkspaceId = useWorkspaceStore(state => state.selectedWorkspaceIds[environment.id]);
 
     const featureStates = useWorkspaceStore(state => state.featureStates[selectedWorkspaceId || 0]);
 
@@ -21,7 +21,7 @@ export function WorkspaceDetail({ setTitle }: WorkspaceDetailProps) {
     useEffect(() => {
         const selectedWorkspace = Array.isArray(workspaces) ? workspaces.find(w => w.id === selectedWorkspaceId) : null;
         setTitle(selectedWorkspace ? selectedWorkspace.name : null);
-    }, [isLoading , selectedWorkspaceId])
+    }, [isLoading, selectedWorkspaceId]);
 
     if (isLoading) {
         return (

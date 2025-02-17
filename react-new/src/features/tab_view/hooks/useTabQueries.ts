@@ -1,3 +1,4 @@
+import { isEqual } from 'lodash';
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import {
     createTabView,
@@ -27,7 +28,7 @@ export const useCreateTabView = (environmentId: number) => {
         mutationFn: (data: TabViewCreateDTO) => createTabView(data),
         onSuccess: (newTabView) => {
             queryClient.invalidateQueries({ queryKey: ['tabViews', environmentId] });
-            setActiveTabView(newTabView.id);
+            setActiveTabView(newTabView);
         },
     });
 };
@@ -51,19 +52,37 @@ export const useTabs = (tabViewId: number | null) => {
     });
 };
 
-export const useCreateTab = (tabViewId: number | null) => {
+export const useCreateTab = () => {
     const queryClient = useQueryClient();
     const { setActiveTab } = useTabStore();
 
     return useMutation({
         mutationFn: (data: TabCreateDTO) => {
-            const currentTabs = queryClient.getQueryData<Tab[]>(['tabs', tabViewId]) || [];
+            const currentTabs = queryClient.getQueryData<Tab[]>(['tabs', data.tabViewId]) || [];
+
+            // Check for existing tab with same content path and state
+            const existingTab = currentTabs.find(tab =>
+                tab.contentPath === data.contentPath &&
+                isEqual(tab.contentState, data.contentState)
+            );
+
+            if (existingTab) {
+                // If tab exists, just activate it and return it
+                setActiveTab(existingTab);
+                return Promise.resolve(existingTab);
+            }
+
             data.order = (currentTabs.length ?? 0) + 1
+
+            if (!data.tabViewId) {
+                return Promise.reject(new Error('No active tab view'));
+            }
+
             return createTab(data)
         },
         onSuccess: (newTab) => {
-            queryClient.invalidateQueries({ queryKey: ['tabs', tabViewId] });
-            setActiveTab(newTab.id);
+            queryClient.invalidateQueries({ queryKey: ['tabs', newTab.tabViewId] });
+            setActiveTab(newTab);
         },
     });
 };
@@ -76,7 +95,7 @@ export const useDeleteTab = (tabViewId: number | null) => {
         mutationFn: (id: number) => deleteTab(id),
         onMutate: async (deletedTabId) => {
             // If we're not deleting the active tab, no need to change selection
-            if (deletedTabId !== activeTabId) {
+            if (deletedTabId !== activeTabId?.id) {
                 return;
             }
 
@@ -94,9 +113,9 @@ export const useDeleteTab = (tabViewId: number | null) => {
                 const previousTab = currentTabs[deletedIndex - 1];
 
                 if (nextTab) {
-                    setActiveTab(nextTab.id);
+                    setActiveTab(nextTab);
                 } else if (previousTab) {
-                    setActiveTab(previousTab.id);
+                    setActiveTab(previousTab);
                 } else {
                     // No tabs left, reset active tab
                     resetActiveTab();

@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useEnvironmentStore } from '../../environment/store';
 import { selectWorkspaceId, useWorkspaceStore } from '../store';
 import { WorkspaceIcon } from './WorkspaceIcon';
 import { WorkspaceAddIcon } from './WorkspaceAddIcon';
@@ -9,21 +8,20 @@ import { CreateWorkspaceInput } from './CreateWorkspaceInput';
 import { Loader2 } from 'lucide-react';
 import { FeatureType } from '../../feature_navigation/types/store';
 import { Workspace } from '../types/data';
+import { Environment } from '../../environment/types/data';
 
 interface WorkspaceSummeryProps {
+    environment: Environment
     onFeatureSelect: (featureType: FeatureType) => void
 }
 
-export function WorkspaceSummary({ onFeatureSelect }: WorkspaceSummeryProps) {
+export function WorkspaceSummary({ environment, onFeatureSelect }: WorkspaceSummeryProps) {
     const [showCreateInput, setShowCreateInput] = useState(false);
-    const environment = useEnvironmentStore(state => state.selectedEnvironment);
-
-    if (!environment) return <p>Select a environment</p>;
 
     const { data: workspaces, isLoading } = useWorkspaces();
 
     // Workspace state
-    const selectedWorkspaceId = useWorkspaceStore(selectWorkspaceId(environment?.id || 0));
+    const selectedWorkspaceId = useWorkspaceStore(selectWorkspaceId(environment?.id));
     const setSelectedWorkspace = useWorkspaceStore(state => state.setSelectedWorkspace);
 
     const handleWorkspaceSelect = (workspace: Workspace) => {
@@ -33,6 +31,8 @@ export function WorkspaceSummary({ onFeatureSelect }: WorkspaceSummeryProps) {
         setSelectedWorkspace(environment.id, workspace.id);
         onFeatureSelect("workspace");
     };
+
+    if (!environment) return <p>Select a environment</p>;
 
     if (isLoading) {
         return (

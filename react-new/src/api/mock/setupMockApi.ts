@@ -9,6 +9,8 @@ import { Environment } from "../../features/environment/types/data";
 import { Workspace, WorkspaceStatus, WorkspaceType, WorkspaceCategory, WorkspaceVisibility } from "../../features/workspace/types/data";
 import { TabViewCreateDTO, TabView, TabCreateDTO, Tab } from "../../features/tab_view/types/data";
 
+let tabCount = 0;
+
 export const setupMockApi = (api: AxiosInstance) => {
     const mock = new AxiosMockAdapter(api);
 
@@ -144,7 +146,7 @@ export const setupMockApi = (api: AxiosInstance) => {
     mock.onPost("/api/tabs").reply((config) => {
         const data: TabCreateDTO = JSON.parse(config.data);
         const newTab: Tab = {
-            id: mockTabs.length + 1,
+            id: tabCount++,
             ...data,
             createdAt: new Date(),
             updatedAt: new Date()

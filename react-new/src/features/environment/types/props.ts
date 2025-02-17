@@ -42,7 +42,7 @@ export interface LoadingViewProps {
 
 // ErrorView Props
 export interface ErrorViewProps {
-    onClick: () => void;
+    onClick: (e: React.MouseEvent) => void;
     getSliderStyle: GetSliderStyle;
     error: string;
 }

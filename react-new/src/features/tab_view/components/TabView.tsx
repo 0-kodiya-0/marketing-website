@@ -3,16 +3,16 @@ import { useTabStore } from '../store';
 import { useTabViews, useCreateTabView, useTabs } from '../hooks/useTabQueries';
 import TabContent from './TabContent';
 import { TabManagement } from './TabManagement';
-import { useEnvironmentStore } from '../../environment';
 import { useWorkspaceStore } from '../../workspace';
+import { Environment } from '../../environment/types/data';
 
 interface TabViewProps {
+    environment: Environment
     className?: string;
 }
 
-export const TabView: React.FC<TabViewProps> = ({ className }) => {
-    const { id: environmentId } = useEnvironmentStore(state => state.selectedEnvironment);
-    const selectedWorkspaceId = useWorkspaceStore(state => state.selectedWorkspaceIds[environmentId || 0]);
+export const TabView: React.FC<TabViewProps> = ({ environment, className }) => {
+    const selectedWorkspaceId = useWorkspaceStore(state => state.selectedWorkspaceIds[environment.id]);
 
     const {
         activeTabViewId,
@@ -25,34 +25,34 @@ export const TabView: React.FC<TabViewProps> = ({ className }) => {
         data: tabViews,
         isLoading: isLoadingTabViews,
         error: tabViewsError
-    } = useTabViews(environmentId);
+    } = useTabViews(environment.id);
 
-    const createTabViewMutation = useCreateTabView(environmentId);
-    const { data: tabs = [] } = useTabs(activeTabViewId);
+    const createTabViewMutation = useCreateTabView(environment.id);
+    const { data: tabs = [] } = useTabs(activeTabViewId ? activeTabViewId.id : null);
 
     // Handle automatic TabView creation and selection
     useEffect(() => {
-        if (!environmentId || isLoadingTabViews) return;
+        if (!environment.id || isLoadingTabViews) return;
 
-        const existingTabView = tabViews?.find(tv => tv.environmentId === environmentId);
+        const existingTabView = tabViews?.find(tv => tv.environmentId === environment.id);
 
         if (existingTabView) {
-            setActiveTabView(existingTabView.id);
+            setActiveTabView(existingTabView);
         } else if (!createTabViewMutation.isPending && selectedWorkspaceId) {
             createTabViewMutation.mutate({
-                environmentId,
+                environmentId: environment.id,
                 workspaceId: selectedWorkspaceId
             });
         }
-    }, [environmentId, tabViews, isLoadingTabViews, selectedWorkspaceId]);
+    }, [environment.id, tabViews, isLoadingTabViews]);
 
     // Rest of the component remains the same...
     // Reset active tab when environment changes
     useEffect(() => {
         resetActiveTab();
-    }, [environmentId]);
+    }, [environment.id]);
 
-    if (!environmentId) {
+    if (!environment.id) {
         return (
             <div className="flex items-center justify-center h-full">
                 <div className="text-gray-500">Please select an environment</div>
@@ -84,12 +84,12 @@ export const TabView: React.FC<TabViewProps> = ({ className }) => {
         );
     }
 
-    const activeTab = tabs.find(tab => tab.id === activeTabId);
+    const activeTab = tabs.find(tab => tab.id === activeTabId?.id);
 
     return (
         <div className={`flex flex-col h-full ${className}`}>
             <TabManagement
-                tabViewId={activeTabViewId}
+                tabView={activeTabViewId}
                 className="flex-shrink-0"
             />
             <div className="flex-grow overflow-hidden">

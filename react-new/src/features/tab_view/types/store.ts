@@ -1,9 +1,10 @@
+import { Tab, TabView } from "./data";
+
 export interface TabState {
-    activeTabViewId: number | null;
-    activeTabId: number | null;
-
-    setActiveTabView: (id: number) => void;
-
-    setActiveTab: (id: number) => void;
+    activeTabViewId: TabView | null;
+    activeTabId: Tab | null;
+    setActiveTabView: (tabView: TabView | null) => void;
+    setActiveTab: (tab: Tab | null) => void;
     resetActiveTab: () => void;
+    resetState: () => void; // Add this new action
 }

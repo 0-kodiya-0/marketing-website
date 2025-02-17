@@ -108,7 +108,7 @@ export const mockChats: (DirectChat | GroupChat)[] = [
 export const mockFeatureIntegrations: FeatureIntegration[] = [
     {
         id: 1,
-        integrationId: 1,
+        integrationId: 3,
         integrationType: FeatureType.Chat,
         integrationIntoToId: 2,
         integrationIntoToType: IntegrableFeatures.Workspace,
@@ -126,7 +126,7 @@ export const mockFeatureIntegrations: FeatureIntegration[] = [
         id: 3,
         integrationId: 2,
         integrationType: FeatureType.Chat,
-        integrationIntoToId: 2,
+        integrationIntoToId: 1,
         integrationIntoToType: IntegrableFeatures.Workspace,
         status: IntegrationStatus.Active
     },
