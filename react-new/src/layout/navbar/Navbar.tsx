@@ -1,8 +1,15 @@
 import { Menu, Settings, UserCircle } from 'lucide-react';
 import { NavbarSearch } from '../../features/search';
 import { EnvironmentButton } from '../../features/environment';
+import { AccountPopup } from '../../features/user_account/components/AccountPopup';
+import { usePopup } from '../../features/user_account/hooks/usePop';
 
 export function Navbar() {
+  const accountPopup = usePopup();
+
+  const handleUserCircleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    accountPopup.toggle(e.currentTarget);
+  };
 
   return (
     <>
@@ -25,11 +32,20 @@ export function Navbar() {
           <button className="p-1.5 hover:bg-gray-100 rounded">
             <Settings className="w-5 h-5" />
           </button>
-          <button className="p-1.5 hover:bg-gray-100 rounded">
+          <button
+            className="p-1.5 hover:bg-gray-100 rounded relative"
+            onClick={handleUserCircleClick}
+          >
             <UserCircle className="w-5 h-5" />
           </button>
         </div>
       </nav>
+
+      <AccountPopup
+        isOpen={accountPopup.isOpen}
+        onClose={accountPopup.close}
+        anchorEl={accountPopup.anchorEl}
+      />
     </>
   );
 }

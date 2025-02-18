@@ -1,70 +1,55 @@
 import { api } from '../../../api/client';
-import { 
-    OAuthAccount, 
+import {
     OAuthProviders,
-    TokenDetails,
-    UserDetails
-} from '../types/data';
+    TokenDetails
+} from '../types/data.types';
 
-// OAuth flow endpoints
-export const initiateOAuthConnection = async (
+// Initiate sign-up with a specific OAuth provider
+export const initiateSignUp = async (
     provider: OAuthProviders
-): Promise<{ authUrl: string }> => {
-    const response = await api.post<{ authUrl: string }>('/oauth/connect', {
-        provider
-    });
-    return response.data;
+): Promise<string> => {
+    // This will redirect to /signup/:provider which handles the OAuth flow
+    const response = await api.get<{ state: string }>(`/signup/${provider}`);
+    return response.data.state;
 };
 
-export interface OAuthCallbackResponse {
-    userDetails: UserDetails;
-    tokenDetails: TokenDetails;
-    provider: OAuthProviders;
+// Initiate sign-in with a specific OAuth provider
+export const initiateSignIn = async (
+    provider: OAuthProviders
+): Promise<string> => {
+    // This will redirect to /signin/:provider which handles the OAuth flow
+    const response = await api.get<{ state: string }>(`/signin/${provider}`);
+    return response.data.state;
+};
+
+// Process sign-up completion (after OAuth provider redirects back)
+export interface SignUpResponse {
+    accountDetails: {
+        device: any;
+    };
+    oAuthResponse: {
+        provider: OAuthProviders;
+        name: string;
+        email: string;
+        imageUrl?: string;
+        tokenDetails: TokenDetails;
+    };
+    state: string;
 }
 
-export const completeOAuthConnection = async (
-    params: {
-        provider: OAuthProviders;
-        code: string;
-        state: string;
-    }
-): Promise<OAuthCallbackResponse> => {
-    const response = await api.post<OAuthCallbackResponse>('/oauth/callback', params);
+export const completeSignUp = async (state: string): Promise<SignUpResponse> => {
+    const response = await api.get<SignUpResponse>(`/signup?state=${state}`);
     return response.data;
 };
 
-// OAuth account management
-export const getOAuthAccounts = async (): Promise<OAuthAccount[]> => {
-    const response = await api.get<OAuthAccount[]>('/oauth/accounts');
-    return response.data;
-};
-
-export const updateOAuthAccount = async (
-    accountId: string,
-    updates: Partial<Omit<OAuthAccount, 'accountType' | 'security' | 'tokenDetails'>>
-): Promise<OAuthAccount> => {
-    const response = await api.patch<OAuthAccount>(`/oauth/accounts/${accountId}`, updates);
-    return response.data;
-};
-
-export const removeOAuthAccount = async (accountId: string): Promise<void> => {
-    await api.delete(`/oauth/accounts/${accountId}`);
-};
-
-export const refreshOAuthToken = async (
-    accountId: string
-): Promise<TokenDetails> => {
-    const response = await api.post<TokenDetails>(`/oauth/accounts/${accountId}/refresh`);
-    return response.data;
-};
-
-export const updateOAuthAccountSecurity = async (
-    accountId: string,
-    updates: Partial<OAuthAccount['security']>
-): Promise<OAuthAccount> => {
-    const response = await api.patch<OAuthAccount>(
-        `/oauth/accounts/${accountId}/security`,
-        updates
+// Add device details to sign-up flow
+export const addSignUpDeviceDetails = async (
+    state: string,
+    deviceDetails: any
+): Promise<{ message: string }> => {
+    const response = await api.post<{ message: string }>(
+        `/signup/add/device?state=${state}`,
+        deviceDetails
     );
     return response.data;
 };

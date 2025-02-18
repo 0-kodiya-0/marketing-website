@@ -6,7 +6,7 @@ import {
     BaseAccount,
     UserDetails,
     TokenDetails
-} from './data'
+} from './data.types'
 
 export interface AccountState {
     localAccount: LocalAccount | null;

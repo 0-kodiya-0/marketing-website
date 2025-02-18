@@ -15,32 +15,42 @@ export enum OAuthProviders {
 }
 
 export interface BaseSecuritySettings {
-    twoFactorEnabled: boolean;
     sessionTimeout: number;
     autoLock: boolean;
 }
 
-export interface OAuthSecuritySettings extends BaseSecuritySettings { }
+export interface OAuthSecuritySettings extends BaseSecuritySettings {
+    twoFactorEnabled: boolean;
+ }
 
-export interface LocalSecuritySettings {
+export interface LocalSecuritySettings extends BaseSecuritySettings {
     password: string;
 }
 
-export interface DevicePreferences {
-    theme: string;
-    language: string;
-    notifications: boolean;
-    notificationTypes: string[];
+export enum DeviceType {
+    Web = 'web',
+    Desktop = 'desktop',
+    Mobile = 'mobile'
+}
+
+export enum OsType {
+    Windows = 'windows',
+    MacOS = 'macos',
+    Android = 'android',
+    iOS = 'ios',
+    Linux = 'linux',
+    Other = 'other'
+}
+
+export interface DeviceOsInformation {
+    type: OsType,
+    version: string
 }
 
 export interface Device {
     id: string;
-    installationDate: string;
-    name: string;
-    os: string;
-    version: string;
-    uniqueIdentifier: string;
-    preferences: DevicePreferences;
+    os: OsType;
+    deviceType: DeviceType;
 }
 
 export interface UserDetails {

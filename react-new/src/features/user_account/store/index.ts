@@ -5,15 +5,16 @@ import {
     AccountType,
     AccountStatus,
     OAuthAccount,
-} from "../types/data"
-import { AccountState } from "../types/store"
+} from "../types/data.types"
+import { AccountState } from "../types/store.types"
+import { mockLocalAccount, mockOAuthAccounts } from "../../../api/mock/data"
 
 const useAccountStore = create<AccountState>()(
     persist(
         (set, get) => ({
-            localAccount: null,
-            oauthAccounts: [],
-            activeAccountId: null,
+            localAccount: mockLocalAccount,
+            oauthAccounts: mockOAuthAccounts,
+            activeAccountId: mockLocalAccount.id,
 
             createLocalAccount: ({ device, password, userDetails }) => {
                 const { localAccount } = get()
@@ -29,7 +30,9 @@ const useAccountStore = create<AccountState>()(
                     status: AccountStatus.Active,
                     userDetails,
                     security: {
-                        password
+                        password,
+                        sessionTimeout: 20,
+                        autoLock: false
                     }
                 }
 
