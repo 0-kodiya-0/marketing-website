@@ -11,7 +11,7 @@ import {
 export interface AccountState {
     localAccount: LocalAccount | null;
     oauthAccounts: OAuthAccount[];
-    activeAccountId: string | null;
+    activeAccount: OAuthAccount | LocalAccount | null;
 
     // Local account actions
     createLocalAccount: (params: {
@@ -33,7 +33,7 @@ export interface AccountState {
     removeOAuthAccount: (accountId: string) => void;
 
     // General actions
-    setActiveAccount: (accountId: string | null) => void;
+    setActiveAccount: (accountId: OAuthAccount | LocalAccount | null) => void;
     getAccountById: (accountId: string) => BaseAccount | null;
 
     // Helper methods

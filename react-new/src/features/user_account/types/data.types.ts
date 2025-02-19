@@ -65,7 +65,7 @@ export interface TokenDetails {
 }
 
 export interface BaseAccount {
-    id: string;
+    id: number;
     created: string;
     updated: string;
     device: Device
@@ -85,3 +85,5 @@ export interface OAuthAccount extends BaseAccount {
     security: OAuthSecuritySettings;
     tokenDetails: TokenDetails;
 }
+
+export type ActiveAccount = LocalAccount | OAuthAccount

@@ -1,6 +1,9 @@
+import { ActiveAccount } from "../../user_account";
 import { Environment } from "./data";
 
 export interface EnvironmentButtonProps {
+    activeEnvironment: Environment | null;
+    activeAccount: ActiveAccount
 }
 
 export interface EnvironmentSliderProps {
@@ -8,6 +11,7 @@ export interface EnvironmentSliderProps {
 }
 
 export interface UpdateEnvironmentInputProps {
+    activeEnvironment: Environment;
     onCancel: () => void;
 }
 
@@ -54,6 +58,7 @@ export interface EnvironmentCardProps {
 }
 
 export interface CreateEnvironmentInputProps {
+    activeAccount: ActiveAccount;
     onCancel: () => void;
 }
 

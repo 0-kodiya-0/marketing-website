@@ -16,7 +16,7 @@ const createMockDevice = (id: string, osType: OsType, deviceType: DeviceType) =>
 
 // Sample Local Account
 export const mockLocalAccount: LocalAccount = {
-    id: 'local-acc-1',
+    id: 1,
     created: '2024-12-15T08:30:45.123Z',
     updated: '2025-01-22T14:15:22.456Z',
     accountType: AccountType.Local,
@@ -38,7 +38,7 @@ export const mockLocalAccount: LocalAccount = {
 export const mockOAuthAccounts: OAuthAccount[] = [
     // Google Account
     {
-        id: 'google-acc-1',
+        id: 2,
         created: '2024-10-05T09:45:12.789Z',
         updated: '2025-02-10T11:22:33.444Z',
         accountType: AccountType.OAuth,
@@ -63,7 +63,7 @@ export const mockOAuthAccounts: OAuthAccount[] = [
 
     // Microsoft Account
     {
-        id: 'microsoft-acc-1',
+        id: 3,
         created: '2024-11-20T15:30:45.123Z',
         updated: '2025-01-05T10:15:20.456Z',
         accountType: AccountType.OAuth,
@@ -88,7 +88,7 @@ export const mockOAuthAccounts: OAuthAccount[] = [
 
     // Facebook Account
     {
-        id: 'facebook-acc-1',
+        id: 4,
         created: '2024-09-12T12:10:33.789Z',
         updated: '2025-02-01T09:45:11.222Z',
         accountType: AccountType.OAuth,
@@ -113,7 +113,7 @@ export const mockOAuthAccounts: OAuthAccount[] = [
 
     // Another Google Account
     {
-        id: 'google-acc-2',
+        id: 5,
         created: '2025-01-10T08:20:15.123Z',
         updated: '2025-02-15T16:30:45.789Z',
         accountType: AccountType.OAuth,

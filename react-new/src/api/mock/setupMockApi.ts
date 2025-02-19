@@ -15,12 +15,19 @@ export const setupMockApi = (api: AxiosInstance) => {
     const mock = new AxiosMockAdapter(api);
 
     // Environment endpoints
-    mock.onGet('/api/environments').reply(200, mockEnvironments);
-
     mock.onGet(/\/api\/environments\/\d+/).reply((config) => {
         const id = parseInt(config.url!.split('/').pop()!);
         const environment = mockEnvironments.find(env => env.id === id);
         return environment ? [200, environment] : [404, { message: 'Environment not found' }];
+    });
+
+    // New endpoint to get environment by account ID
+    mock.onGet(/\/api\/environments\/account\/\d+/).reply((config) => {
+        const accountId = parseInt(config.url!.split('/').pop()!);
+        // Assuming there's a 1:1 relationship between account and environment
+        // You might need to adjust this logic based on your actual data model
+        const environment = mockEnvironments.filter(env => env.accountId === accountId);
+        return environment ? [200, environment] : [404, { message: 'Environment not found for this account' }];
     });
 
     mock.onPatch(/\/api\/environments\/\d+/).reply((config) => {
@@ -53,6 +60,7 @@ export const setupMockApi = (api: AxiosInstance) => {
         mockEnvironments.push(newEnvironment);
         return [201, newEnvironment];
     });
+
 
     mock.onGet('/api/workspaces').reply((config) => {
         const environmentId = Number(config.params?.environmentId);

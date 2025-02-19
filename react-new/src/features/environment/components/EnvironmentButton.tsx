@@ -4,13 +4,12 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import { useEnvironmentStore } from '../store';
 import { CreateEnvironmentInput } from './CreateEnvironmentInput';
 import { UpdateEnvironmentInput } from './UpdateEnvironmentInput';
-import { useEnvironments, useCreateEnvironment } from '../hooks/useEnvironments';
+import { useCreateEnvironment, useEnvironmentByAccountId } from '../hooks/useEnvironments';
 import { EnvironmentSlider } from './EnvironmentSlider';
 import { EnvironmentError } from '../types/props';
 import { EnvironmentPrivacy, EnvironmentStatus } from '../types/data';
 
-export function EnvironmentButton({ }: EnvironmentButtonProps) {
-  const environment = useEnvironmentStore(state => state.selectedEnvironment);
+export function EnvironmentButton({ activeEnvironment, activeAccount }: EnvironmentButtonProps) {
   const setEnvironment = useEnvironmentStore(state => state.setEnvironment);
 
   const [isSliderOpen, setIsSliderOpen] = useState(false);
@@ -28,9 +27,9 @@ export function EnvironmentButton({ }: EnvironmentButtonProps) {
     data: environments = [],
     isLoading: isLoadingEnvironments,
     error: fetchError
-  } = useEnvironments();
+  } = useEnvironmentByAccountId(activeAccount.id);
 
-  const createEnvironment = useCreateEnvironment();
+  const createEnvironment = useCreateEnvironment(activeAccount.id);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -45,9 +44,9 @@ export function EnvironmentButton({ }: EnvironmentButtonProps) {
 
   // Environment setup logic moved from EnvironmentSlider
   useEffect(() => {
-    if (!isLoadingEnvironments && !environment) {
+    if (!isLoadingEnvironments && (!activeEnvironment || activeEnvironment.accountId !== activeAccount.id)) {
 
-      const serverDefaultEnv = environments.find(env => env.name === 'Default Environment');
+      const serverDefaultEnv = environments.find(env => env.accountId === activeAccount.id && env.name === 'Default Environment');
 
       if (serverDefaultEnv) {
         setEnvironment(serverDefaultEnv);
@@ -55,14 +54,11 @@ export function EnvironmentButton({ }: EnvironmentButtonProps) {
       }
 
       createEnvironment.mutate({
-        accountId: 'default-account',
+        accountId: activeAccount.id,
         name: 'Default Environment',
         status: EnvironmentStatus.Active,
         privacy: EnvironmentPrivacy.Global
       }, {
-        onSuccess: (created) => {
-          setEnvironment(created);
-        },
         onError: (error) => {
           setEnvSettingUpError({
             isError: true,
@@ -72,6 +68,15 @@ export function EnvironmentButton({ }: EnvironmentButtonProps) {
       });
     }
   }, [isLoadingEnvironments]);
+
+  useEffect(() => {
+    if (!activeEnvironment || activeEnvironment.accountId !== activeAccount.id) {
+      const env = environments.find(env => env.name === "Default Environment");
+      if (env) {
+        setEnvironment(env);
+      }
+    }
+  }, [environments]);
 
   const handleEnvironmentClick = useCallback(() => {
     setIsSliderOpen(true);
@@ -115,12 +120,12 @@ export function EnvironmentButton({ }: EnvironmentButtonProps) {
         className="flex-1 h-full px-4 flex items-center min-w-0 transition-colors hover:bg-gray-50"
       >
         <div className="flex items-center min-w-0 w-full">
-          {environment ? (
+          {activeEnvironment ? (
             <>
-              <span className="text-sm font-medium truncate">{environment.name}</span>
-              {environment.status !== 'active' && (
-                <span className={`ml-2 text-xs px-2 py-0.5 rounded-full flex-shrink-0 ${environment.status === 'archived' ? 'bg-gray-200 text-gray-600' : 'bg-red-100 text-red-600'}`}>
-                  {environment.status}
+              <span className="text-sm font-medium truncate">{activeEnvironment.name}</span>
+              {activeEnvironment.status !== 'active' && (
+                <span className={`ml-2 text-xs px-2 py-0.5 rounded-full flex-shrink-0 ${activeEnvironment.status === 'archived' ? 'bg-gray-200 text-gray-600' : 'bg-red-100 text-red-600'}`}>
+                  {activeEnvironment.status}
                 </span>
               )}
             </>
@@ -158,17 +163,17 @@ export function EnvironmentButton({ }: EnvironmentButtonProps) {
       </div>
 
       {isCreateEnvOpen && (
-        <CreateEnvironmentInput onCancel={handleCreateEnvClose} />
+        <CreateEnvironmentInput activeAccount={activeAccount} onCancel={handleCreateEnvClose} />
       )}
 
-      {isUpdateEnvOpen && (
-        <UpdateEnvironmentInput onCancel={handleUpdateEnvClose} />
+      {isUpdateEnvOpen && activeEnvironment && (
+        <UpdateEnvironmentInput activeEnvironment={activeEnvironment} onCancel={handleUpdateEnvClose} />
       )}
 
       {isSliderOpen && (
         <EnvironmentSlider
           environments={environments}
-          selectedEnvironment={environment}
+          selectedEnvironment={activeEnvironment}
           isLoading={isLoadingEnvironments || createEnvironment.isPending}
           error={fetchError?.message || (envSettingUpError.isError ? envSettingUpError.message : undefined)}
           onEnvironmentSelect={setEnvironment}

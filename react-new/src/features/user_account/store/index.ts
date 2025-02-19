@@ -9,12 +9,12 @@ import {
 import { AccountState } from "../types/store.types"
 import { mockLocalAccount, mockOAuthAccounts } from "../../../api/mock/data"
 
-const useAccountStore = create<AccountState>()(
+export const useAccountStore = create<AccountState>()(
     persist(
         (set, get) => ({
             localAccount: mockLocalAccount,
             oauthAccounts: mockOAuthAccounts,
-            activeAccountId: mockLocalAccount.id,
+            activeAccount: mockLocalAccount,
 
             createLocalAccount: ({ device, password, userDetails }) => {
                 const { localAccount } = get()
@@ -36,7 +36,7 @@ const useAccountStore = create<AccountState>()(
                     }
                 }
 
-                set({ localAccount: newAccount, activeAccountId: newAccount.id })
+                set({ localAccount: newAccount, activeAccount: newAccount })
                 return newAccount
             },
 
@@ -57,10 +57,10 @@ const useAccountStore = create<AccountState>()(
             },
 
             deleteLocalAccount: () => {
-                const { activeAccountId, localAccount } = get()
+                const { activeAccount, localAccount } = get()
 
-                if (activeAccountId === localAccount?.id) {
-                    set({ activeAccountId: null })
+                if (activeAccount?.id === localAccount?.id) {
+                    set({ activeAccount: null })
                 }
 
                 set({ localAccount: null })
@@ -112,10 +112,10 @@ const useAccountStore = create<AccountState>()(
             },
 
             removeOAuthAccount: (accountId) => {
-                const { activeAccountId } = get()
+                const { activeAccount } = get()
 
-                if (activeAccountId === accountId) {
-                    set({ activeAccountId: null })
+                if (activeAccount?.id === accountId) {
+                    set({ activeAccount: null })
                 }
 
                 set((state) => ({
@@ -123,8 +123,8 @@ const useAccountStore = create<AccountState>()(
                 }))
             },
 
-            setActiveAccount: (accountId) => {
-                set({ activeAccountId: accountId })
+            setActiveAccount: (account) => {
+                set({ activeAccount: account })
             },
 
             getAccountById: (accountId) => {
@@ -149,10 +149,8 @@ const useAccountStore = create<AccountState>()(
             partialize: (state) => ({
                 localAccount: state.localAccount,
                 oauthAccounts: state.oauthAccounts,
-                activeAccountId: state.activeAccountId
+                activeAccount: state.activeAccount
             })
         }
     )
 )
-
-export default useAccountStore

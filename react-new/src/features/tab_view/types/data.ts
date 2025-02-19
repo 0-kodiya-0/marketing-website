@@ -28,5 +28,5 @@ export interface TabCreateDTO {
     title: string;
     contentPath: string;
     contentState: any;
-    order?: number;
+    order: number;
 }

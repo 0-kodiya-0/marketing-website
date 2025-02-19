@@ -5,6 +5,7 @@ import { useEnvironmentStore } from "../store";
 import { EnvironmentPrivacy, EnvironmentStatus } from "../types/data";
 
 export const CreateEnvironmentInput: React.FC<CreateEnvironmentInputProps> = ({
+    activeAccount,
     onCancel
 }) => {
     const [inputEnvName, setInputEnvName] = useState<string>('');
@@ -17,8 +18,7 @@ export const CreateEnvironmentInput: React.FC<CreateEnvironmentInputProps> = ({
         inputRef.current?.focus();
     }, []);
 
-    const createEnvironment = useCreateEnvironment();
-    const selectedEnvironment = useEnvironmentStore(state => state.selectedEnvironment);
+    const createEnvironment = useCreateEnvironment(activeAccount.id);
     const setEnvironment = useEnvironmentStore(state => state.setEnvironment);
 
     const handleCreateEnvironment = async () => {
@@ -33,7 +33,7 @@ export const CreateEnvironmentInput: React.FC<CreateEnvironmentInputProps> = ({
 
         try {
             const created = await createEnvironment.mutateAsync({
-                accountId: selectedEnvironment.accountId,
+                accountId: activeAccount.id,
                 name: trimmedName,
                 status: EnvironmentStatus.Active,
                 privacy: EnvironmentPrivacy.Global

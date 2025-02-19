@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { EnvironmentStore } from '../types/store';
-import { Environment, EnvironmentPrivacy, EnvironmentStatus } from '../types/data';
+import { Environment } from '../types/data';
 
 // Default environment configuration
 

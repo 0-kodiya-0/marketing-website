@@ -1,11 +1,14 @@
 import { PanelGroup, Panel, PanelResizeHandle } from "react-resizable-panels";
 import { Navigation } from "../../features/feature_navigation";
 import { TabView } from "../../features/tab_view";
-import { useEnvironmentStore } from "../../features/environment";
 import { Loader2 } from "lucide-react";
+import { Environment } from "../../features/environment/types/data";
 
-export const Header = () => {
-    const environment = useEnvironmentStore(state => state.selectedEnvironment);
+interface HeaderProps {
+    environment: Environment | null;
+}
+
+export const Header = ({ environment }: HeaderProps) => {
 
     if (!environment) {
         return <div className="w-full h-full flex justify-center items-center overflow-hidden">

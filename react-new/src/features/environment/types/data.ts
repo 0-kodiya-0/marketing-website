@@ -11,7 +11,7 @@ export enum EnvironmentStatus {
 
 export interface Environment {
     id: number;
-    accountId: string;
+    accountId: number;
     name: string;
     created: string;
     lastModified: string;

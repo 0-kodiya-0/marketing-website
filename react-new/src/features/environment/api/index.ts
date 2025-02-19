@@ -6,13 +6,13 @@ export interface UpdateEnvironmentDTO {
     status?: 'active' | 'archived' | 'deleted';
 }
 
-export const getEnvironments = async () => {
-    const response = await api.get<Environment[]>('/api/environments');
+export const getEnvironment = async (id: number) => {
+    const response = await api.get<Environment>(`/api/environments/${id}`);
     return response.data;
 };
 
-export const getEnvironment = async (id: number) => {
-    const response = await api.get<Environment>(`/api/environments/${id}`);
+export const getEnvironmentByAccountId = async (accountId: number) => {
+    const response = await api.get<Environment[]>(`/api/environments/account/${accountId}`);
     return response.data;
 };
 

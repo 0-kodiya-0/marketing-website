@@ -1,10 +1,16 @@
 import { Menu, Settings, UserCircle } from 'lucide-react';
 import { NavbarSearch } from '../../features/search';
 import { EnvironmentButton } from '../../features/environment';
-import { AccountPopup } from '../../features/user_account/components/AccountPopup';
-import { usePopup } from '../../features/user_account/hooks/usePop';
+import { Environment } from '../../features/environment/types/data';
+import { LocalAccount, OAuthAccount } from '../../features/user_account/types/data.types';
+import { AccountPopup, usePopup, UserAvatar } from '../../features/user_account';
 
-export function Navbar() {
+interface NavbarProps {
+  activeEnvironment: Environment | null;
+  activeAccount: LocalAccount | OAuthAccount;
+}
+
+export function Navbar({ activeEnvironment, activeAccount }: NavbarProps) {
   const accountPopup = usePopup();
 
   const handleUserCircleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
@@ -23,7 +29,7 @@ export function Navbar() {
 
         {/* Environment section - aligns with ProjectList */}
         <div className={'w-64 border-x flex items-center h-full transition-all duration-200 ease-in-out'}>
-          <EnvironmentButton />
+          <EnvironmentButton activeEnvironment={activeEnvironment} activeAccount={activeAccount} />
         </div>
 
         {/* Main content section */}
@@ -35,8 +41,15 @@ export function Navbar() {
           <button
             className="p-1.5 hover:bg-gray-100 rounded relative"
             onClick={handleUserCircleClick}
+            aria-label="User account menu"
           >
-            <UserCircle className="w-5 h-5" />
+            {activeAccount ? (
+              <UserAvatar account={activeAccount} size="sm" showProviderIcon={true} />
+            ) : (
+              <div className="w-5 h-5 flex items-center justify-center">
+                <UserCircle className="w-5 h-5" />
+              </div>
+            )}
           </button>
         </div>
       </nav>
@@ -45,6 +58,7 @@ export function Navbar() {
         isOpen={accountPopup.isOpen}
         onClose={accountPopup.close}
         anchorEl={accountPopup.anchorEl}
+        activeAccount={activeAccount}
       />
     </>
   );
