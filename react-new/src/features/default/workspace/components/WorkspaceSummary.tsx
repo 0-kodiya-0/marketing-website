@@ -1,14 +1,14 @@
 import { useState } from 'react';
 import { selectWorkspaceId, useWorkspaceStore } from '../store';
-import { WorkspaceIcon } from './WorkspaceIcon';
-import { WorkspaceAddIcon } from './WorkspaceAddIcon';
-import { WorkspaceEmptyIcon } from './WorkspaceEmptyIcon';
-import { useWorkspaces } from '../hooks/useWorkspace';
-import { CreateWorkspaceInput } from './CreateWorkspaceInput';
+import { WorkspaceIcon } from './WorkspaceIcon.tsx';
+import { WorkspaceAddIcon } from './WorkspaceAddIcon.tsx';
+import { WorkspaceEmptyIcon } from './WorkspaceEmptyIcon.tsx';
+import { useWorkspaces } from '../hooks/useWorkspace.ts';
+import { CreateWorkspaceInput } from './CreateWorkspaceInput.tsx';
 import { Loader2 } from 'lucide-react';
-import { FeatureType } from '../../feature_navigation/types/store';
-import { Workspace } from '../types/data';
-import { Environment } from '../../required/environment/types/data';
+import { FeatureType } from '../../../required/left_navigation/types/store.ts';
+import { Workspace } from '../types/data.ts';
+import { Environment } from '../../environment';
 
 interface WorkspaceSummeryProps {
     environment: Environment

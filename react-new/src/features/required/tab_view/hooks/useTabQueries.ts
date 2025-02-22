@@ -8,9 +8,9 @@ import {
     getTabsByTabView,
     deleteTab
 } from '../api';
-import { Tab, TabCreateDTO, TabViewCreateDTO } from '../types/data';
+import { Tab, TabCreateDTO, TabViewCreateDTO } from '../types/data.ts';
 import { useTabStore } from '../store';
-import { queryClient } from '../../../api/persistConfig';
+import { queryClient } from '../../../../api/persistConfig.ts';
 
 export const useTabViews = (environmentId: number) => {
     return useQuery({

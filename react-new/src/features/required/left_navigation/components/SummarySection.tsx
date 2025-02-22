@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { FeatureType } from '../types/store';
+import { FeatureType } from '../types/store.ts';
 import { useNavigationStore, selectedFeature } from '../store';
 
 interface SummarySectionProps {

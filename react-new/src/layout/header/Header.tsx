@@ -1,8 +1,8 @@
 import { PanelGroup, Panel, PanelResizeHandle } from "react-resizable-panels";
-import { Navigation } from "../../features/feature_navigation";
-import { TabView } from "../../features/tab_view";
+import { Navigation } from "../../features/required/left_navigation";
+import { TabView } from "../../features/required/tab_view";
 import { Loader2 } from "lucide-react";
-import { Environment } from "../../features/environment/types/data";
+import { Environment } from "../../features/default/environment/types/data";
 
 interface HeaderProps {
     environment: Environment | null;

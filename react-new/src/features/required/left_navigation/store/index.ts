@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { NavigationState, NavigationActions } from '../types/store';
+import { NavigationState, NavigationActions } from '../types/store.ts';
 
 const DEFAULT_FEATURE_STATE = {
     isSelected: false,

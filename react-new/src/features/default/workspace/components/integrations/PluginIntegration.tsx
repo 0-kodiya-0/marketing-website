@@ -1,6 +1,6 @@
 import { Link } from 'lucide-react';
-import { FeatureSection } from './FeatureIntegration';
-import { useWorkspaceApps } from '../../hooks/useWorkspace';
+import { FeatureSection } from './FeatureIntegration.tsx';
+import { useWorkspaceApps } from '../../hooks/useWorkspace.ts';
 
 interface PluginIntegrationProps {
     workspaceId: number;

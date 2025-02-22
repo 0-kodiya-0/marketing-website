@@ -1,8 +1,8 @@
 import { useWorkspaceStore } from '../store';
-import { useWorkspaces } from '../hooks/useWorkspace';
+import { useWorkspaces } from '../hooks/useWorkspace.ts';
 import { ChatsIntegration, FilesIntegration, MembersIntegration, PluginIntegration } from './integrations';
 import { useEffect } from 'react';
-import { Environment } from '../../required/environment/types/data';
+import { Environment } from '../../environment/types/data.ts';
 
 interface WorkspaceDetailProps {
     environment: Environment;

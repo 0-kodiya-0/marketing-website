@@ -1,6 +1,6 @@
 import { FileText } from 'lucide-react';
-import { FeatureSection } from './FeatureIntegration';
-import { useWorkspaceFiles } from '../../hooks/useWorkspace';
+import { FeatureSection } from './FeatureIntegration.tsx';
+import { useWorkspaceFiles } from '../../hooks/useWorkspace.ts';
 
 interface FilesIntegrationProps {
     workspaceId: number;

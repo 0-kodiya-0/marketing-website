@@ -1,8 +1,8 @@
 import { QueryClientProvider } from "@tanstack/react-query";
 import { Footer, Header, Navbar } from "./layout";
 import { queryClient } from './api/persistConfig';
-import { useEnvironmentStore } from "./features/environment";
-import { useAccountStore } from "./features/user_account";
+import { useEnvironmentStore } from "./features/default/environment";
+import { useAccountStore } from "./features/default/user_account";
 
 export const App = () => {
 

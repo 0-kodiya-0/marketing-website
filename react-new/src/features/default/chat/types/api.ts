@@ -1,4 +1,4 @@
-import { ChatStatus } from "./data";
+import { ChatStatus } from "./data.ts";
 
 export interface CreateDirectChatDTO {
     participantId: string;

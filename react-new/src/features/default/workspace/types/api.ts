@@ -1,4 +1,4 @@
-import { WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility } from "../../../types/d";
+import {WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility} from "./data.ts";
 
 export interface CreateWorkspaceDTO {
     environmentId: number;

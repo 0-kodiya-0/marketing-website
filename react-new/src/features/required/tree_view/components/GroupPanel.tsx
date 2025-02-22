@@ -1,5 +1,5 @@
 import { X } from 'lucide-react';
-import { GroupPanelProps } from '../types/props';
+import { GroupPanelProps } from '../types/props.ts';
 
 const GroupPanel = ({
     node,

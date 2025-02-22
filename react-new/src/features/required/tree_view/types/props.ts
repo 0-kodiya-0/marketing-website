@@ -1,4 +1,4 @@
-import { SplitDirection, TreeNode } from "./data";
+import { SplitDirection, TreeNode } from "./data.ts";
 
 export interface TreeViewProps {
     tree: TreeNode | null;

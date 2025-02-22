@@ -1,2 +1,2 @@
-export { TabManagement } from "./components/TabManagement";
-export { TabView } from "./components/TabView";
+export { TabManagement } from "./components/TabManagement.tsx";
+export { TabView } from "./components/TabView.tsx";

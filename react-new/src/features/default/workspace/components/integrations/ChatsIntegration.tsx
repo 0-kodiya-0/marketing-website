@@ -1,10 +1,10 @@
 import { MessageCircle } from 'lucide-react';
-import { FeatureSection } from './FeatureIntegration';
-import { useWorkspaceChats } from '../../hooks/useWorkspace';
-import { useBulkChat } from '../../../chat/hooks/useChats';
-import { useCreateTab } from '../../../tab_view/hooks/useTabQueries';
+import { FeatureSection } from './FeatureIntegration.tsx';
+import { useWorkspaceChats } from '../../hooks/useWorkspace.ts';
+import { useBulkChat } from '../../../chat/hooks/useChats.ts';
+import { useCreateTab } from '../../../../required/tab_view/hooks/useTabQueries.ts';
 import { useCallback, useEffect, useState } from 'react';
-import { getActiveTabViewId, useTabStore } from '../../../tab_view/store';
+import { getActiveTabViewId, useTabStore } from '../../../../required/tab_view/store';
 
 interface ChatsIntegrationProps {
     workspaceId: number;

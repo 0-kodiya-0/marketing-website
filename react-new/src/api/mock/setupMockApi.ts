@@ -1,13 +1,13 @@
 import { AxiosInstance } from "axios";
 import { mockChats, mockEnvironments, mockFeatureIntegrations, mockTabs, mockTabViews, mockWorkspaces } from "./data";
 import AxiosMockAdapter from "axios-mock-adapter";
-import { CreateWorkspaceDTO, UpdateWorkspaceDTO } from "../../features/workspace/types/api";
-import { CreateDirectChatDTO, CreateGroupChatDTO, UpdateChatDTO } from "../../features/chat/types/api";
-import { ChatStatus, ChatType, DirectChat, GroupChat } from "../../features/chat/types/data";
+import { CreateWorkspaceDTO, UpdateWorkspaceDTO } from "../../features/default/workspace/types/api";
+import { CreateDirectChatDTO, CreateGroupChatDTO, UpdateChatDTO } from "../../features/default/chat/types/api";
+import { ChatStatus, ChatType, DirectChat, GroupChat } from "../../features/default/chat/types/data";
 import { FeatureIntegration, IntegrationStatus } from "../../services/integration/types/data";
-import { Environment } from "../../features/environment/types/data";
-import { Workspace, WorkspaceStatus, WorkspaceType, WorkspaceCategory, WorkspaceVisibility } from "../../features/workspace/types/data";
-import { TabViewCreateDTO, TabView, TabCreateDTO, Tab } from "../../features/tab_view/types/data";
+import { Environment } from "../../features/default/environment/types/data";
+import { Workspace, WorkspaceStatus, WorkspaceType, WorkspaceCategory, WorkspaceVisibility } from "../../features/default/workspace/types/data";
+import { TabViewCreateDTO, TabView, TabCreateDTO, Tab } from "../../features/required/tab_view/types/data";
 
 let tabCount = 0;
 

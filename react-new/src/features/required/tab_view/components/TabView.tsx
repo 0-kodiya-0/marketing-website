@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { useTabStore } from '../store';
-import { useTabViews, useCreateTabView, useTabs } from '../hooks/useTabQueries';
-import TabContent from './TabContent';
-import { TabManagement } from './TabManagement';
-import { useWorkspaceStore } from '../../workspace';
-import { Environment } from '../../required/environment/types/data';
+import { useTabViews, useCreateTabView, useTabs } from '../hooks/useTabQueries.ts';
+import TabContent from './TabContent.tsx';
+import { TabManagement } from './TabManagement.tsx';
+import { useWorkspaceStore } from '../../../default/workspace';
+import { Environment } from '../../../default/environment/types/data.ts';
 
 interface TabViewProps {
     environment: Environment

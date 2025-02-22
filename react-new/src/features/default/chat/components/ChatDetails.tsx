@@ -1,4 +1,4 @@
-import { useChat } from '../hooks/useChats';
+import { useChat } from '../hooks/useChats.ts';
 import {
   MessageCircle,
   Calendar,
@@ -6,7 +6,7 @@ import {
   Users,
   Info
 } from 'lucide-react';
-import { ChatStatus } from '../types/data';
+import { ChatStatus } from '../types/data.ts';
 
 interface ChatStatusBadgeProps {
   status: ChatStatus;

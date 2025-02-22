@@ -1,1 +1,1 @@
-export { ScrollingText } from "./components/ScrollingText";
+export { ScrollingText } from "./components/ScrollingText.tsx";

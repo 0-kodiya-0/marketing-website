@@ -1,6 +1,6 @@
 import { Users } from 'lucide-react';
-import { FeatureSection } from './FeatureIntegration';
-import { useWorkspaceMembers } from '../../hooks/useWorkspace';
+import { FeatureSection } from './FeatureIntegration.tsx';
+import { useWorkspaceMembers } from '../../hooks/useWorkspace.ts';
 
 interface MembersIntegrationProps {
     workspaceId: number;

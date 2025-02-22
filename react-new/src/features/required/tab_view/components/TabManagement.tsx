@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useTabStore } from '../store';
-import { useTabs, useDeleteTab } from '../hooks/useTabQueries';
-import { ScrollingText } from '../../scrolling_text';
+import { useTabs, useDeleteTab } from '../hooks/useTabQueries.ts';
+import { ScrollingText } from '../../../shared/scrolling_text';
 import { X } from 'lucide-react';
-import { TabView } from '../types/data';
+import { TabView } from '../types/data.ts';
 
 interface TabManagementProps {
     tabView: TabView;

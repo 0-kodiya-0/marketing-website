@@ -1,8 +1,8 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useNavigationStore, selectedFeatureType } from '../store';
-import { Environment } from '../../required/environment/types/data';
-import { FeatureType } from '../types/store';
-import DetailsLoader from './DetailsLoader';
+import { Environment } from '../../../default/environment/types/data.ts';
+import { FeatureType } from '../types/store.ts';
+import DetailsLoader from './DetailsLoader.tsx';
 
 interface DetailPaneProps {
     environment: Environment;

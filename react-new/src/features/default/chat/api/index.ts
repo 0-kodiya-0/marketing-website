@@ -1,6 +1,6 @@
-import { api } from "../../../api/client";
-import { CreateDirectChatDTO, CreateGroupChatDTO, UpdateChatDTO } from "../types/api";
-import { Chat, DirectChat, GroupChat, ChatType, ChatStatus } from "../types/data";
+import { api } from "../../../../api/client.ts";
+import { CreateDirectChatDTO, CreateGroupChatDTO, UpdateChatDTO } from "../types/api.ts";
+import { Chat, DirectChat, GroupChat, ChatType, ChatStatus } from "../types/data.ts";
 
 export const getChat = async (chatId: number): Promise<GroupChat | DirectChat> => {
     const response = await api.get<Chat>(`/api/chats/${chatId}`);

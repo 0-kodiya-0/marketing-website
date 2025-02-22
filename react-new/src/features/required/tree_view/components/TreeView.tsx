@@ -1,12 +1,12 @@
-import GroupPanel from './GroupPanel';
-import ResizeHandle from './ResizeHandle';
+import GroupPanel from './GroupPanel.tsx';
+import ResizeHandle from './ResizeHandle.tsx';
 import { useStore } from '../store';
 import React from 'react';
 
 import { LayoutGrid } from 'lucide-react';
 import { Panel, PanelGroup } from 'react-resizable-panels';
-import { TreeNode } from '../types/data';
-import { TreeViewProps } from '../types/props';
+import { TreeNode } from '../types/data.ts';
+import { TreeViewProps } from '../types/props.ts';
 
 export const TreeView = ({
     tree,

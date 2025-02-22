@@ -1,9 +1,9 @@
 import { useQuery, useQueryClient, useMutation } from "@tanstack/react-query";
-import { useEnvironmentStore } from "../../required/environment";
-import { CreateWorkspaceDTO, UpdateWorkspaceDTO } from "../types/api";
+import { useEnvironmentStore } from "../../environment";
+import { CreateWorkspaceDTO, UpdateWorkspaceDTO } from "../types/api.ts";
 import { getWorkspaces, createWorkspace, updateWorkspace } from "../api";
-import { useIntegrationByTarget } from "../../../services/integration/hooks/useFeatureIntegration";
-import { FeatureType } from "../../../services/integration/types/data";
+import { useIntegrationByTarget } from "../../../../services/integration/hooks/useFeatureIntegration.ts";
+import { FeatureType } from "../../../../services/integration/types/data.ts";
 
 // React Query Hooks
 export const useWorkspaces = () => {

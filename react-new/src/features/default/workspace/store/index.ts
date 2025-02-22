@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { WorkspaceState, WorkspaceActions } from '../types/store';
+import { WorkspaceState, WorkspaceActions } from '../types/store.ts';
 
 const DEFAULT_FEATURE_STATE = {
     isExpanded: false,

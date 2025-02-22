@@ -1,4 +1,4 @@
-import { Tab, TabView } from "./data";
+import { Tab, TabView } from "./data.ts";
 
 export interface TabState {
     activeTabViewId: TabView | null;

@@ -1,5 +1,5 @@
-export { MembersIntegration } from './MembersIntegration';
-export { PluginIntegration } from './PluginIntegration';
-export { FilesIntegration } from './FilesIntegration';
-export { ChatsIntegration } from './ChatsIntegration';
-export { FeatureSection } from './FeatureIntegration';
+export { MembersIntegration } from './MembersIntegration.tsx';
+export { PluginIntegration } from './PluginIntegration.tsx';
+export { FilesIntegration } from './FilesIntegration.tsx';
+export { ChatsIntegration } from './ChatsIntegration.tsx';
+export { FeatureSection } from './FeatureIntegration.tsx';

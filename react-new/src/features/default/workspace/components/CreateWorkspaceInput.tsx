@@ -1,6 +1,6 @@
 import { useRef, useEffect, useState } from "react";
-import { useCreateWorkspace } from "../hooks/useWorkspace";
-import { WorkspaceType, WorkspaceCategory, WorkspaceVisibility } from "../types/data";
+import { useCreateWorkspace } from "../hooks/useWorkspace.ts";
+import { WorkspaceType, WorkspaceCategory, WorkspaceVisibility } from "../types/data.ts";
 
 interface CreateWorkspaceInputProps {
     onCancel: () => void;

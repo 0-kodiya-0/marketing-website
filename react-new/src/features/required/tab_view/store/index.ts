@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { TabState } from '../types/store';
-import { Tab, TabView } from '../types/data';
+import { TabState } from '../types/store.ts';
+import { Tab, TabView } from '../types/data.ts';
 
 export const useTabStore = create<TabState>()(
     persist(

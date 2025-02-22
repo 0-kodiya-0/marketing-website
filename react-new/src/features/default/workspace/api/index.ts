@@ -1,7 +1,7 @@
-import { api } from '../../../api/client';
+import { api } from '../../../../api/client.ts';
 import {CreateWorkspaceDTO, UpdateWorkspaceDTO
-} from '../types/api';
-import { Workspace } from '../types/data';
+} from '../types/api.ts';
+import { Workspace } from '../types/data.ts';
 
 // API Functions
 export const getWorkspaces = async (environmentId: number): Promise<Workspace[]> => {

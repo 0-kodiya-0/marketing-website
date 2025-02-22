@@ -1,7 +1,7 @@
 import { Rows, Columns } from 'lucide-react';
 import { PanelResizeHandle } from 'react-resizable-panels';
-import { SplitDirection } from '../types/data';
-import { ResizeHandleProps } from '../types/props';
+import { SplitDirection } from '../types/data.ts';
+import { ResizeHandleProps } from '../types/props.ts';
 
 const ResizeHandle = ({ id, direction }: ResizeHandleProps) => {
     const isHorizontal = direction === SplitDirection.HORIZONTAL;

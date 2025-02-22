@@ -1,5 +1,5 @@
-import { api } from '../../../api/client';
-import { TabView, Tab, TabViewCreateDTO, TabCreateDTO } from '../types/data';
+import { api } from '../../../../api/client.ts';
+import { TabView, Tab, TabViewCreateDTO, TabCreateDTO } from '../types/data.ts';
 
 // TabView API Functions
 export const createTabView = async (data: TabViewCreateDTO): Promise<TabView> => {

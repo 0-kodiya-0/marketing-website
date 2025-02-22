@@ -1,8 +1,8 @@
-import { ChatStatus, ChatType, DirectChat, GroupChat } from "../../features/chat/types/data";
-import { Environment } from "../../features/environment/types/data";
-import { TabView, Tab } from "../../features/tab_view/types/data";
-import { OsType, DeviceType, LocalAccount, AccountType, AccountStatus, OAuthAccount, OAuthProviders } from "../../features/user_account/types/data.types";
-import { Workspace, WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility } from "../../features/workspace/types/data";
+import { ChatStatus, ChatType, DirectChat, GroupChat } from "../../features/default/chat/types/data";
+import { Environment } from "../../features/default/environment/types/data";
+import { TabView, Tab } from "../../features/required/tab_view/types/data";
+import { OsType, DeviceType, LocalAccount, AccountType, AccountStatus, OAuthAccount, OAuthProviders } from "../../features/default/user_account/types/data.types";
+import { Workspace, WorkspaceCategory, WorkspaceStatus, WorkspaceType, WorkspaceVisibility } from "../../features/default/workspace/types/data";
 import { FeatureIntegration, FeatureType, IntegrableFeatures, IntegrationStatus } from "../../services/integration/types/data";
 
 // Helper to create a device object

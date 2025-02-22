@@ -1,7 +1,7 @@
 import { Panel } from 'react-resizable-panels';
-import { DetailPane } from './DetailPane';
-import { SummaryBar } from './SummaryBar';
-import { Environment } from '../../required/environment/types/data';
+import { DetailPane } from './DetailPane.tsx';
+import { SummaryBar } from './SummaryBar.tsx';
+import { Environment } from '../../../default/environment/types/data.ts';
 
 interface NavigationProps {
   environment: Environment

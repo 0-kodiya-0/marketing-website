@@ -1,5 +1,5 @@
 import React from "react";
-import { ID, TabGroup, TabItem, SplitDirection, TreeNode } from "./data";
+import { ID, TabGroup, TabItem, SplitDirection, TreeNode } from "./data.ts";
 
 export type Groups = Record<ID, TabGroup>
 export type Items = Record<ID, TabItem>

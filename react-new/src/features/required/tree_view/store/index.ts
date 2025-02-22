@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
-import { ID, SplitDirection, TabGroup, TabItem, TreeNode } from '../types/data';
-import { StoreState } from '../types/store';
+import { ID, SplitDirection, TabGroup, TabItem, TreeNode } from '../types/data.ts';
+import { StoreState } from '../types/store.ts';
 
 export const useStore = create<StoreState>()(
     persist(

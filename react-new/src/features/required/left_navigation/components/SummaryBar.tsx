@@ -1,7 +1,7 @@
 import { selectedFeatureType, useNavigationStore } from '../store';
-import { FeatureType } from '../types/store';
-import { Environment } from '../../required/environment/types/data';
-import SummaryLoader from './SummaryLoader';
+import { FeatureType } from '../types/store.ts';
+import { Environment } from '../../../default/environment/types/data.ts';
+import SummaryLoader from './SummaryLoader.tsx';
 
 interface SummaryBarProps {
   environment: Environment;

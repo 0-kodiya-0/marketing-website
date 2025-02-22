@@ -9,7 +9,7 @@ import {
     deleteChat,
     getMultipleChats
 } from '../api';
-import { CreateDirectChatDTO, CreateGroupChatDTO, UpdateChatDTO } from '../types/api';
+import { CreateDirectChatDTO, CreateGroupChatDTO, UpdateChatDTO } from '../types/api.ts';
 
 const CHAT_KEYS = {
     all: ['chats'] as const,

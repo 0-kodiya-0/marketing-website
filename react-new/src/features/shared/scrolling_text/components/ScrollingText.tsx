@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import '../styles/scrollingText.css';
-import { ScrollingTextProps } from '../types/props';
+import { ScrollingTextProps } from '../types/props.ts';
 
 export function ScrollingText({ text, className = '' }: ScrollingTextProps) {
     const containerRef = useRef<HTMLDivElement>(null);

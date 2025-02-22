@@ -1,9 +1,9 @@
 import { Menu, Settings, UserCircle } from 'lucide-react';
-import { NavbarSearch } from '../../features/search';
-import { EnvironmentButton } from '../../features/environment';
-import { Environment } from '../../features/environment/types/data';
-import { LocalAccount, OAuthAccount } from '../../features/user_account/types/data.types';
-import { AccountPopup, usePopup, UserAvatar } from '../../features/user_account';
+import { NavbarSearch } from '../../features/shared/search';
+import { EnvironmentButton } from '../../features/default/environment';
+import { Environment } from '../../features/default/environment/types/data';
+import { LocalAccount, OAuthAccount } from '../../features/default/user_account/types/data.types';
+import { AccountPopup, usePopup, UserAvatar } from '../../features/default/user_account';
 
 interface NavbarProps {
   activeEnvironment: Environment | null;
