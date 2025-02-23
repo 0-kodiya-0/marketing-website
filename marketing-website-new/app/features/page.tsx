@@ -1,5 +1,9 @@
+"use client"
+
+import FeaturesPage from "@/components/custom/feature/FeaturePage";
+
 export default function Feature() {
     return (
-      <h1>Feature page</h1>
+      <FeaturesPage/>
     );
   }

@@ -26,7 +26,7 @@ const NavDropdown = ({ item }: { item: NavItem }) => {
                             >
                                 <div className="font-medium">{child.label}</div>
                                 {child.description && (
-                                    <div className="text-xs text-muted">{child.description}</div>
+                                    <div className="text-xs text-muted-foreground">{child.description}</div>
                                 )}
                             </Link>
                         ))}
