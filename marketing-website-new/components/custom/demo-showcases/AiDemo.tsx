@@ -1,4 +1,4 @@
-import useTypingEffect from "@/app/hooks/useTypingEffect";
+import useTypingEffect from "@/hooks/useTypingEffect";
 import { motion } from "framer-motion";
 import { Bot, Settings, Plus, FileText, MessageSquare } from "lucide-react";
 import { useState, useEffect } from "react";

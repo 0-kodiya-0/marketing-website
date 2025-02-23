@@ -1,7 +1,7 @@
 import React from 'react';
 import StatsCard, { StatItemProps } from './StatsCard';
-import ContentContainer from '@/app/layouts/ContentContainer';
-import PageLayout from '@/app/layouts/PageLayout';
+import ContentContainer from '@/layouts/ContentContainer';
+import PageLayout from '@/layouts/PageLayout';
 
 interface StatsSectionProps {
     stats?: StatItemProps[];

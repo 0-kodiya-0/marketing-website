@@ -5,7 +5,7 @@ import NavDropdown from "./NavDropdown";
 import { navigationItems } from "./routes.conf";
 import ThemeToggle from "./ThemeToggle";
 import Link from "next/link";
-import ContentContainer from "@/app/layouts/ContentContainer";
+import ContentContainer from "@/layouts/ContentContainer";
 
 const Navbar = () => {
     return (

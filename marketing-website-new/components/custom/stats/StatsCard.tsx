@@ -8,7 +8,7 @@ const StatsCard: React.FC<StatItemProps> = ({ value, label }) => (
         <div className="mb-1 text-3xl font-extrabold tracking-tight text-blue-accent md:text-4xl">
             {value}
         </div>
-        <div className="text-small font-medium text-muted text-center">
+        <div className="text-small font-medium text-muted-foreground text-center">
             {label}
         </div>
     </div>

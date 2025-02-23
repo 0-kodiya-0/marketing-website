@@ -15,7 +15,7 @@ const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon, ani
                 </div>
                 <h3 className="text-xl font-semibold line-clamp-2">{title}</h3>
             </div>
-            <p className="text-muted">{description}</p>
+            <p className="text-muted-foreground">{description}</p>
         </motion.div>
     );
 };

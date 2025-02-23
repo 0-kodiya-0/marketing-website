@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import ContentContainer from '@/app/layouts/ContentContainer';
+import ContentContainer from '@/layouts/ContentContainer';
 
 const FoundationsSection: React.FC = () => {
     const foundations = [
@@ -32,7 +32,7 @@ const FoundationsSection: React.FC = () => {
                         Built on strong foundations
                     </motion.h1>
                     <motion.p 
-                        className="text-lg text-muted max-w-2xl"
+                        className="text-lg text-muted-foreground max-w-2xl"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.6, delay: 0.2 }}
@@ -58,7 +58,7 @@ const FoundationsSection: React.FC = () => {
                                     <span className="ml-2 inline-block transform translate-y-[1px]">→</span>
                                 )}
                             </h3>
-                            <p className="text-muted text-lg">{item.description}</p>
+                            <p className="text-muted-foreground text-lg">{item.description}</p>
                         </motion.div>
                     ))}
                 </div>

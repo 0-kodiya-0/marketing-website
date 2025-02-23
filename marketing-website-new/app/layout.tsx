@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import Footer from "@/components/custom/footer/Footer";
+import Navbar from "@/components/custom/navbar/Navbar";
+import { ThemeProvider } from "next-themes";
 
 export const metadata: Metadata = {
   title: "Fusion space",
@@ -12,11 +15,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`antialiased`}
       >
-        {children}
+        <ThemeProvider attribute="class">
+          <Navbar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

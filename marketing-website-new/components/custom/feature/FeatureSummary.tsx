@@ -1,5 +1,5 @@
-import ContentContainer from "@/app/layouts/ContentContainer";
-import PageLayout from "@/app/layouts/PageLayout";
+import ContentContainer from "@/layouts/ContentContainer";
+import PageLayout from "@/layouts/PageLayout";
 import GridCell from "../shared/GridCell";
 import { FeatureSummaryProps } from "./feature.types";
 import FeatureCard from "./FeatureCard";

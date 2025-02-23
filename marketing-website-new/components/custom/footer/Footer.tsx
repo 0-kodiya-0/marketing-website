@@ -1,8 +1,10 @@
+"use client"
+
 import React from 'react';
 import Link from 'next/link';
 import { FooterProps } from './footer.types';
 import { Facebook, Twitter, Youtube } from 'lucide-react';
-import ContentContainer from '@/app/layouts/ContentContainer';
+import ContentContainer from '@/layouts/ContentContainer';
 import { footerSections } from './routes.conf';
 
 const Footer: React.FC<FooterProps> = ({ className = '' }) => {
@@ -18,7 +20,7 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
                         >
                             FusionSpace
                         </Link>
-                        <p className="mt-4 text-sm text-muted">
+                        <p className="mt-4 text-sm text-muted-foreground">
                             Empowering productivity through intelligent workspace solutions.
                         </p>
                     </div>
@@ -35,7 +37,7 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
                                         <li key={link.href}>
                                             <Link
                                                 href={link.href}
-                                                className="text-sm text-muted transition-colors hover:text-blue-accent"
+                                                className="text-sm text-muted-foreground transition-colors hover:text-blue-accent"
                                             >
                                                 {link.label}
                                             </Link>
@@ -49,7 +51,7 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
 
                 {/* Bottom Section */}
                 <div className="mt-12 flex flex-col items-center justify-between border-t border-border-color pt-8 md:flex-row">
-                    <p className="mb-4 text-sm text-muted md:mb-0">
+                    <p className="mb-4 text-sm text-muted-foreground md:mb-0">
                         © {new Date().getFullYear()} FusionSpace. All rights reserved.
                     </p>
 
@@ -57,7 +59,7 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
                     <div className="flex space-x-6">
                         <Link
                             href="https://twitter.com"
-                            className="text-muted hover:text-blue-accent transition-colors"
+                            className="text-muted-foreground hover:text-blue-accent transition-colors"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -66,7 +68,7 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
                         </Link>
                         <Link
                             href="https://facebook.com"
-                            className="text-muted hover:text-blue-accent transition-colors"
+                            className="text-muted-foreground hover:text-blue-accent transition-colors"
                             target="_blank"
                             rel="noopener noreferrer"
                         >
@@ -75,7 +77,7 @@ const Footer: React.FC<FooterProps> = ({ className = '' }) => {
                         </Link>
                         <Link
                             href="https://youtube.com"
-                            className="text-muted hover:text-blue-accent transition-colors"
+                            className="text-muted-foreground hover:text-blue-accent transition-colors"
                             target="_blank"
                             rel="noopener noreferrer"
                         >

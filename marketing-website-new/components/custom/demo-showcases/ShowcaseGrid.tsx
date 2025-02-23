@@ -1,11 +1,11 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import ContentContainer from "@/app/layouts/ContentContainer";
-import PageLayout from "@/app/layouts/PageLayout";
 import AiDemo from './AiDemo';
 import CollaborationDemo from './CollaborationDemo';
 import WorkspaceDemo from './WorkspaceDemo';
 import features from '../feature/feature.data';
+import ContentContainer from '@/layouts/ContentContainer';
+import PageLayout from '@/layouts/PageLayout';
 
 // Main Feature Grid Component
 const ShowcaseGrid = () => {

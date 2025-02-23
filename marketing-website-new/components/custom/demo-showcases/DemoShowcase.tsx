@@ -1,8 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, MousePointer } from 'lucide-react';
-import ContentContainer from "@/app/layouts/ContentContainer";
-import PageLayout from "@/app/layouts/PageLayout";
+import ContentContainer from "@/layouts/ContentContainer";
+import PageLayout from "@/layouts/PageLayout";
 import ShowcaseGrid from './ShowcaseGrid';
 
 const DemoDescription = () => {
