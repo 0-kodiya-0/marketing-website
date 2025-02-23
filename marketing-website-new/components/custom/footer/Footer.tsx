@@ -1,24 +1,32 @@
-"use client"
+"use client";
+import { useTheme } from "next-themes";
+import React from "react";
+import Link from "next/link";
+import { FooterProps } from "./footer.types";
+import { Facebook, Twitter, Youtube } from "lucide-react";
+import ContentContainer from "@/layouts/ContentContainer";
+import { footerSections } from "./routes.conf";
 
-import React from 'react';
-import Link from 'next/link';
-import { FooterProps } from './footer.types';
-import { Facebook, Twitter, Youtube } from 'lucide-react';
-import ContentContainer from '@/layouts/ContentContainer';
-import { footerSections } from './routes.conf';
+// Import both PNG logos
+import LightLogo from "@/public/icons/logo-transparent lightmode.png"; 
+import DarkLogo from "@/public/icons/logo-transparent darkmode.png"; 
 
-const Footer: React.FC<FooterProps> = ({ className = '' }) => {
+const Footer: React.FC<FooterProps> = ({ className = "" }) => {
+    const { theme } = useTheme(); // Get the current theme
+
     return (
         <footer className={`w-full border-t border-border-color bg-background py-12 md:py-16 ${className}`}>
             <ContentContainer>
                 <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
                     {/* Brand Section - Left aligned */}
                     <div className="md:col-span-1">
-                        <Link
-                            href="/"
-                            className="inline-flex items-center text-xl font-semibold text-foreground"
-                        >
-                            FusionSpace
+                        <Link href="/" className="inline-flex items-center text-xl font-semibold text-foreground">
+                            {/* Dynamically switch the logo based on the theme */}
+                            <img 
+                                src={theme === "dark" ? DarkLogo.src : LightLogo.src} 
+                                alt="Logo" 
+                                
+                            />
                         </Link>
                         <p className="mt-4 text-sm text-muted-foreground">
                             Empowering productivity through intelligent workspace solutions.

@@ -1,6 +1,6 @@
 "use client"
 
-import { LinkIcon } from "lucide-react";
+import MyIcon from "@/public/icons/Fusion Transparent.png";
 import NavDropdown from "./NavDropdown";
 import { navigationItems } from "./routes.conf";
 import ThemeToggle from "./ThemeToggle";
@@ -18,7 +18,7 @@ const Navbar = () => {
                             href="/"
                             className="inline-flex items-center justify-center rounded-md p-2 text-foreground hover:text-blue-accent transition-colors"
                         >
-                            <LinkIcon className="h-5 w-5" />
+                            <img src={MyIcon.src} alt="Logo" className="h-10 w-10" />
                         </Link>
                     </div>
 
