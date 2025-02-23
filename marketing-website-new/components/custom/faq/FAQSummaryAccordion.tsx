@@ -35,7 +35,7 @@ const FAQSummaryAccordion = () => {
     ];
 
     return (
-        <div className="w-full max-w-3xl mx-auto px-4">
+        <div className="w-full max-w-3xl mx-auto px-4 mb-16">
             <h2 className="text-3xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
             <Accordion type="single" collapsible className="w-full">
                 {faqs.map((faq, index) => (
