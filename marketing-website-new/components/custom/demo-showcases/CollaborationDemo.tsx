@@ -60,7 +60,7 @@ const CollaborationDemo = () => {
                 <div className="w-64 border-r border-white/10 flex flex-col">
                     <div className="p-3">
                         <div className="relative">
-                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" size={16} />
+                            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground" size={16} />
                             <input
                                 type="text"
                                 placeholder="Search chats..."
@@ -85,7 +85,7 @@ const CollaborationDemo = () => {
                                 </div>
                                 <div className="flex-1 text-left">
                                     <div className="text-sm font-medium">{chat}</div>
-                                    <div className="text-xs text-muted">Last message: 5m ago</div>
+                                    <div className="text-xs text-muted-foreground">Last message: 5m ago</div>
                                 </div>
                             </motion.button>
                         ))}
@@ -111,7 +111,7 @@ const CollaborationDemo = () => {
                                     <div className="text-sm">
                                         {i === 2 ? typedMessage : "Example message content here"}
                                     </div>
-                                    <div className="text-xs text-muted mt-1">12:34 PM</div>
+                                    <div className="text-xs text-muted-foreground mt-1">12:34 PM</div>
                                 </div>
                             </motion.div>
                         ))}
@@ -171,7 +171,7 @@ const CollaborationDemo = () => {
                                 ))}
                             </div>
                             <div className="text-lg font-medium mb-2">Team Call</div>
-                            <div className="text-sm text-muted mb-8">Connecting...</div>
+                            <div className="text-sm text-muted-foreground mb-8">Connecting...</div>
                             <div className="flex gap-4">
                                 <motion.button
                                     whileHover={{ scale: 1.1 }}

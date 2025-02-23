@@ -61,7 +61,7 @@ const AiDemo = () => {
                     </div>
 
                     <div className="flex-1 overflow-auto p-3">
-                        <div className="text-xs text-muted mb-2">Recent Documents</div>
+                        <div className="text-xs text-muted-foreground mb-2">Recent Documents</div>
                         {['Project Report', 'Research Paper', 'Meeting Notes'].map((doc, i) => (
                             <motion.button
                                 key={doc}
@@ -95,7 +95,7 @@ const AiDemo = () => {
                                         className="w-16 h-16 rounded-full border-4 border-blue-500 border-t-transparent mx-auto mb-4"
                                     />
                                     <div className="text-lg font-medium mb-2">Analyzing Document</div>
-                                    <div className="text-sm text-muted">Processing content and extracting insights</div>
+                                    <div className="text-sm text-muted-foreground">Processing content and extracting insights</div>
                                 </div>
 
                                 <div className="space-y-4">
@@ -110,7 +110,7 @@ const AiDemo = () => {
                                         {['Extracting text', 'Analyzing context', 'Generating insights'].map((step, i) => (
                                             <div
                                                 key={step}
-                                                className={`flex items-center gap-2 text-sm ${progress > i * 33 ? 'text-blue-400' : 'text-muted'
+                                                className={`flex items-center gap-2 text-sm ${progress > i * 33 ? 'text-blue-400' : 'text-muted-foreground'
                                                     }`}
                                             >
                                                 <div className={`w-4 h-4 rounded-full border-2 ${progress > i * 33 ? 'border-blue-400 bg-blue-400/20' : 'border-muted'
@@ -145,7 +145,7 @@ const AiDemo = () => {
                                 >
                                     <div className="flex items-center justify-between mb-3">
                                         <div className="text-sm font-medium">Key Insights</div>
-                                        <div className="text-xs text-muted">3 items</div>
+                                        <div className="text-xs text-muted-foreground">3 items</div>
                                     </div>
                                     <div className="space-y-2">
                                         {[...Array(3)].map((_, i) => (

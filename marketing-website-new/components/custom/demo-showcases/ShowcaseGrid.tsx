@@ -48,17 +48,6 @@ const ShowcaseGrid = () => {
                                 transition={{ duration: 0.5, delay: rowIndex * 0.2 }}
                                 className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center"
                             >
-                                <div className="space-y-6">
-                                    <div className="p-3 bg-blue-600 rounded-xl w-fit">
-                                        {row.feature.icon}
-                                    </div>
-                                    <h3 className="text-4xl font-semibold text-foreground">
-                                        {row.feature.title}
-                                    </h3>
-                                    <p className="text-xl text-muted leading-relaxed">
-                                        {row.feature.description}
-                                    </p>
-                                </div>
 
                                 <div className="relative">
                                     <div className="absolute w-4 h-4 border-2 border-blue-600/50 top-0 right-0 translate-x-1/2 -translate-y-1/2" />

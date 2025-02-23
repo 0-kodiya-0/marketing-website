@@ -16,8 +16,8 @@ const WorkspaceDemo = () => {
                     <span className="text-sm font-medium">FusionSpace</span>
                 </div>
                 <div className="flex items-center gap-3">
-                    <Search size={16} className="text-muted" />
-                    <Settings size={16} className="text-muted" />
+                    <Search size={16} className="text-muted-foreground" />
+                    <Settings size={16} className="text-muted-foreground" />
                 </div>
             </div>
 
@@ -41,8 +41,8 @@ const WorkspaceDemo = () => {
                         {['Projects', 'Documents', 'Tasks', 'Team'].map((section) => (
                             <div key={section} className="space-y-2">
                                 <div className="flex items-center justify-between px-2">
-                                    <span className="text-xs text-muted">{section}</span>
-                                    <Plus size={14} className="text-muted" />
+                                    <span className="text-xs text-muted-foreground">{section}</span>
+                                    <Plus size={14} className="text-muted-foreground" />
                                 </div>
                                 <div className="space-y-1">
                                     {[1, 2].map((item) => (
@@ -122,7 +122,7 @@ const WorkspaceDemo = () => {
                                                 />
                                             ))}
                                         </div>
-                                        <div className="text-xs text-muted">Updated 2h ago</div>
+                                        <div className="text-xs text-muted-foreground">Updated 2h ago</div>
                                     </div>
                                 </motion.div>
                             ))}
@@ -157,7 +157,7 @@ const WorkspaceDemo = () => {
                             </div>
                             <div className="space-y-4">
                                 <div>
-                                    <label className="text-sm text-muted block mb-2">Name</label>
+                                    <label className="text-sm text-muted-foreground block mb-2">Name</label>
                                     <input
                                         type="text"
                                         className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2"
@@ -165,7 +165,7 @@ const WorkspaceDemo = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label className="text-sm text-muted block mb-2">Type</label>
+                                    <label className="text-sm text-muted-foreground block mb-2">Type</label>
                                     <select className="w-full bg-white/5 border border-white/10 rounded-lg px-3 py-2">
                                         <option>Development</option>
                                         <option>Research</option>
