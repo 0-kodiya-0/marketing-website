@@ -34,7 +34,10 @@ export default {
           css: {
             color: 'var(--foreground)',
             maxWidth: '65ch',
-            '[class~="lead"]': {
+            'h1, h2, h3, h4': {
+              color: 'var(--foreground)',
+            },
+            '.lead': {
               color: 'var(--muted)',
             },
             a: {
@@ -52,41 +55,25 @@ export default {
             'ol[type="a"]': {
               '--list-counter-style': 'lower-alpha',
             },
-            'ol[type="A" s]': {
-              '--list-counter-style': 'upper-alpha',
-            },
-            'ol[type="a" s]': {
-              '--list-counter-style': 'lower-alpha',
-            },
             'ol[type="I"]': {
               '--list-counter-style': 'upper-roman',
             },
             'ol[type="i"]': {
               '--list-counter-style': 'lower-roman',
             },
-            'ol[type="I" s]': {
-              '--list-counter-style': 'upper-roman',
-            },
-            'ol[type="i" s]': {
-              '--list-counter-style': 'lower-roman',
-            },
             'ol[type="1"]': {
               '--list-counter-style': 'decimal',
             },
             h1: {
-              color: 'var(--foreground)',
               fontWeight: '800',
             },
             h2: {
-              color: 'var(--foreground)',
               fontWeight: '700',
             },
             h3: {
-              color: 'var(--foreground)',
               fontWeight: '600',
             },
             h4: {
-              color: 'var(--foreground)',
               fontWeight: '600',
             },
             code: {
@@ -106,16 +93,10 @@ export default {
               color: 'var(--foreground)',
             },
             'thead th': {
-              paddingLeft: '0.75rem',
-              paddingRight: '0.75rem',
-              paddingTop: '0.75rem',
-              paddingBottom: '0.75rem',
+              padding: '0.75rem',
             },
             'tbody td': {
-              paddingLeft: '0.75rem',
-              paddingRight: '0.75rem',
-              paddingTop: '0.75rem',
-              paddingBottom: '0.75rem',
+              padding: '0.75rem',
             },
             'tbody tr': {
               borderBottomColor: 'var(--border-color)',
