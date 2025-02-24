@@ -47,14 +47,14 @@ const FAQSummaryAccordion = () => {
             <div className="relative mx-auto max-w-4xl">
                 {/* Background Effects */}
                 <div className="absolute left-1/2 top-0 h-[500px] w-[500px] -translate-x-1/2 rounded-full bg-blue-accent/10 opacity-50 blur-3xl" />
-                
+
                 {/* Header Section */}
                 <div className="relative mb-16 text-center">
                     <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
                         Frequently Asked Questions
                     </h2>
                     <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-                        Everything you need to know about FusionSpace. Can't find the answer you're looking for?{' '}
+                        {`Everything you need to know about FusionSpace. Can't find the answer you're looking for?  `}
                         <a href="/contact" className="text-blue-accent hover:text-blue-accent-hover">
                             Contact our support team
                         </a>
@@ -65,9 +65,9 @@ const FAQSummaryAccordion = () => {
                 <div className="relative bg-white/50 p-6 backdrop-blur-xl dark:bg-gray-900/50">
                     <Accordion type="single" collapsible className="w-full">
                         {faqs.map((faq, index) => (
-                            <AccordionItem 
-                                key={index} 
-                                value={`item-${index}`} 
+                            <AccordionItem
+                                key={index}
+                                value={`item-${index}`}
                                 className="border-b border-border-color last:border-b-0"
                             >
                                 <AccordionTrigger className="group flex w-full items-center py-6 text-left">

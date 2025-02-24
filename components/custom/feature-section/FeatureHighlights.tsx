@@ -6,8 +6,7 @@ import {
     Plug,
     BrainCircuit,
     PanelRight,
-    ShieldCheck,
-    Sparkles
+    ShieldCheck
 } from 'lucide-react';
 import ContentContainer from '@/layouts/ContentContainer';
 import GridCell from "../shared/GridCell";

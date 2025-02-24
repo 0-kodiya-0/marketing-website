@@ -1,3 +1,5 @@
+"use client"
+
 import React from 'react';
 import { motion } from 'framer-motion';
 import ContentContainer from '@/layouts/ContentContainer';
@@ -39,8 +41,8 @@ const FeaturesHeroSection: React.FC<FeaturesHeroProps> = ({ className = '' }) =>
                     </h2>
 
                     <p className="mx-auto mb-8 max-w-2xl text-body-lg text-muted-foreground text-balance">
-                        FusionSpace's innovative features transform your workflow,
-                        boost collaboration, and help you accomplish more in less time.
+                        {`FusionSpace's innovative features transform your workflow,
+                        boost collaboration, and help you accomplish more in less time.`}
                     </p>
 
 
