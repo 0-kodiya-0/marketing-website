@@ -8,11 +8,13 @@ import { InterfaceOverview } from "@/components/custom/feature-section/Interface
 import { TabLayout } from "@/components/custom/feature-section/TabLayout";
 import { ThirdPartyIntegration } from "@/components/custom/feature-section/ThirdPartyIntegration";
 import { WorkspaceSelection } from "@/components/custom/feature-section/WorkspaceSelection";
+import FeaturesHeroSection from "@/components/custom/hero-section/FeaturesHeroSection";
 import PageLayout from "@/layouts/PageLayout";
 
 export default function Feature() {
   return (
     <PageLayout>
+      <FeaturesHeroSection />
       <InterfaceOverview />
       <EnvironmentSwitcher />
       <WorkspaceSelection />

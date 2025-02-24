@@ -9,15 +9,15 @@ export const ThirdPartyIntegration: React.FC = () => {
             description="Connect your favorite tools and services directly into FusionSpace. Work with Google Workspace, Microsoft 365, Slack, and more without leaving your workspace."
             reversed={true}
         >
-            <div className="h-96 bg-white p-6 flex items-center justify-center">
+            <div className="h-96 bg-card p-6 flex items-center justify-center">
                 <div className="max-w-md w-full">
-                    <div className="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
-                        <div className="border-b border-gray-200 px-4 py-3 bg-gray-50">
-                            <h3 className="font-medium text-gray-900">Connected Applications</h3>
+                    <div className="bg-card rounded-lg border border-border shadow-sm overflow-hidden">
+                        <div className="border-b border-border px-4 py-3 bg-muted">
+                            <h3 className="font-medium text-foreground">Connected Applications</h3>
                         </div>
 
                         <div className="p-4 space-y-4">
-                            <div className="flex items-center p-3 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
+                            <div className="flex items-center p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
                                 <div className="flex-shrink-0 mr-3">
                                     <svg viewBox="0 0 24 24" width="24" height="24">
                                         <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"></path>
@@ -27,34 +27,34 @@ export const ThirdPartyIntegration: React.FC = () => {
                                     </svg>
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-gray-900 truncate">Google Workspace</p>
-                                    <p className="text-xs text-gray-500">Connected • All services</p>
+                                    <p className="text-sm font-medium text-foreground truncate">Google Workspace</p>
+                                    <p className="text-xs text-muted-foreground">Connected • All services</p>
                                 </div>
                                 <div className="ml-3">
-                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-500/20 text-green-600 dark:text-green-400">
                                         Active
                                     </span>
                                 </div>
                             </div>
 
-                            <div className="flex items-center p-3 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
+                            <div className="flex items-center p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
                                 <div className="flex-shrink-0 mr-3">
                                     <svg width="24" height="24" viewBox="0 0 24 24">
                                         <path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z" fill="#0078d4" />
                                     </svg>
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-gray-900 truncate">Microsoft 365</p>
-                                    <p className="text-xs text-gray-500">Connected • Email, Calendar</p>
+                                    <p className="text-sm font-medium text-foreground truncate">Microsoft 365</p>
+                                    <p className="text-xs text-muted-foreground">Connected • Email, Calendar</p>
                                 </div>
                                 <div className="ml-3">
-                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-500/20 text-green-600 dark:text-green-400">
                                         Active
                                     </span>
                                 </div>
                             </div>
 
-                            <div className="flex items-center p-3 border border-gray-100 rounded-lg hover:bg-gray-50 transition-colors">
+                            <div className="flex items-center p-3 border border-border rounded-lg hover:bg-muted/50 transition-colors">
                                 <div className="flex-shrink-0 mr-3">
                                     <svg width="24" height="24" viewBox="0 0 54 54">
                                         <path d="M19.712.133a5.381 5.381 0 0 0-5.376 5.387 5.381 5.381 0 0 0 5.376 5.386h5.376V5.52A5.381 5.381 0 0 0 19.712.133m0 14.365H5.376A5.381 5.381 0 0 0 0 19.884a5.381 5.381 0 0 0 5.376 5.387h14.336a5.381 5.381 0 0 0 5.376-5.387 5.381 5.381 0 0 0-5.376-5.386" fill="#36c5f0" />
@@ -64,30 +64,30 @@ export const ThirdPartyIntegration: React.FC = () => {
                                     </svg>
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-gray-900 truncate">Slack</p>
-                                    <p className="text-xs text-gray-500">Connected • Messaging</p>
+                                    <p className="text-sm font-medium text-foreground truncate">Slack</p>
+                                    <p className="text-xs text-muted-foreground">Connected • Messaging</p>
                                 </div>
                                 <div className="ml-3">
-                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-100 text-green-800">
+                                    <span className="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-green-500/20 text-green-600 dark:text-green-400">
                                         Active
                                     </span>
                                 </div>
                             </div>
 
-                            <div className="flex items-center p-3 border border-dashed border-gray-200 rounded-lg hover:bg-gray-50 transition-colors">
+                            <div className="flex items-center p-3 border border-dashed border-border rounded-lg hover:bg-muted/50 transition-colors">
                                 <div className="flex-shrink-0 mr-3">
-                                    <div className="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center">
-                                        <Plus className="w-4 h-4 text-gray-500" />
+                                    <div className="w-6 h-6 rounded-full bg-muted flex items-center justify-center">
+                                        <Plus className="w-4 h-4 text-muted-foreground" />
                                     </div>
                                 </div>
                                 <div className="flex-1 min-w-0">
-                                    <p className="text-sm font-medium text-gray-500 truncate">Connect New App</p>
+                                    <p className="text-sm font-medium text-muted-foreground truncate">Connect New App</p>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <div className="mt-4 text-center text-xs text-gray-500">
+                    <div className="mt-4 text-center text-xs text-muted-foreground">
                         All integrations work seamlessly within your FusionSpace environment
                     </div>
                 </div>
