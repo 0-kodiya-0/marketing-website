@@ -1,12 +1,26 @@
 "use client"
 
-import ContentContainer from "@/layouts/ContentContainer";
+import { CTAUseProduct } from "@/components/custom/cta/CTAUseProduct";
+import { AIFeatures } from "@/components/custom/feature-section/AIFeatures";
+import { CustomizableInterface } from "@/components/custom/feature-section/CustomizableInterface";
+import { EnvironmentSwitcher } from "@/components/custom/feature-section/EnvironmentSwitcher";
+import { InterfaceOverview } from "@/components/custom/feature-section/InterfaceOverview";
+import { TabLayout } from "@/components/custom/feature-section/TabLayout";
+import { ThirdPartyIntegration } from "@/components/custom/feature-section/ThirdPartyIntegration";
+import { WorkspaceSelection } from "@/components/custom/feature-section/WorkspaceSelection";
 import PageLayout from "@/layouts/PageLayout";
-import { motion } from "framer-motion";
-import { MousePointer, Play, ArrowRight } from "lucide-react";
 
 export default function Feature() {
   return (
-    <h1></h1>
+    <PageLayout>
+      <InterfaceOverview />
+      <EnvironmentSwitcher />
+      <WorkspaceSelection />
+      <CustomizableInterface />
+      <TabLayout />
+      <ThirdPartyIntegration />
+      <AIFeatures />
+      <CTAUseProduct />
+    </PageLayout>
   );
 }
