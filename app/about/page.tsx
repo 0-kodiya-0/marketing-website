@@ -22,7 +22,7 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/channa-karawita-5a2924211/",
     github: "https://github.com/channa-karawita",
     email: "mailto:channa.20232310@iit.ac.lk ",
-    image: "/team/channa" // Add image path
+    image: "/team/channa.jpg" // Add image path
   },
   {
     name: "P.V. Didula Muthumal",
@@ -32,7 +32,7 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/didula-muthumal-6455222ab/",
     github: "https://github.com/didula-muthumal",
     email: "mailto:didula.20222096@iit.ac.lk ",
-    image: "/images/team/didula-muthumal.jpg" // Add image path
+    image: "/team/didula-muthumal.jpg" // Add image path
   },
   {
     name: "J.A.D.S.N Jayakody",
@@ -42,7 +42,7 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/sanithu-jayakody-a541142ab/",
     github: "https://github.com/jadsn-jayakody",
     email: "mailto:sanithu.20222284@iit.ac.lk ",
-    image: "/images/team/jadsn-jayakody.jpg" // Add image path
+    image: "/team/jadsn-jayakody.jpg" // Add image path
   },
   {
     name: "Don Kehan Hasnaka Liyanage",
@@ -52,7 +52,7 @@ const teamMembers = [
     linkedin: "https://linkedin.com/in/kehan-liyanage",
     github: "https://github.com/kehan-liyanage",
     email: "mailto:kehan.20222087@iit.ac.lk ",
-    image: "/images/team/kehan-liyanage.jpg" // Add image path
+    image: "/team/kehan-liyanage.jpg" // Add image path
   },
   {
     name: "Thihan Jinajith Ranwella",
@@ -62,7 +62,7 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/thihanjr/",
     github: "https://github.com/thihan-ranwella",
     email: "mailto:thihan.20222265@iit.ac.lk ",
-    image: "/images/team/thihan-ranwella.jpg" // Add image path
+    image: "/team/thihan-ranwella.jpg" // Add image path
   },
   {
     name: "Piumal Gunathilaka",
@@ -72,7 +72,7 @@ const teamMembers = [
     linkedin: "https://www.linkedin.com/in/piumal-gunathilaka-38152b2b8/",
     github: "https://github.com/piumal-gunathilaka",
     email: "mailto:piumal.20222440@iit.ac.lk ",
-    image: "/images/team/piumal-gunathilaka.jpg" // Add image path
+    image: "/team/piumal-gunathilaka.jpg" // Add image path
   }
 ];
 const features = [
@@ -255,6 +255,7 @@ export default function Page() {
               <Card key={index} className="bg-card overflow-hidden">
                 <div className="aspect-square w-full overflow-hidden">
                   <Image
+                    fill
                     src={member.image}
                     alt={`Photo of ${member.name}`}
                     className="w-full h-full object-cover object-center"
