@@ -133,7 +133,7 @@ function VisionSection() {
 }
 
 
-export function ProjectTimeline() {
+function ProjectTimeline() {
   return (
     <section className="mb-20">
       <h2 className="text-3xl font-bold text-center mb-12">Project Timeline</h2>
