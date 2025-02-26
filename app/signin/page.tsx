@@ -2,16 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { FaGoogle, FaMicrosoft, FaEye, FaEyeSlash } from "react-icons/fa";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function SignInPage() {
-  const { theme } = useTheme();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const [, setIsMounted] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
   useEffect(() => {
@@ -130,7 +128,7 @@ export default function SignInPage() {
           </motion.button>
         </div>
         <p className="mt-6 text-center text-sm text-muted-foreground">
-          Don't have an account? <Link href="/signup" className="text-blue-accent hover:underline">Sign Up</Link>
+          {`Don't have an account?`} <Link href="/signup" className="text-blue-accent hover:underline">Sign Up</Link>
         </p>
       </motion.div>
     </motion.div>

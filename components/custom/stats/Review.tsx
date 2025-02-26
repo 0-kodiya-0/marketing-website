@@ -4,7 +4,6 @@ import { ny } from "@/lib/utils"
 import Image from "next/image"
 import { Star, Quote } from "lucide-react"
 import Link from "next/link"
-import PageLayout from "@/layouts/PageLayout"
 
 const reviews = [
     {
@@ -139,45 +138,45 @@ function ReviewCard({
 
 function Reviews() {
     return (
-            <ContentContainer className="py-12 md:py-16 lg:py-24">
-                {/* Title and Description Section */}
-                <div className="mx-auto mb-16 max-w-2xl text-center">
-                    <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-                        Trusted by Developers Worldwide
-                    </h2>
-                    <div className="relative">
-                        <div className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-accent/10 blur-3xl" />
-                        <p className="relative mt-4 text-lg leading-8 text-gray-600 dark:text-gray-400">
-                            Discover why thousands of developers choose our platform for their daily workflow.
-                            Here's what our community has to say about their experience.
-                        </p>
-                    </div>
+        <ContentContainer className="py-12 md:py-16 lg:py-24">
+            {/* Title and Description Section */}
+            <div className="mx-auto mb-16 max-w-2xl text-center">
+                <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+                    Trusted by Developers Worldwide
+                </h2>
+                <div className="relative">
+                    <div className="absolute left-1/2 top-1/2 h-32 w-32 -translate-x-1/2 -translate-y-1/2 rounded-full bg-blue-accent/10 blur-3xl" />
+                    <p className="relative mt-4 text-lg leading-8 text-gray-600 dark:text-gray-400">
+                        {`Discover why thousands of developers choose our platform for their daily workflow.
+                            Here's what our community has to say about their experience.`}
+                    </p>
                 </div>
+            </div>
 
-                {/* Reviews Marquee Section */}
-                <div className="relative flex size-full flex-col items-center justify-center overflow-hidden">
-                    <Marquee
-                        pauseOnHover
-                        className="[--duration:30s] [--gap:2rem]"
-                    >
-                        {firstRow.map((review) => (
-                            <ReviewCard key={review.username} {...review} />
-                        ))}
-                    </Marquee>
-                    <Marquee
-                        reverse
-                        pauseOnHover
-                        className="mt-8 [--duration:30s] [--gap:2rem]"
-                    >
-                        {secondRow.map((review) => (
-                            <ReviewCard key={review.username} {...review} />
-                        ))}
-                    </Marquee>
+            {/* Reviews Marquee Section */}
+            <div className="relative flex size-full flex-col items-center justify-center overflow-hidden">
+                <Marquee
+                    pauseOnHover
+                    className="[--duration:30s] [--gap:2rem]"
+                >
+                    {firstRow.map((review) => (
+                        <ReviewCard key={review.username} {...review} />
+                    ))}
+                </Marquee>
+                <Marquee
+                    reverse
+                    pauseOnHover
+                    className="mt-8 [--duration:30s] [--gap:2rem]"
+                >
+                    {secondRow.map((review) => (
+                        <ReviewCard key={review.username} {...review} />
+                    ))}
+                </Marquee>
 
-                    <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background" />
-                    <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background" />
-                </div>
-            </ContentContainer>
+                <div className="pointer-events-none absolute inset-y-0 left-0 w-1/3 bg-gradient-to-r from-background" />
+                <div className="pointer-events-none absolute inset-y-0 right-0 w-1/3 bg-gradient-to-l from-background" />
+            </div>
+        </ContentContainer>
     )
 }
 

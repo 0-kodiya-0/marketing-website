@@ -1,19 +1,17 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { FaGoogle, FaMicrosoft, FaEye, FaEyeSlash } from "react-icons/fa";
-import { useTheme } from "next-themes";
+import { FaEye, FaEyeSlash } from "react-icons/fa";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 export default function SignUpPage() {
-  const { theme } = useTheme();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
+  const [, setIsMounted] = useState(false);
   const [isPasswordVisible, setIsPasswordVisible] = useState(false);
   const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
   const [error, setError] = useState("");
