@@ -1,22 +1,181 @@
 "use client"
 
 // app/download/page.tsx
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import {
     Download,
-    Apple,
-    Globe,
-    MonitorUp,
-    ServerIcon,
     CheckCircle,
     ArrowRight,
     Code,
     Terminal,
     HelpCircle
 } from 'lucide-react';
+import { 
+    FaWindows, 
+    FaApple, 
+    FaLinux, 
+    FaGlobe
+} from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import ContentContainer from '@/layouts/ContentContainer';
 import PageLayout from '@/layouts/PageLayout';
+
+// Animated Download Header Component
+const AnimatedDownloadHeader = () => {
+  const [isVisible, setIsVisible] = useState(false);
+  
+  useEffect(() => {
+    setIsVisible(true);
+  }, []);
+  
+  // Text animation variants
+  const headingVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+  
+  // Character animation for the title
+  const titleText = "Download FusionSpace";
+  const titleVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05
+      }
+    }
+  };
+  
+  const letterVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut"
+      }
+    }
+  };
+  
+  // Download icon animation
+  const iconVariants = {
+    hidden: { scale: 0, rotate: -180 },
+    visible: {
+      scale: 1,
+      rotate: 0,
+      transition: {
+        type: "spring",
+        stiffness: 260,
+        damping: 20,
+        delay: 0.8
+      }
+    },
+    hover: {
+      scale: 1.1,
+      y: [0, -5, 0],
+      transition: {
+        y: {
+          repeat: Infinity,
+          duration: 1,
+          ease: "easeInOut"
+        }
+      }
+    }
+  };
+  
+  // Decorative elements animation
+  const decorVariants = {
+    hidden: { scale: 0, opacity: 0 },
+    visible: (i: number) => ({
+      scale: 1,
+      opacity: [0, 0.7, 0.5],
+      transition: {
+        delay: 1 + i * 0.2,
+        duration: 0.6,
+        repeat: Infinity,
+        repeatType: "reverse",
+        ease: "easeInOut"
+      }
+    })
+  };
+  
+  // Generate decorative elements
+  const decorElements = Array(6).fill(0).map((_, i) => {
+    const size = Math.random() * 20 + 10;
+    const x = Math.random() * 1000 - 500;
+    const y = Math.random() * 100 - 50;
+    
+    return (
+      <motion.div
+        key={i}
+        custom={i}
+        variants={decorVariants}
+        initial="hidden"
+        animate="visible"
+        className="absolute rounded-full bg-blue-400/30"
+        style={{
+          width: size,
+          height: size,
+          left: `calc(50% + ${x}px)`,
+          top: `calc(50% + ${y}px)`
+        }}
+      />
+    );
+  });
+  
+  return (
+    <div className="relative flex flex-col items-center justify-center py-16 overflow-hidden">
+      {/* Decorative elements */}
+      {decorElements}
+      
+      {/* Main title with letter animation */}
+      <motion.h1
+        className="text-4xl md:text-5xl lg:text-6xl font-sans font-extrabold text-center mb-6 flex flex-wrap justify-center"
+        variants={titleVariants}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+      >
+        {titleText.split('').map((char, index) => (
+          <motion.span key={index} variants={letterVariants} className="inline-block">
+            {char === ' ' ? '\u00A0' : char}
+          </motion.span>
+        ))}
+      </motion.h1>
+      
+      {/* Animated download icon */}
+      <motion.div
+        className="mb-8"
+        variants={iconVariants}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+        whileHover="hover"
+      >
+        <div className="bg-blue-500 text-white p-4 rounded-full shadow-lg">
+          <Download className="w-8 h-8" />
+        </div>
+      </motion.div>
+      
+      {/* Subtitle */}
+      <motion.p
+        className="font-sans text-xl text-muted-foreground max-w-2xl mx-auto text-center"
+        variants={headingVariants}
+        initial="hidden"
+        animate={isVisible ? "visible" : "hidden"}
+      >
+        Get started with FusionSpace on your platform of choice and transform your workspace.
+      </motion.p>
+    </div>
+  );
+};
 
 // Types for version data
 interface VersionInfo {
@@ -123,11 +282,11 @@ export default function DownloadPage() {
         }
     ];
 
-    // Platform information
+    // Platform information with updated, more realistic icons
     const platforms: PlatformInfo[] = [
         {
             name: 'Windows',
-            icon: <MonitorUp className="h-10 w-10" />,
+            icon: <FaWindows className="h-10 w-10 text-[#0078D7]" />, // Windows blue color
             description: 'Native desktop experience for Windows 10 and 11 with full feature support.',
             primaryButton: {
                 text: 'Download for Windows',
@@ -146,7 +305,7 @@ export default function DownloadPage() {
         },
         {
             name: 'macOS',
-            icon: <Apple className="h-10 w-10" />,
+            icon: <FaApple className="h-10 w-10 text-[#999999]" />, // Apple silver/gray color
             description: 'Designed for macOS with Apple Silicon and Intel processor support.',
             primaryButton: {
                 text: 'Download for Mac',
@@ -165,7 +324,7 @@ export default function DownloadPage() {
         },
         {
             name: 'Linux',
-            icon: <ServerIcon className="h-10 w-10" />,
+            icon: <FaLinux className="h-10 w-10 text-[#FCC624]" />, // Linux yellow/black color
             description: 'Available for major Linux distributions with comprehensive feature support.',
             primaryButton: {
                 text: 'Download for Linux',
@@ -184,7 +343,7 @@ export default function DownloadPage() {
         },
         {
             name: 'Web App',
-            icon: <Globe className="h-10 w-10" />,
+            icon: <FaGlobe className="h-10 w-10 text-[#4285F4]" />, // Web blue color
             description: 'Use FusionSpace directly in your browser with no installation required.',
             primaryButton: {
                 text: 'Launch Web App',
@@ -208,17 +367,14 @@ export default function DownloadPage() {
         : platforms.filter(p => p.name.toLowerCase() === selectedPlatform);
 
     return (
-        <PageLayout fullHeight className="py-16">
+        <PageLayout fullHeight className="py-16 font-sans">
             <ContentContainer>
-                {/* Header section */}
-                <div className="text-center mb-16">
-                    <h1 className="text-4xl font-bold mb-4">Download FusionSpace</h1>
-                    <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-                        Get started with FusionSpace on your platform of choice and transform your workspace.
-                    </p>
+                {/* Animated Header section */}
+                <AnimatedDownloadHeader />
 
-                    {/* Platform selector */}
-                    <div className="mt-8 inline-flex items-center p-1 bg-secondary rounded-lg">
+                {/* Platform selector */}
+                <div className="mt-8 text-center mb-16">
+                    <div className="inline-flex items-center p-1 bg-secondary rounded-lg">
                         <button
                             onClick={() => setSelectedPlatform('all')}
                             className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${selectedPlatform === 'all'
@@ -254,18 +410,18 @@ export default function DownloadPage() {
                             <div className="p-6">
                                 <div className="flex items-center gap-4 mb-4">
                                     {platform.icon}
-                                    <h3 className="text-xl font-bold">{platform.name}</h3>
+                                    <h3 className="text-xl font-bold font-sans">{platform.name}</h3>
                                 </div>
 
-                                <p className="text-muted-foreground mb-4">{platform.description}</p>
+                                <p className="text-muted-foreground mb-4 font-sans">{platform.description}</p>
 
                                 <div className="mb-6">
-                                    <h4 className="font-medium mb-3">Features:</h4>
+                                    <h4 className="font-medium mb-3 font-sans">Features:</h4>
                                     <ul className="space-y-2">
                                         {platform.features.map((feature, index) => (
                                             <li key={index} className="flex items-start gap-2">
                                                 <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                                                <span className="text-sm">{feature}</span>
+                                                <span className="text-sm font-sans">{feature}</span>
                                             </li>
                                         ))}
                                     </ul>
@@ -274,7 +430,7 @@ export default function DownloadPage() {
                                 <div className="flex flex-wrap gap-3">
                                     <Link
                                         href={platform.primaryButton.link}
-                                        className="bg-blue-accent hover:bg-blue-accent-hover text-white px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2"
+                                        className="bg-blue-accent hover:bg-blue-accent-hover text-white px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2 font-sans"
                                     >
                                         <Download className="h-4 w-4" />
                                         {platform.primaryButton.text}
@@ -283,7 +439,7 @@ export default function DownloadPage() {
                                     {platform.secondaryButton && (
                                         <Link
                                             href={platform.secondaryButton.link}
-                                            className="bg-secondary hover:bg-secondary/80 text-foreground px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2"
+                                            className="bg-secondary hover:bg-secondary/80 text-foreground px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2 font-sans"
                                         >
                                             <ArrowRight className="h-4 w-4" />
                                             {platform.secondaryButton.text}
@@ -297,7 +453,7 @@ export default function DownloadPage() {
 
                 {/* Version selector */}
                 <div className="mb-12">
-                    <h2 className="text-2xl font-bold mb-6 text-center">Available Versions</h2>
+                    <h2 className="text-2xl font-bold mb-6 text-center font-sans">Available Versions</h2>
 
                     <div className="max-w-4xl mx-auto">
                         <div className="flex flex-wrap gap-2 mb-8 justify-center">
@@ -305,7 +461,7 @@ export default function DownloadPage() {
                                 <button
                                     key={version.version}
                                     onClick={() => setSelectedVersion(version.version)}
-                                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${selectedVersion === version.version
+                                    className={`px-4 py-2 rounded-md text-sm font-medium transition-colors font-sans ${selectedVersion === version.version
                                         ? 'bg-primary text-primary-foreground'
                                         : 'bg-secondary text-foreground hover:bg-secondary/80'
                                         }`}
@@ -323,13 +479,13 @@ export default function DownloadPage() {
                         <div className="bg-card border border-border rounded-lg p-6">
                             <div className="flex justify-between items-start mb-4">
                                 <div>
-                                    <h3 className="text-xl font-bold">Version {currentVersion.version}</h3>
-                                    <p className="text-muted-foreground">Released on {currentVersion.releaseDate}</p>
+                                    <h3 className="text-xl font-bold font-sans">Version {currentVersion.version}</h3>
+                                    <p className="text-muted-foreground font-sans">Released on {currentVersion.releaseDate}</p>
                                 </div>
 
                                 <Link
                                     href="/support/changelog"
-                                    className="text-blue-accent hover:text-blue-accent-hover text-sm font-medium flex items-center gap-1"
+                                    className="text-blue-accent hover:text-blue-accent-hover text-sm font-medium flex items-center gap-1 font-sans"
                                 >
                                     View full changelog
                                     <ArrowRight className="h-3 w-3" />
@@ -337,42 +493,42 @@ export default function DownloadPage() {
                             </div>
 
                             <div className="mb-6">
-                                <h4 className="font-medium mb-3">{`What's New:`}</h4>
+                                <h4 className="font-medium mb-3 font-sans">{`What's New:`}</h4>
                                 <ul className="space-y-2">
                                     {currentVersion.changelog.map((item, index) => (
                                         <li key={index} className="flex items-start gap-2">
                                             <CheckCircle className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
-                                            <span className="text-sm">{item}</span>
+                                            <span className="text-sm font-sans">{item}</span>
                                         </li>
                                     ))}
                                 </ul>
                             </div>
 
                             <div className="mb-6">
-                                <h4 className="font-medium mb-3">System Requirements:</h4>
+                                <h4 className="font-medium mb-3 font-sans">System Requirements:</h4>
                                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                                     <div className="bg-secondary/30 p-4 rounded-lg">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <MonitorUp className="h-4 w-4" />
-                                            <span className="font-medium">Windows</span>
+                                            <FaWindows className="h-4 w-4 text-[#0078D7]" />
+                                            <span className="font-medium font-sans">Windows</span>
                                         </div>
-                                        <p className="text-sm text-muted-foreground">{currentVersion.minRequirements.windows}</p>
+                                        <p className="text-sm text-muted-foreground font-sans">{currentVersion.minRequirements.windows}</p>
                                     </div>
 
                                     <div className="bg-secondary/30 p-4 rounded-lg">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <Apple className="h-4 w-4" />
-                                            <span className="font-medium">macOS</span>
+                                            <FaApple className="h-4 w-4 text-[#999999]" />
+                                            <span className="font-medium font-sans">macOS</span>
                                         </div>
-                                        <p className="text-sm text-muted-foreground">{currentVersion.minRequirements.mac}</p>
+                                        <p className="text-sm text-muted-foreground font-sans">{currentVersion.minRequirements.mac}</p>
                                     </div>
 
                                     <div className="bg-secondary/30 p-4 rounded-lg">
                                         <div className="flex items-center gap-2 mb-2">
-                                            <ServerIcon className="h-4 w-4" />
-                                            <span className="font-medium">Linux</span>
+                                            <FaLinux className="h-4 w-4 text-[#FCC624]" />
+                                            <span className="font-medium font-sans">Linux</span>
                                         </div>
-                                        <p className="text-sm text-muted-foreground">{currentVersion.minRequirements.linux}</p>
+                                        <p className="text-sm text-muted-foreground font-sans">{currentVersion.minRequirements.linux}</p>
                                     </div>
                                 </div>
                             </div>
@@ -380,33 +536,33 @@ export default function DownloadPage() {
                             <div className="flex flex-wrap gap-3">
                                 <Link
                                     href={currentVersion.downloadLinks.windows}
-                                    className="bg-secondary hover:bg-secondary/80 text-foreground px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2"
+                                    className="bg-secondary hover:bg-secondary/80 text-foreground px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2 font-sans"
                                 >
-                                    <MonitorUp className="h-4 w-4" />
+                                    <FaWindows className="h-4 w-4 text-[#0078D7]" />
                                     Windows (.exe)
                                 </Link>
 
                                 <Link
                                     href={currentVersion.downloadLinks.mac}
-                                    className="bg-secondary hover:bg-secondary/80 text-foreground px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2"
+                                    className="bg-secondary hover:bg-secondary/80 text-foreground px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2 font-sans"
                                 >
-                                    <Apple className="h-4 w-4" />
+                                    <FaApple className="h-4 w-4 text-[#999999]" />
                                     macOS (.dmg)
                                 </Link>
 
                                 <Link
                                     href={currentVersion.downloadLinks.linux}
-                                    className="bg-secondary hover:bg-secondary/80 text-foreground px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2"
+                                    className="bg-secondary hover:bg-secondary/80 text-foreground px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2 font-sans"
                                 >
-                                    <ServerIcon className="h-4 w-4" />
+                                    <FaLinux className="h-4 w-4 text-[#FCC624]" />
                                     Linux (.AppImage)
                                 </Link>
 
                                 <Link
                                     href={currentVersion.downloadLinks.web}
-                                    className="bg-secondary hover:bg-secondary/80 text-foreground px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2"
+                                    className="bg-secondary hover:bg-secondary/80 text-foreground px-4 py-2 rounded-md font-medium transition-colors flex items-center gap-2 font-sans"
                                 >
-                                    <Globe className="h-4 w-4" />
+                                    <FaGlobe className="h-4 w-4 text-[#4285F4]" />
                                     Web App
                                 </Link>
                             </div>
@@ -416,12 +572,12 @@ export default function DownloadPage() {
 
                 {/* Advanced installation section */}
                 <div className="mb-16" id="linux-installation">
-                    <h2 className="text-2xl font-bold mb-6 text-center">Advanced Installation Options</h2>
+                    <h2 className="text-2xl font-bold mb-6 text-center font-sans">Advanced Installation Options</h2>
 
                     <div className="max-w-4xl mx-auto bg-card border border-border rounded-lg p-6">
                         <div className="mb-6">
-                            <h3 className="text-xl font-bold mb-2">Using Package Managers</h3>
-                            <p className="text-muted-foreground mb-4">
+                            <h3 className="text-xl font-bold mb-2 font-sans">Using Package Managers</h3>
+                            <p className="text-muted-foreground mb-4 font-sans">
                                 FusionSpace can be installed using popular package managers for easier updates and dependencies management.
                             </p>
 
@@ -429,7 +585,7 @@ export default function DownloadPage() {
                                 <div className="bg-black rounded-lg p-4">
                                     <div className="flex items-center gap-2 mb-2">
                                         <Terminal className="h-4 w-4 text-white" />
-                                        <span className="font-medium text-white">Homebrew (macOS)</span>
+                                        <span className="font-medium text-white font-sans">Homebrew (macOS)</span>
                                     </div>
                                     <code className="text-green-400 text-sm font-mono block">
                                         brew install fusionspace
@@ -439,7 +595,7 @@ export default function DownloadPage() {
                                 <div className="bg-black rounded-lg p-4">
                                     <div className="flex items-center gap-2 mb-2">
                                         <Terminal className="h-4 w-4 text-white" />
-                                        <span className="font-medium text-white">APT (Ubuntu/Debian)</span>
+                                        <span className="font-medium text-white font-sans">APT (Ubuntu/Debian)</span>
                                     </div>
                                     <code className="text-green-400 text-sm font-mono block">
                                         sudo apt update<br />
@@ -450,7 +606,7 @@ export default function DownloadPage() {
                                 <div className="bg-black rounded-lg p-4">
                                     <div className="flex items-center gap-2 mb-2">
                                         <Terminal className="h-4 w-4 text-white" />
-                                        <span className="font-medium text-white">Snap (Cross-platform)</span>
+                                        <span className="font-medium text-white font-sans">Snap (Cross-platform)</span>
                                     </div>
                                     <code className="text-green-400 text-sm font-mono block">
                                         sudo snap install fusionspace
@@ -460,31 +616,31 @@ export default function DownloadPage() {
                         </div>
 
                         <div>
-                            <h3 className="text-xl font-bold mb-2">Manual Installation</h3>
-                            <p className="text-muted-foreground mb-4">
+                            <h3 className="text-xl font-bold mb-2 font-sans">Manual Installation</h3>
+                            <p className="text-muted-foreground mb-4 font-sans">
                                 For environments where automatic installation is not possible, you can download and install the application manually.
                             </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                                 <Link
                                     href="#download-archive"
-                                    className="bg-secondary hover:bg-secondary/80 text-foreground p-4 rounded-md font-medium transition-colors flex items-center gap-3"
+                                    className="bg-secondary hover:bg-secondary/80 text-foreground p-4 rounded-md font-medium transition-colors flex items-center gap-3 font-sans"
                                 >
                                     <Code className="h-5 w-5" />
                                     <div>
-                                        <div className="font-medium">Download Source Archive</div>
-                                        <div className="text-sm text-muted-foreground">For custom builds (.tar.gz)</div>
+                                        <div className="font-medium font-sans">Download Source Archive</div>
+                                        <div className="text-sm text-muted-foreground font-sans">For custom builds (.tar.gz)</div>
                                     </div>
                                 </Link>
 
                                 <Link
                                     href="/support/installation-guide"
-                                    className="bg-secondary hover:bg-secondary/80 text-foreground p-4 rounded-md font-medium transition-colors flex items-center gap-3"
+                                    className="bg-secondary hover:bg-secondary/80 text-foreground p-4 rounded-md font-medium transition-colors flex items-center gap-3 font-sans"
                                 >
                                     <HelpCircle className="h-5 w-5" />
                                     <div>
-                                        <div className="font-medium">Installation Guide</div>
-                                        <div className="text-sm text-muted-foreground">Detailed instructions for all platforms</div>
+                                        <div className="font-medium font-sans">Installation Guide</div>
+                                        <div className="text-sm text-muted-foreground font-sans">Detailed instructions for all platforms</div>
                                     </div>
                                 </Link>
                             </div>
@@ -494,7 +650,7 @@ export default function DownloadPage() {
 
                 {/* Support links */}
                 <div>
-                    <h2 className="text-2xl font-bold mb-6 text-center">Need Help?</h2>
+                    <h2 className="text-2xl font-bold mb-6 text-center font-sans">Need Help?</h2>
 
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
                         <Link
@@ -502,8 +658,8 @@ export default function DownloadPage() {
                             className="bg-card hover:bg-card-hover border border-border rounded-lg p-6 transition-colors text-center"
                         >
                             <HelpCircle className="h-8 w-8 mx-auto mb-3" />
-                            <h3 className="font-bold mb-1">Support Documentation</h3>
-                            <p className="text-sm text-muted-foreground">
+                            <h3 className="font-bold mb-1 font-sans">Support Documentation</h3>
+                            <p className="text-sm text-muted-foreground font-sans">
                                 Find guides, tutorials, and troubleshooting information.
                             </p>
                         </Link>
@@ -513,8 +669,8 @@ export default function DownloadPage() {
                             className="bg-card hover:bg-card-hover border border-border rounded-lg p-6 transition-colors text-center"
                         >
                             <CheckCircle className="h-8 w-8 mx-auto mb-3" />
-                            <h3 className="font-bold mb-1">System Requirements</h3>
-                            <p className="text-sm text-muted-foreground">
+                            <h3 className="font-bold mb-1 font-sans">System Requirements</h3>
+                            <p className="text-sm text-muted-foreground font-sans">
                                 Make sure your system meets the requirements.
                             </p>
                         </Link>
@@ -528,8 +684,8 @@ export default function DownloadPage() {
                                     <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
                                 </svg>
                             </div>
-                            <h3 className="font-bold mb-1">Contact Support</h3>
-                            <p className="text-sm text-muted-foreground">
+                            <h3 className="font-bold mb-1 font-sans">Contact Support</h3>
+                            <p className="text-sm text-muted-foreground font-sans">
                                 Get help from our support team for specific issues.
                             </p>
                         </Link>
