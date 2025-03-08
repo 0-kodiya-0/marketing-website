@@ -52,7 +52,7 @@ export default function Page() {
         {/* Hero Section */}
         <motion.section 
           className="text-center mb-20"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 20 }} 
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >

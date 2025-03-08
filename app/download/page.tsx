@@ -92,54 +92,14 @@ const AnimatedDownloadHeader = () => {
     }
   };
   
-  // Decorative elements animation
-  const decorVariants = {
-    hidden: { scale: 0, opacity: 0 },
-    visible: (i: number) => ({
-      scale: 1,
-      opacity: [0, 0.7, 0.5],
-      transition: {
-        delay: 1 + i * 0.2,
-        duration: 0.6,
-        repeat: Infinity,
-        repeatType: "reverse",
-        ease: "easeInOut"
-      }
-    })
-  };
-  
-  // Generate decorative elements
-  const decorElements = Array(6).fill(0).map((_, i) => {
-    const size = Math.random() * 20 + 10;
-    const x = Math.random() * 1000 - 500;
-    const y = Math.random() * 100 - 50;
-    
-    return (
-      <motion.div
-        key={i}
-        custom={i}
-        variants={decorVariants}
-        initial="hidden"
-        animate="visible"
-        className="absolute rounded-full bg-blue-400/30"
-        style={{
-          width: size,
-          height: size,
-          left: `calc(50% + ${x}px)`,
-          top: `calc(50% + ${y}px)`
-        }}
-      />
-    );
-  });
-  
   return (
     <div className="relative flex flex-col items-center justify-center py-16 overflow-hidden">
-      {/* Decorative elements */}
-      {decorElements}
+      {/* Background styling */}
+      <div className="absolute inset-0 bg-gradient-to-b from-blue-50 to-transparent dark:from-blue-950/20 dark:to-transparent"></div>
       
-      {/* Main title with letter animation */}
+      {/* Main title with letter animation and matching gradient from About page */}
       <motion.h1
-        className="text-4xl md:text-5xl lg:text-6xl font-sans font-extrabold text-center mb-6 flex flex-wrap justify-center"
+        className="text-4xl md:text-5xl lg:text-6xl font-sans font-extrabold text-center mb-6 flex flex-wrap justify-center relative bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-cyan-500"
         variants={titleVariants}
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
@@ -153,7 +113,7 @@ const AnimatedDownloadHeader = () => {
       
       {/* Animated download icon */}
       <motion.div
-        className="mb-8"
+        className="mb-8 relative"
         variants={iconVariants}
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}
@@ -166,7 +126,7 @@ const AnimatedDownloadHeader = () => {
       
       {/* Subtitle */}
       <motion.p
-        className="font-sans text-xl text-muted-foreground max-w-2xl mx-auto text-center"
+        className="font-sans text-xl text-muted-foreground max-w-2xl mx-auto text-center relative"
         variants={headingVariants}
         initial="hidden"
         animate={isVisible ? "visible" : "hidden"}

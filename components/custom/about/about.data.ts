@@ -58,7 +58,8 @@ export const teamMembers: TeamMember[] = [
     linkedin: "https://www.linkedin.com/in/channa-karawita-5a2924211/",
     github: "https://github.com/channa-karawita",
     email: "mailto:channa.20232310@iit.ac.lk",
-    image: "https://avatar.vercel.sh/channa"
+    image: "/team/channa.jpeg"
+    
   },
   {
     name: "P.V. Didula Muthumal",
