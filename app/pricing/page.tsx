@@ -1,7 +1,7 @@
 "use client"
 
-import React from 'react';
-import { Check, HelpCircle } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Check, HelpCircle, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 import ContentContainer from '@/layouts/ContentContainer';
 import PageLayout from '@/layouts/PageLayout';
@@ -33,7 +33,24 @@ interface FAQ {
 
 // Pricing page component
 export default function PricingPage() {
-    const [billingCycle, setBillingCycle] = React.useState<'monthly' | 'yearly'>('monthly');
+    const [billingCycle, setBillingCycle] = useState<'monthly' | 'yearly'>('monthly');
+    const [activeTab, setActiveTab] = useState<number>(0);
+    const [visibleFAQs, setVisibleFAQs] = useState<number[]>([]);
+    const [isPageLoaded, setIsPageLoaded] = useState(false);
+
+    // Toggle FAQ visibility
+    const toggleFAQ = (index: number) => {
+        setVisibleFAQs(prev => 
+            prev.includes(index) 
+                ? prev.filter(i => i !== index) 
+                : [...prev, index]
+        );
+    };
+
+    // Add page load animation
+    useEffect(() => {
+        setIsPageLoaded(true);
+    }, []);
 
     // Features list that will be shown in the comparison table
     const features: PricingFeature[] = [
@@ -145,37 +162,62 @@ export default function PricingPage() {
     const yearlyDiscountPercentage =
         Math.round((1 - (pricingTiers[1].price.yearly / (pricingTiers[1].price.monthly * 12))) * 100);
 
+    // Intersection Observer for animations
+    useEffect(() => {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(el => {
+            observer.observe(el);
+        });
+
+        return () => {
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.unobserve(el);
+            });
+        };
+    }, []);
+
     return (
         <PageLayout fullHeight className="py-16">
             <ContentContainer>
                 {/* Header section */}
-                <div className="text-center mb-16">
-                    <h1 className="text-4xl font-bold mb-4">Simple, Transparent Pricing</h1>
+                <div className={`text-center mb-16 transition-all duration-700 transform ${
+                    isPageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}>
+                    <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-accent to-purple-600 bg-clip-text text-transparent animate-gradient-x">
+                        Simple, Transparent Pricing
+                    </h1>
                     <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
                         {`Choose the plan that's right for you and start transforming how you work.`}
                     </p>
 
                     {/* Billing toggle */}
-                    <div className="mt-8 inline-flex items-center p-1 bg-secondary rounded-lg">
+                    <div className="mt-8 inline-flex items-center p-1 bg-secondary rounded-lg shadow-sm hover:shadow-md transition-all duration-300">
                         <button
                             onClick={() => setBillingCycle('monthly')}
-                            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${billingCycle === 'monthly'
-                                ? 'bg-primary text-primary-foreground'
-                                : 'text-foreground/70 hover:text-foreground'
+                            className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 transform active:scale-95 ${billingCycle === 'monthly'
+                                ? 'bg-primary text-primary-foreground shadow-sm scale-105'
+                                : 'text-foreground/70 hover:text-foreground hover:bg-secondary/80 hover:scale-105'
                                 }`}
                         >
                             Monthly
                         </button>
                         <button
                             onClick={() => setBillingCycle('yearly')}
-                            className={`px-4 py-2 rounded-md text-sm font-medium transition-colors flex items-center gap-2 ${billingCycle === 'yearly'
-                                ? 'bg-primary text-primary-foreground'
-                                : 'text-foreground/70 hover:text-foreground'
+                            className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-300 flex items-center gap-2 transform active:scale-95 ${billingCycle === 'yearly'
+                                ? 'bg-primary text-primary-foreground shadow-sm scale-105'
+                                : 'text-foreground/70 hover:text-foreground hover:bg-secondary/80 hover:scale-105'
                                 }`}
                         >
                             Yearly
                             {billingCycle === 'yearly' ? (
-                                <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full font-medium">
+                                <span className="bg-green-100 text-green-800 text-xs px-2 py-0.5 rounded-full font-medium animate-pulse">
                                     Save {yearlyDiscountPercentage}%
                                 </span>
                             ) : (
@@ -188,27 +230,32 @@ export default function PricingPage() {
                 </div>
 
                 {/* Pricing table */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-                    {pricingTiers.map((tier) => (
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-8 mb-16">
+                    {pricingTiers.map((tier, index) => (
                         <div
                             key={tier.name}
-                            className={`rounded-lg border ${tier.highlighted
-                                ? 'border-blue-accent shadow-lg ring-1 ring-blue-accent relative'
-                                : 'border-border'
-                                } bg-card overflow-hidden`}
+                            className={`rounded-lg border group ${
+                                tier.highlighted
+                                    ? 'border-blue-accent shadow-lg ring-1 ring-blue-accent relative'
+                                    : 'border-border hover:border-blue-accent/30'
+                            } bg-card overflow-hidden transition-all duration-500 transform hover:scale-[1.02] ${
+                                isPageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                            } hover:shadow-xl`}
+                            style={{ transitionDelay: `${index * 150}ms` }}
+                            onMouseEnter={() => setActiveTab(index)}
                         >
                             {tier.highlighted && (
-                                <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-blue-accent text-white text-xs font-bold px-4 py-1 rounded-b-md">
+                                <div className="absolute top-0 left-1/2 -translate-x-1/2 bg-gradient-to-r from-blue-accent to-purple-600 text-white text-xs font-bold px-4 py-1 rounded-b-md shadow-sm">
                                     MOST POPULAR
                                 </div>
                             )}
 
                             <div className="p-6">
-                                <h3 className="text-xl font-bold">{tier.name}</h3>
+                                <h3 className="text-xl font-bold group-hover:text-blue-accent transition-colors duration-300">{tier.name}</h3>
                                 <p className="text-muted-foreground mt-1">{tier.description}</p>
 
                                 <div className="mt-4 mb-6">
-                                    <span className="text-4xl font-bold">
+                                    <span className="text-4xl font-bold group-hover:text-blue-accent transition-colors duration-300">
                                         ${billingCycle === 'monthly' ? tier.price.monthly : tier.price.yearly}
                                     </span>
                                     {tier.price.monthly > 0 && (
@@ -220,12 +267,16 @@ export default function PricingPage() {
 
                                 <Link
                                     href={tier.buttonLink}
-                                    className={`block w-full text-center py-2 px-4 rounded-md font-medium ${tier.highlighted
-                                        ? 'bg-blue-accent text-white hover:bg-blue-accent-hover'
+                                    className={`block w-full text-center py-2 px-4 rounded-md font-medium transition-all duration-300 transform hover:scale-[1.02] active:scale-95 ${tier.highlighted
+                                        ? 'bg-blue-accent text-white hover:bg-blue-accent-hover shadow-md hover:shadow-lg'
                                         : 'bg-secondary text-foreground hover:bg-secondary/80'
-                                        } transition-colors`}
+                                        } group relative overflow-hidden`}
                                 >
-                                    {tier.buttonText}
+                                    <span className="relative z-10 flex items-center justify-center gap-1">
+                                        {tier.buttonText}
+                                        <ArrowRight className={`w-4 h-4 transition-transform duration-300 group-hover:translate-x-1`} />
+                                    </span>
+                                    <span className={`absolute inset-0 w-0 bg-gradient-to-r ${tier.highlighted ? 'from-blue-accent-hover to-purple-600' : 'from-secondary/80 to-secondary/60'} transition-all duration-300 group-hover:w-full`}></span>
                                 </Link>
                             </div>
 
@@ -237,14 +288,15 @@ export default function PricingPage() {
                                             <li
                                                 key={feature.name}
                                                 className={`flex items-start gap-2 ${!tier.features[featureIndex] ? 'text-muted-foreground' : ''
-                                                    }`}
+                                                    } transition-all duration-300 ${activeTab === index ? 'opacity-100 translate-x-0' : 'opacity-70 -translate-x-2'}`}
+                                                style={{ transitionDelay: `${featureIndex * 50}ms` }}
                                             >
                                                 {tier.features[featureIndex] ? (
-                                                    <Check className="h-5 w-5 text-green-500 flex-shrink-0 mt-0.5" />
+                                                    <Check className={`h-5 w-5 text-green-500 flex-shrink-0 mt-0.5 transition-transform duration-300 ${activeTab === index && tier.features[featureIndex] ? 'scale-110 animate-bounce-once' : 'scale-100'}`} style={{ animationDelay: `${featureIndex * 100}ms` }} />
                                                 ) : (
                                                     <div className="h-5 w-5 flex-shrink-0" />
                                                 )}
-                                                <span className="text-sm">{feature.name}</span>
+                                                <span className="text-sm group-hover:text-foreground transition-colors duration-300">{feature.name}</span>
                                             </li>
                                         ))}
                                     </ul>
@@ -255,13 +307,14 @@ export default function PricingPage() {
                 </div>
 
                 {/* Feature comparison section */}
-                <div className="mb-16 overflow-hidden">
+                <div className={`mb-16 overflow-hidden transition-all duration-700 transform ${
+                    isPageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`} style={{ transitionDelay: '600ms' }}>
                     <h2 className="text-2xl font-bold mb-8 text-center">Feature Comparison</h2>
-
-                    <div className="overflow-x-auto">
+                    <div className="overflow-x-auto rounded-lg border border-border shadow-sm hover:shadow-md transition-all duration-300">
                         <table className="w-full border-collapse min-w-[800px]">
                             <thead>
-                                <tr className="border-b border-border">
+                                <tr className="border-b border-border bg-secondary/50">
                                     <th className="py-4 px-6 text-left">Features</th>
                                     {pricingTiers.map((tier) => (
                                         <th
@@ -275,8 +328,11 @@ export default function PricingPage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {features.map((feature) => (
-                                    <tr key={feature.name} className="border-b border-border">
+                                {features.map((feature, featureIndex) => (
+                                    <tr 
+                                        key={feature.name} 
+                                        className="border-b border-border hover:bg-secondary/30 transition-colors duration-200"
+                                    >
                                         <td className="py-4 px-6">
                                             <div className="flex items-center gap-2">
                                                 <span>{feature.name}</span>
@@ -312,16 +368,26 @@ export default function PricingPage() {
                 </div>
 
                 {/* FAQ section */}
-                <div className="mb-16">
+                <div className={`mb-16 transition-all duration-700 transform ${
+                    isPageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`} style={{ transitionDelay: '750ms' }}>
                     <h2 className="text-2xl font-bold mb-8 text-center">Frequently Asked Questions</h2>
-
                     <div className="max-w-3xl mx-auto divide-y divide-border">
                         {faqs.map((faq, index) => (
-                            <div key={index} className="py-5">
-                                <details className="group">
-                                    <summary className="flex items-center justify-between cursor-pointer">
+                            <div 
+                                key={index} 
+                                className={`py-5 transition-all duration-300 hover:bg-secondary/20 rounded-md px-4 transform hover:translate-x-1 ${
+                                    isPageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                                }`}
+                                style={{ transitionDelay: `${800 + index * 100}ms` }}
+                            >
+                                <button 
+                                    onClick={() => toggleFAQ(index)}
+                                    className="w-full text-left transition-transform duration-300 active:scale-[0.98]"
+                                >
+                                    <div className="flex items-center justify-between cursor-pointer">
                                         <h3 className="text-lg font-medium">{faq.question}</h3>
-                                        <span className="transition group-open:rotate-180">
+                                        <span className={`transition-transform duration-300 ${visibleFAQs.includes(index) ? 'rotate-180' : ''}`}>
                                             <svg
                                                 width="24"
                                                 height="24"
@@ -338,16 +404,26 @@ export default function PricingPage() {
                                                 />
                                             </svg>
                                         </span>
-                                    </summary>
-                                    <p className="mt-3 text-muted-foreground">{faq.answer}</p>
-                                </details>
+                                    </div>
+                                </button>
+                                <div 
+                                    className={`mt-3 text-muted-foreground overflow-hidden transition-all duration-300 ${
+                                        visibleFAQs.includes(index) 
+                                            ? 'max-h-40 opacity-100 translate-y-0' 
+                                            : 'max-h-0 opacity-0 -translate-y-2'
+                                    }`}
+                                >
+                                    <p>{faq.answer}</p>
+                                </div>
                             </div>
                         ))}
                     </div>
                 </div>
 
                 {/* CTA section */}
-                <div className="text-center bg-card rounded-lg p-8 border border-border">
+                <div className={`text-center bg-card rounded-lg p-8 border border-border shadow-md transition-all duration-700 transform hover:shadow-lg ${
+                    isPageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`} style={{ transitionDelay: '1000ms' }}>
                     <h2 className="text-2xl font-bold mb-2">Ready to get started?</h2>
                     <p className="text-muted-foreground mb-6 max-w-xl mx-auto">
                         Join thousands of satisfied users who are already enhancing their productivity with FusionSpace.
@@ -355,13 +431,17 @@ export default function PricingPage() {
                     <div className="flex flex-wrap items-center justify-center gap-4">
                         <Link
                             href="/download"
-                            className="bg-blue-accent hover:bg-blue-accent-hover text-white px-6 py-3 rounded-md font-medium transition-colors"
+                            className="bg-blue-accent hover:bg-blue-accent-hover text-white px-6 py-3 rounded-md font-medium transition-all duration-300 hover:shadow-lg transform hover:scale-105 active:scale-95 group relative overflow-hidden"
                         >
-                            Get Started for Free
+                            <span className="relative z-10 flex items-center gap-2">
+                                Get Started for Free
+                                <ArrowRight className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-2" />
+                            </span>
+                            <span className="absolute inset-0 w-0 bg-gradient-to-r from-blue-accent-hover to-purple-600 transition-all duration-300 group-hover:w-full"></span>
                         </Link>
                         <Link
                             href="/contact"
-                            className="bg-secondary hover:bg-secondary/80 text-foreground px-6 py-3 rounded-md font-medium transition-colors"
+                            className="bg-secondary hover:bg-secondary/80 text-foreground px-6 py-3 rounded-md font-medium transition-all duration-300 hover:shadow-md transform hover:scale-105 active:scale-95"
                         >
                             Contact Sales
                         </Link>
