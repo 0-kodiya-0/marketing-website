@@ -1,4 +1,5 @@
-import { TeamMember, TimelineItem } from './about.types';
+import type { TeamMember, TimelineItem } from './about.types';
+
 export const timelineData: TimelineItem[] = [
   {
     phase: "Planning Phase",

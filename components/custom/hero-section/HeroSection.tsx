@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { HeroProps, MousePosition, GridConfig } from './heroSection.types';
+import type { HeroProps, MousePosition, GridConfig } from './heroSection.types';
 import TypewriterText from '../shared/TypewriterText';
 import ContentContainer from '@/layouts/ContentContainer';
 import PageLayout from '@/layouts/PageLayout';

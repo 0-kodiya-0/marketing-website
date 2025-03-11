@@ -1,6 +1,6 @@
 "use client";
 
-import { Feature } from '@/components/custom/about/about.types';
+import type { Feature } from '@/components/custom/about/about.types';
 import { AboutFeatureCard } from '@/components/custom/about/AboutFeatureCard';
 import { SectionTitle } from '@/components/custom/about/SectionTitle';
 import { TeamMarquee } from '@/components/custom/about/TeamMarquee';
@@ -12,7 +12,7 @@ import { motion } from 'framer-motion';
 import { GraduationCap, Briefcase, Palette, Database, Cpu, Users } from 'lucide-react';
 
 
-export const features: Feature[] = [
+const features: Feature[] = [
   { 
     icon: <GraduationCap className="h-8 w-8" />, 
     title: "Education Focus", 
@@ -60,7 +60,7 @@ export default function Page() {
             About FusionSpace
           </h1>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-16">
-            We're building the future of digital workspaces, making it easier for students 
+            We&apos;re building the future of digital workspaces, making it easier for students 
             to manage their academic life and collaborate effectively.
           </p>
         </motion.section>

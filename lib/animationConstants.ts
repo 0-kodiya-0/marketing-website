@@ -1,4 +1,3 @@
-// Animation variants for consistent use across components
 export const containerVariants = {
     hidden: { opacity: 0 },
     visible: {

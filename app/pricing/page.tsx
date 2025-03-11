@@ -328,7 +328,7 @@ export default function PricingPage() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {features.map((feature, featureIndex) => (
+                                {features.map((feature) => (
                                     <tr 
                                         key={feature.name} 
                                         className="border-b border-border hover:bg-secondary/30 transition-colors duration-200"

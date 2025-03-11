@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import MyIcon from "@/public/icons/Fusion Transparent.png";
+import MyIcon from "@/public/icons/fusion-transparent.png";
 import NavDropdown from "./NavDropdown";
 import { navigationItems } from "./routes.conf";
 import ThemeToggle from "./ThemeToggle";

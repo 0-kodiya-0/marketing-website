@@ -3,7 +3,7 @@ import Image from "next/image";
 
 import { Linkedin, Github, Mail } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { TeamMember } from "./about.types";
+import type { TeamMember } from "./about.types";
 
 interface TeamMemberMarqueeCardProps {
   member: TeamMember;

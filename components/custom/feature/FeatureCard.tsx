@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { FeatureCardProps } from "./feature.types";
+import type { FeatureCardProps } from "./feature.types";
 
 const FeatureCard: React.FC<FeatureCardProps> = ({ title, description, icon, animationDelay = 0 }) => {
     return (

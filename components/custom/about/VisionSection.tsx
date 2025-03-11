@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { containerVariants, itemVariants } from '@/lib/animationConstants';
 import { Target, Rocket, Star } from 'lucide-react';
-import { VisionPoint } from './about.types';
+import type { VisionPoint } from './about.types';
 import { SectionTitle } from './SectionTitle';
 
 

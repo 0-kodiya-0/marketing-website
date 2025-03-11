@@ -1,6 +1,5 @@
-// layouts/PageLayout.tsx
 import React from 'react';
-import { PageLayoutProps } from './page.types';
+import type { PageLayoutProps } from './page.types';
 
 const PageLayout: React.FC<PageLayoutProps> = ({ 
     children, 

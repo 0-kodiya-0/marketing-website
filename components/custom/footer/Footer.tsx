@@ -3,7 +3,7 @@
 import { useTheme } from "next-themes";
 import React from "react";
 import Link from "next/link";
-import { FooterProps } from "./footer.types";
+import type { FooterProps } from "./footer.types";
 import { Facebook, Twitter, Youtube, ArrowRight, Mail } from "lucide-react";
 import ContentContainer from "@/layouts/ContentContainer";
 import { footerSections } from "./routes.conf";

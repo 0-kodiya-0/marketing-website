@@ -1,7 +1,7 @@
 import ContentContainer from "@/layouts/ContentContainer";
 import PageLayout from "@/layouts/PageLayout";
 import GridCell from "../shared/GridCell";
-import { FeatureSummaryProps } from "./feature.types";
+import type { FeatureSummaryProps } from "./feature.types";
 import FeatureCard from "./FeatureCard";
 import features from "./feature.data";
 import { ArrowRight } from "lucide-react";

@@ -1,5 +1,5 @@
 import React from 'react';
-import { HeroProps } from './heroSection.types';
+import type { HeroProps } from './heroSection.types';
 import TypewriterText from '../shared/TypewriterText';
 import ContentContainer from '@/layouts/ContentContainer';
 import DotGrid from '../shared/DotGrid';

@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { TimelineItem } from './about.types';
+import type { TimelineItem } from './about.types';
 
 
 interface StatusIndicatorProps {

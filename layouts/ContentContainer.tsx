@@ -1,5 +1,5 @@
 import React from 'react';
-import { PageLayoutProps } from './page.types';
+import type { PageLayoutProps } from './page.types';
 
 const ContentContainer: React.FC<PageLayoutProps> = ({ children, className = '' }) => {
     return (

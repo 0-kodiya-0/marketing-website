@@ -1,8 +1,6 @@
 import { motion } from 'framer-motion';
-import { Feature } from './about.types';
+import type { Feature } from './about.types';
 import { itemVariants } from '@/lib/animationConstants';
-
-
 
 interface FeatureCardProps {
   feature: Feature;
