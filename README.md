@@ -79,40 +79,66 @@ The UI is divided into three vertical sections:
 
 Additional horizontal sections at top and bottom provide access to global features like AI tools, notifications, and quick access shortcuts.
 
-## Marketing Website Requirements
+## Team Members
 
-Based on the project details, the marketing website should include:
+The FusionSpace project is being developed by a talented team of developers and designers from IIT Sri Lanka. Each team member brings unique skills and expertise to the project:
 
-### Essential Content
-1. **Problem Statement**: Highlight the inefficiencies of using multiple digital tools
-2. **Solution Overview**: Showcase FusionSpace as the unified workspace solution
-3. **Feature Highlights**: Focus on customization, AI capabilities, and collaboration tools
-4. **Use Cases**: Demonstrate specific scenarios for students and educational institutions
-5. **Competitive Advantages**: Comparison with existing solutions
+### Core Team
 
-### Visual Elements
-1. **Interface Demonstrations**: Screenshots/videos of the customizable environments
-2. **User Journey Map**: Visual representation of workflow improvements
-3. **Rich Picture Diagrams**: Simplified version of the system interaction diagram
-4. **Testimonials**: (Future) Feedback from early adopters and beta testers
-
-### Technical Specifications
-1. **Cross-Platform Compatibility**: Highlight web-based nature and desktop applications
-2. **Security Features**: Emphasize data protection and privacy measures
-3. **Integration Capabilities**: Showcase API connections and third-party support
-
-### Call-to-Action
-1. **Free Trial Registration**: For students to experience the platform
-2. **Demo Request**: For educational institutions
-3. **Early Adopter Program**: Special incentives for initial users
-
-## Implementation Timeline
-The implementation plan follows a structured approach:
-1. **Research and Discovery**: Understanding user needs and behaviors
-2. **Design Phase**: Wireframing, prototyping, and visual design
-3. **Development**: Frontend, backend, and AI feature integration
-4. **Testing**: Ensuring functionality across platforms
-5. **Deployment**: Gradual rollout with continuous improvement
+<table>
+  <tr>
+    <td align="center">
+      <img src="./public/team/channa.jpeg" width="150" height="150" style="border-radius: 50%;"><br>
+      <strong>Channa Laksen Karawita</strong><br>
+      <em>Project Lead & Scrum Master</em><br>
+      <a href="https://www.linkedin.com/in/channa-karawita-5a2924211/">LinkedIn</a> | 
+      <a href="https://github.com/channa-karawita">GitHub</a> |
+      <a href="mailto:channa.20232310@iit.ac.lk">Email</a>
+    </td>
+    <td align="center">
+      <img src="./public/team/didula.jpeg" width="150" height="150" style="border-radius: 50%;"><br>
+      <strong>P.V. Didula Muthumal</strong><br>
+      <em>Frontend Developer</em><br>
+      <a href="https://www.linkedin.com/in/didula-muthumal-6455222ab/">LinkedIn</a> | 
+      <a href="https://github.com/didula-muthumal">GitHub</a> |
+      <a href="mailto:didula.20222096@iit.ac.lk">Email</a>
+    </td>
+    <td align="center">
+      <img src="./public/team/sanithu.jpeg" width="150" height="150" style="border-radius: 50%;"><br>
+      <strong>J.A.D.S.N Jayakody</strong><br>
+      <em>Product Owner & Developer</em><br>
+      <a href="https://www.linkedin.com/in/sanithu-jayakody-a541142ab/">LinkedIn</a> | 
+      <a href="https://github.com/0-kodiya-0">GitHub</a> |
+      <a href="mailto:sanithu.20222284@iit.ac.lk">Email</a>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="./public/team/kehan.jpeg" width="150" height="150" style="border-radius: 50%;"><br>
+      <strong>Don Kehan Hasnaka Liyanage</strong><br>
+      <em>Developer</em><br>
+      <a href="https://linkedin.com/in/kehan-liyanage">LinkedIn</a> | 
+      <a href="https://github.com/SYR3X">GitHub</a> |
+      <a href="mailto:kehan.20222087@iit.ac.lk">Email</a>
+    </td>
+    <td align="center">
+      <img src="https://avatar.vercel.sh/thihan" width="150" height="150" style="border-radius: 50%;"><br>
+      <strong>Thihan Jinajith Ranwella</strong><br>
+      <em>Developer</em><br>
+      <a href="https://www.linkedin.com/in/thihanjr/">LinkedIn</a> | 
+      <a href="https://github.com/Thihanjr">GitHub</a> |
+      <a href="mailto:thihan.20222265@iit.ac.lk">Email</a>
+    </td>
+    <td align="center">
+      <img src="https://avatar.vercel.sh/piumal" width="150" height="150" style="border-radius: 50%;"><br>
+      <strong>Piumal Gunathilaka</strong><br>
+      <em>Developer</em><br>
+      <a href="https://www.linkedin.com/in/piumal-gunathilaka-38152b2b8/">LinkedIn</a> | 
+      <a href="https://github.com/PiumalGunathilaka20222440">GitHub</a> |
+      <a href="mailto:piumal.20222440@iit.ac.lk">Email</a>
+    </td>
+  </tr>
+</table>
 
 ## Conclusion
 FusionSpace addresses a significant gap in the educational technology market by providing a unified, customizable workspace that enhances productivity and streamlines workflows. With its AI-powered features, real-time collaboration tools, and cross-platform compatibility, it offers a comprehensive solution to the digital fragmentation challenges faced by students and educational institutions.
